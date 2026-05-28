@@ -49,13 +49,72 @@ def read_campaign_closures(path, month):
     return daily
 
 
-def summarize_closures(closures):
-    pnl = sum(item["pnl"] for item in closures)
-    basis = sum(item["basis"] for item in closures)
+def read_realized_exits(journal_root, year, month):
+    rows = []
+    for path in sorted((journal_root / "Executions").glob(f"{year}-*.csv")):
+        with path.open(newline="", encoding="utf-8-sig") as handle:
+            for row in csv.DictReader(handle):
+                if "_" in row["ticker"]:
+                    continue
+                rows.append({
+                    "executionId": row["execution_id"],
+                    "time": row["date_time"],
+                    "ticker": row["ticker"].upper(),
+                    "side": row["side"],
+                    "shares": float(row["shares"]),
+                    "price": float(row["price"]),
+                })
+
+    positions = {}
+    daily = {}
+    for row in sorted(rows, key=lambda item: (item["time"], item["executionId"])):
+        ticker = row["ticker"]
+        position = positions.setdefault(ticker, {"qty": 0.0, "cost": 0.0})
+        if row["side"].lower() == "buy":
+            position["qty"] += row["shares"]
+            position["cost"] += row["shares"] * row["price"]
+            continue
+
+        if row["side"].lower() != "sell" or position["qty"] <= 0:
+            continue
+
+        sell_qty = min(row["shares"], position["qty"])
+        avg_entry = position["cost"] / position["qty"]
+        pnl = (row["price"] - avg_entry) * sell_qty
+        basis = avg_entry * sell_qty
+        date = row["time"][:10]
+        if date.startswith(month):
+            daily.setdefault(date, []).append({
+                "symbol": ticker,
+                "campaignId": "",
+                "openDate": "",
+                "closeDate": date,
+                "quantity": round(sell_qty, 6),
+                "avgEntry": round(avg_entry, 4),
+                "avgExit": row["price"],
+                "pnl": round(pnl, 2),
+                "returnPct": round((pnl / basis) * 100, 2) if basis else None,
+                "executionCount": 1,
+                "basis": basis,
+                "time": row["time"],
+            })
+
+        position["qty"] -= sell_qty
+        position["cost"] -= avg_entry * sell_qty
+        if abs(position["qty"]) < 0.0000001:
+            position["qty"] = 0.0
+            position["cost"] = 0.0
+
+    return daily
+
+
+def summarize_realized(exits):
+    pnl = sum(item["pnl"] for item in exits)
+    basis = sum(item["basis"] for item in exits)
     return {
         "pnl": round(pnl, 2),
         "returnPct": round((pnl / basis) * 100, 2) if basis else None,
-        "closedTrades": len(closures),
+        "closedTrades": len(exits),
         "basis": basis,
     }
 
@@ -63,8 +122,8 @@ def summarize_closures(closures):
 def build_snapshot(journal_root, month):
     year, month_number = [int(part) for part in month.split("-")]
     executions = read_executions(journal_root / "Executions" / f"{month}.csv", month)
-    closures = read_campaign_closures(journal_root / "Campaigns" / f"{year}.csv", month)
-    daily = {date: summarize_closures(items) for date, items in closures.items()}
+    realized_exits = read_realized_exits(journal_root, year, month)
+    daily = {date: summarize_realized(items) for date, items in realized_exits.items()}
 
     days = []
     for day in range(1, calendar.monthrange(year, month_number)[1] + 1):
@@ -80,7 +139,7 @@ def build_snapshot(journal_root, month):
                 "closedTrades": day_summary["closedTrades"],
                 "executions": len(day_executions),
                 "trades": len(day_executions),
-                "closedTradeDetails": closures.get(date, []),
+                "closedTradeDetails": realized_exits.get(date, []),
                 "executionDetails": day_executions,
             })
 
@@ -111,7 +170,7 @@ def build_snapshot(journal_root, month):
         "month": month,
         "title": title,
         "generatedAt": datetime.now().isoformat(timespec="seconds"),
-        "source": "Raw executions for activity; campaign CSVs for realized P/L and return %",
+        "source": "Raw executions for activity, realized P/L, and return %",
         "summary": {
             "totalPnl": round(total_pnl, 2),
             "totalReturnPct": round((total_pnl / total_basis) * 100, 2) if total_basis else None,
