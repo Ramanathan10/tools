@@ -21,6 +21,7 @@
       --green-soft: #57ffb2;
       --red: #ff5f6f;
       --amber: #f8c04f;
+      --blue: #66d9ff;
       --shadow: 0 18px 70px rgba(0, 0, 0, 0.46);
       --radius: 8px;
       color-scheme: dark;
@@ -226,11 +227,25 @@
       grid-template-rows: auto 1fr auto;
       position: relative;
       overflow: hidden;
+      color: inherit;
+      font: inherit;
+      text-align: left;
     }
 
     .day.active, .week-total {
       background: linear-gradient(145deg, rgba(0, 103, 63, 0.72), rgba(5, 53, 37, 0.86));
       border-color: var(--line-strong);
+    }
+
+    button.day {
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button.day:hover, button.day:focus-visible {
+      border-color: rgba(87, 255, 178, 0.72);
+      outline: none;
+      transform: translateY(-1px);
     }
 
     .day.loss {
@@ -269,6 +284,15 @@
     }
 
     .loss .pnl { color: var(--red); text-shadow: none; }
+
+    .pct {
+      justify-self: end;
+      color: var(--blue);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-top: 4px;
+    }
 
     .trade-count {
       justify-self: end;
@@ -309,6 +333,132 @@
       flex-wrap: wrap;
     }
 
+    .dialog-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.64);
+      z-index: 10;
+    }
+
+    .dialog-backdrop.open { display: flex; }
+
+    .dialog {
+      width: min(940px, 100%);
+      max-height: min(82vh, 820px);
+      overflow: auto;
+      background: rgba(7, 18, 24, 0.98);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .dialog-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+
+    .dialog h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 4vw, 2.25rem);
+      line-height: 1;
+    }
+
+    .close {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-size: 1.35rem;
+      cursor: pointer;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .detail-stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .detail-stat span {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+    }
+
+    .detail-stat strong {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.22rem;
+    }
+
+    .section-title {
+      margin: 22px 0 10px;
+      font-family: "JetBrains Mono", monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.82rem;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child, td:first-child,
+    th:nth-child(2), td:nth-child(2) {
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    .green, .buy { color: var(--green-soft); }
+    .red, .sell { color: var(--red); }
+    .empty { color: var(--muted); padding: 14px; }
+
     @media (max-width: 900px) {
       .top { display: block; }
       .eyebrow { margin-bottom: 34px; }
@@ -318,6 +468,7 @@
       .calendar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .weekday, .weekly-title { display: none; }
       .week-total { min-height: 96px; }
+      .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 560px) {
@@ -328,6 +479,8 @@
       .day, .week-total { min-height: 104px; }
       .logo { font-size: 1.35rem; }
       .mark { width: 34px; height: 34px; }
+      .dialog { padding: 18px; }
+      .detail-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -378,6 +531,23 @@
     </footer>
   </main>
 
+  <div class="dialog-backdrop" id="detailBackdrop" aria-hidden="true">
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <div class="dialog-top">
+        <div>
+          <div class="eyebrow" style="margin: 0 0 12px; font-size: 0.72rem;"><span class="dot"></span>Daily Detail</div>
+          <h2 id="detailTitle"></h2>
+        </div>
+        <button class="close" id="closeDetail" type="button" aria-label="Close detail">&times;</button>
+      </div>
+      <div class="detail-grid" id="detailStats"></div>
+      <div class="section-title">Closed Trades</div>
+      <div class="table-wrap" id="closedTrades"></div>
+      <div class="section-title">Raw Executions</div>
+      <div class="table-wrap" id="rawExecutions"></div>
+    </section>
+  </div>
+
   <script>
     const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
     const wholeMoney = new Intl.NumberFormat("en-US", {
@@ -385,6 +555,13 @@
       currency: "USD",
       maximumFractionDigits: 0
     });
+    const preciseMoney = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+    let dashboardData = null;
 
     const compactMoney = value => {
       const sign = value >= 0 ? "+" : "-";
@@ -396,22 +573,108 @@
       return `${sign}${wholeMoney.format(abs)}`;
     };
 
+    const signedPct = value => {
+      if (value === null || value === undefined || Number.isNaN(value)) return "";
+      return `${value >= 0 ? "+" : ""}${value.toFixed(2)}%`;
+    };
+
+    const signedMoney = value => `${value >= 0 ? "+" : ""}${preciseMoney.format(value)}`;
+
+    const displayShares = value => Number.isInteger(value) ? String(value) : value.toFixed(4).replace(/\.?0+$/, "");
+
     const monthName = date => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric"
     }).toUpperCase();
 
+    const detailDate = date => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+
+    const detailTime = value => new Date(value).toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit"
+    });
+
+    const renderTable = (headers, rows, emptyText) => {
+      if (!rows.length) return `<div class="empty">${emptyText}</div>`;
+      return `
+        <table>
+          <thead><tr>${headers.map(header => `<th>${header}</th>`).join("")}</tr></thead>
+          <tbody>${rows.join("")}</tbody>
+        </table>
+      `;
+    };
+
+    const openDetail = day => {
+      const backdrop = document.getElementById("detailBackdrop");
+      document.getElementById("detailTitle").textContent = detailDate(day.date);
+      document.getElementById("detailStats").innerHTML = `
+        <div class="detail-stat"><span>Realized P/L</span><strong class="${day.pnl < 0 ? "red" : "green"}">${signedMoney(day.pnl)}</strong></div>
+        <div class="detail-stat"><span>Return</span><strong>${signedPct(day.returnPct) || "N/A"}</strong></div>
+        <div class="detail-stat"><span>Closed Trades</span><strong>${day.closedTrades}</strong></div>
+        <div class="detail-stat"><span>Executions</span><strong>${day.executions}</strong></div>
+      `;
+
+      const closedRows = day.closedTradeDetails.map(trade => `
+        <tr>
+          <td>${trade.symbol}</td>
+          <td>${trade.openDate}</td>
+          <td>${displayShares(trade.quantity)}</td>
+          <td>${preciseMoney.format(trade.avgEntry)}</td>
+          <td>${preciseMoney.format(trade.avgExit)}</td>
+          <td class="${trade.pnl < 0 ? "sell" : "buy"}">${signedMoney(trade.pnl)}</td>
+          <td>${signedPct(trade.returnPct)}</td>
+        </tr>
+      `);
+      document.getElementById("closedTrades").innerHTML = renderTable(
+        ["Symbol", "Opened", "Qty", "Avg Entry", "Avg Exit", "P/L", "Return"],
+        closedRows,
+        "No campaigns closed on this day."
+      );
+
+      const executionRows = day.executionDetails.map(execution => `
+        <tr>
+          <td>${detailTime(execution.time)}</td>
+          <td>${execution.ticker}</td>
+          <td class="${execution.side.toLowerCase()}">${execution.side}</td>
+          <td>${displayShares(execution.shares)}</td>
+          <td>${preciseMoney.format(execution.price)}</td>
+          <td>${preciseMoney.format(execution.notional)}</td>
+        </tr>
+      `);
+      document.getElementById("rawExecutions").innerHTML = renderTable(
+        ["Time", "Ticker", "Side", "Shares", "Price", "Notional"],
+        executionRows,
+        "No raw executions on this day."
+      );
+
+      backdrop.classList.add("open");
+      backdrop.setAttribute("aria-hidden", "false");
+      document.getElementById("closeDetail").focus();
+    };
+
+    const closeDetail = () => {
+      const backdrop = document.getElementById("detailBackdrop");
+      backdrop.classList.remove("open");
+      backdrop.setAttribute("aria-hidden", "true");
+    };
+
     const buildCalendar = data => {
+      dashboardData = data;
       document.title = `${data.title} Trading Calendar`;
       document.getElementById("title").textContent = data.title;
       document.getElementById("monthlyTotal").textContent = compactMoney(data.summary.totalPnl);
       document.getElementById("tradeCount").textContent = data.summary.tradeCount;
       document.getElementById("winDays").textContent = data.summary.winDays;
       document.getElementById("lossDays").textContent = data.summary.lossDays;
-      document.getElementById("bestDay").textContent = compactMoney(data.summary.bestDay.pnl);
-      document.getElementById("bestDate").textContent = monthName(data.summary.bestDay.date);
+      document.getElementById("bestDay").textContent = data.summary.bestDay ? compactMoney(data.summary.bestDay.pnl) : "$0";
+      document.getElementById("bestDate").textContent = data.summary.bestDay ? `${monthName(data.summary.bestDay.date)} ${signedPct(data.summary.bestDay.returnPct)}` : "";
       document.getElementById("source").textContent = `Source: ${data.source}`;
-      document.getElementById("generatedAt").textContent = `Updated ${data.generatedAt}`;
+      document.getElementById("generatedAt").textContent = `Updated ${data.generatedAt} | Month ${signedPct(data.summary.totalReturnPct) || "N/A"}`;
 
       const calendar = document.getElementById("calendar");
       calendar.innerHTML = "";
@@ -438,14 +701,22 @@
         const rowStart = day === 1 ? 1 - startOffset : day;
         for (let col = 0; col < 5; col += 1) {
           const current = rowStart + col;
-          const cell = document.createElement("article");
           const record = dayMap.get(current);
           const isValid = current >= 1 && current <= daysInMonth;
+          const cell = document.createElement(record ? "button" : "article");
+          if (record) {
+            cell.type = "button";
+            cell.setAttribute("aria-label", `Open details for ${record.date}`);
+            cell.addEventListener("click", () => openDetail(record));
+          }
           cell.className = `day ${record ? "active" : "blank"} ${record && record.pnl < 0 ? "loss" : ""}`;
           cell.innerHTML = `
             <div class="day-number">${isValid ? current : ""}</div>
-            <div class="pnl">${record && record.pnl !== 0 ? compactMoney(record.pnl) : ""}</div>
-            <div class="trade-count">${record ? `${record.trades} ${record.trades === 1 ? "trade" : "trades"}` : ""}</div>
+            <div>
+              <div class="pnl">${record && record.pnl !== 0 ? compactMoney(record.pnl) : ""}</div>
+              <div class="pct">${record ? signedPct(record.returnPct) : ""}</div>
+            </div>
+            <div class="trade-count">${record ? `${record.closedTrades} closed / ${record.executions} exec` : ""}</div>
           `;
           calendar.appendChild(cell);
         }
@@ -455,8 +726,11 @@
         weekly.className = `week-total ${week && week.pnl < 0 ? "loss" : ""}`;
         weekly.innerHTML = week ? `
           <div></div>
-          <div class="pnl">${compactMoney(week.pnl)}</div>
-          <div class="trade-count"><span class="wins">${week.winDays}W</span> / <span class="losses">${week.lossDays}L</span></div>
+          <div>
+            <div class="pnl">${compactMoney(week.pnl)}</div>
+            <div class="pct">${signedPct(week.returnPct)}</div>
+          </div>
+          <div class="trade-count"><span class="wins">${week.winDays}W</span> / <span class="losses">${week.lossDays}L</span> | ${week.closedTrades} closed</div>
         ` : "";
         calendar.appendChild(weekly);
 
@@ -464,6 +738,14 @@
         if (day < 1) day = 1;
       }
     };
+
+    document.getElementById("closeDetail").addEventListener("click", closeDetail);
+    document.getElementById("detailBackdrop").addEventListener("click", event => {
+      if (event.target.id === "detailBackdrop") closeDetail();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeDetail();
+    });
 
     fetch("./data.json")
       .then(response => {

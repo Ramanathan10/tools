@@ -1,18 +1,154 @@
 {
   "month": "2026-05",
   "title": "May 2026",
-  "generatedAt": "2026-05-28T05:52:41",
-  "source": "Obsidian trading journal campaign and execution CSVs",
+  "generatedAt": "2026-05-28T06:08:11",
+  "source": "Raw executions for activity; campaign CSVs for realized P/L and return %",
   "summary": {
     "totalPnl": 1748.86,
+    "totalReturnPct": 0.9,
     "tradeCount": 228,
+    "closedTradeCount": 55,
     "winDays": 9,
     "lossDays": 7,
     "bestDay": {
       "date": "2026-05-18",
       "day": 18,
       "pnl": 895.05,
-      "trades": 11
+      "returnPct": 10.35,
+      "closedTrades": 3,
+      "executions": 11,
+      "trades": 11,
+      "closedTradeDetails": [
+        {
+          "symbol": "WULF",
+          "campaignId": "WULF-2026-04-06-01",
+          "openDate": "2026-04-06",
+          "closeDate": "2026-05-18",
+          "quantity": 200.0,
+          "avgEntry": 15.34,
+          "avgExit": 20.3627,
+          "pnl": 1004.55,
+          "returnPct": 32.74,
+          "executionCount": 6,
+          "basis": 3068.0
+        },
+        {
+          "symbol": "NVTS",
+          "campaignId": "NVTS-2026-05-15-01",
+          "openDate": "2026-05-15",
+          "closeDate": "2026-05-18",
+          "quantity": 175.0,
+          "avgEntry": 20.2,
+          "avgExit": 20.18,
+          "pnl": -3.5,
+          "returnPct": -0.1,
+          "executionCount": 2,
+          "basis": 3535.0
+        },
+        {
+          "symbol": "NVTS",
+          "campaignId": "NVTS-2026-05-18-01",
+          "openDate": "2026-05-18",
+          "closeDate": "2026-05-18",
+          "quantity": 100.0,
+          "avgEntry": 20.49,
+          "avgExit": 19.43,
+          "pnl": -106.0,
+          "returnPct": -5.17,
+          "executionCount": 2,
+          "basis": 2049.0
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-18T06:31:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 45.46,
+          "notional": 454.6
+        },
+        {
+          "time": "2026-05-18T06:34:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 45.39,
+          "notional": 226.95
+        },
+        {
+          "time": "2026-05-18T06:35:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 46.69,
+          "notional": 233.45
+        },
+        {
+          "time": "2026-05-18T06:37:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 47.66,
+          "notional": 238.3
+        },
+        {
+          "time": "2026-05-18T06:41:00-07:00",
+          "ticker": "WULF",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 21.06,
+          "notional": 2106.0
+        },
+        {
+          "time": "2026-05-18T06:42:00-07:00",
+          "ticker": "NVTS",
+          "side": "Sell",
+          "shares": 175.0,
+          "price": 20.18,
+          "notional": 3531.5
+        },
+        {
+          "time": "2026-05-18T06:51:00-07:00",
+          "ticker": "NVTS",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 20.49,
+          "notional": 2049.0
+        },
+        {
+          "time": "2026-05-18T06:59:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 89.21,
+          "notional": 3568.4
+        },
+        {
+          "time": "2026-05-18T07:14:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 24.11,
+          "notional": 1205.5
+        },
+        {
+          "time": "2026-05-18T07:25:00-07:00",
+          "ticker": "NVTS",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 19.43,
+          "notional": 1943.0
+        },
+        {
+          "time": "2026-05-18T07:26:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 24.11,
+          "notional": 1205.5
+        }
+      ]
     }
   },
   "days": [
@@ -20,109 +156,2772 @@
       "date": "2026-05-01",
       "day": 1,
       "pnl": 5.0,
-      "trades": 11
+      "returnPct": 0.15,
+      "closedTrades": 1,
+      "executions": 11,
+      "trades": 11,
+      "closedTradeDetails": [
+        {
+          "symbol": "FLY",
+          "campaignId": "FLY-2026-04-29-02",
+          "openDate": "2026-04-29",
+          "closeDate": "2026-05-01",
+          "quantity": 100.0,
+          "avgEntry": 32.83,
+          "avgExit": 32.88,
+          "pnl": 5.0,
+          "returnPct": 0.15,
+          "executionCount": 2,
+          "basis": 3283.0
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-01T06:33:00-07:00",
+          "ticker": "LITE",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 946.03,
+          "notional": 946.03
+        },
+        {
+          "time": "2026-05-01T06:36:00-07:00",
+          "ticker": "LITE",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 960.0,
+          "notional": 960.0
+        },
+        {
+          "time": "2026-05-01T07:05:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 32.88,
+          "notional": 3288.0
+        },
+        {
+          "time": "2026-05-01T07:14:00-07:00",
+          "ticker": "UAMY",
+          "side": "Buy",
+          "shares": 300.0,
+          "price": 11.72,
+          "notional": 3516.0
+        },
+        {
+          "time": "2026-05-01T07:15:00-07:00",
+          "ticker": "TSLL",
+          "side": "Buy",
+          "shares": 117.370892,
+          "price": 12.78,
+          "notional": 1500.0
+        },
+        {
+          "time": "2026-05-01T07:30:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 92.61,
+          "notional": 1389.15
+        },
+        {
+          "time": "2026-05-01T07:31:00-07:00",
+          "ticker": "TSLL",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 12.85,
+          "notional": 1285.0
+        },
+        {
+          "time": "2026-05-01T07:33:00-07:00",
+          "ticker": "TSLL",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 12.94,
+          "notional": 258.8
+        },
+        {
+          "time": "2026-05-01T07:56:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 18.19,
+          "notional": 181.9
+        },
+        {
+          "time": "2026-05-01T08:42:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 18.5,
+          "notional": 92.5
+        },
+        {
+          "time": "2026-05-01T10:34:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 18.77,
+          "notional": 93.85
+        }
+      ]
     },
     {
       "date": "2026-05-04",
       "day": 4,
       "pnl": 113.25,
-      "trades": 8
+      "returnPct": 1.6,
+      "closedTrades": 2,
+      "executions": 8,
+      "trades": 8,
+      "closedTradeDetails": [
+        {
+          "symbol": "AEHR",
+          "campaignId": "AEHR-2026-04-29-01",
+          "openDate": "2026-04-29",
+          "closeDate": "2026-05-04",
+          "quantity": 40.0,
+          "avgEntry": 81.42,
+          "avgExit": 87.225,
+          "pnl": 232.2,
+          "returnPct": 7.13,
+          "executionCount": 3,
+          "basis": 3256.8
+        },
+        {
+          "symbol": "NVDL",
+          "campaignId": "NVDL-2026-04-30-01",
+          "openDate": "2026-04-30",
+          "closeDate": "2026-05-04",
+          "quantity": 40.0,
+          "avgEntry": 95.14,
+          "avgExit": 92.1663,
+          "pnl": -118.95,
+          "returnPct": -3.13,
+          "executionCount": 3,
+          "basis": 3805.6
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-04T01:21:00-07:00",
+          "ticker": "AEHR",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 96.5,
+          "notional": 482.5
+        },
+        {
+          "time": "2026-05-04T07:19:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 91.9,
+          "notional": 2297.5
+        },
+        {
+          "time": "2026-05-04T07:20:00-07:00",
+          "ticker": "DDOG",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 144.29,
+          "notional": 2885.8
+        },
+        {
+          "time": "2026-05-04T07:20:00-07:00",
+          "ticker": "NVDL",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 91.0,
+          "notional": 3640.0
+        },
+        {
+          "time": "2026-05-04T08:21:00-07:00",
+          "ticker": "TSLL",
+          "side": "Sell",
+          "shares": 237.0,
+          "price": 12.83,
+          "notional": 3040.71
+        },
+        {
+          "time": "2026-05-04T08:21:00-07:00",
+          "ticker": "AEHR",
+          "side": "Sell",
+          "shares": 35.0,
+          "price": 85.9,
+          "notional": 3006.5
+        },
+        {
+          "time": "2026-05-04T13:38:00-07:00",
+          "ticker": "FLY",
+          "side": "Buy",
+          "shares": 70.0,
+          "price": 35.8,
+          "notional": 2506.0
+        },
+        {
+          "time": "2026-05-04T16:01:00-07:00",
+          "ticker": "FLY",
+          "side": "Buy",
+          "shares": 4.0,
+          "price": 35.58,
+          "notional": 142.32
+        }
+      ]
     },
     {
       "date": "2026-05-05",
       "day": 5,
       "pnl": 209.71,
-      "trades": 10
+      "returnPct": 1.18,
+      "closedTrades": 5,
+      "executions": 10,
+      "trades": 10,
+      "closedTradeDetails": [
+        {
+          "symbol": "LITE",
+          "campaignId": "LITE-2026-04-30-01",
+          "openDate": "2026-04-30",
+          "closeDate": "2026-05-05",
+          "quantity": 5.0,
+          "avgEntry": 873.65,
+          "avgExit": 945.946,
+          "pnl": 361.48,
+          "returnPct": 8.28,
+          "executionCount": 6,
+          "basis": 4368.25
+        },
+        {
+          "symbol": "TSLL",
+          "campaignId": "TSLL-2026-05-01-01",
+          "openDate": "2026-05-01",
+          "closeDate": "2026-05-05",
+          "quantity": 237.3709,
+          "avgEntry": 12.823,
+          "avgExit": 12.8312,
+          "pnl": 1.97,
+          "returnPct": 0.06,
+          "executionCount": 5,
+          "basis": 3043.8070507
+        },
+        {
+          "symbol": "NVDL",
+          "campaignId": "NVDL-2026-05-04-01",
+          "openDate": "2026-05-04",
+          "closeDate": "2026-05-05",
+          "quantity": 40.0,
+          "avgEntry": 91.0,
+          "avgExit": 91.03,
+          "pnl": 1.2,
+          "returnPct": 0.03,
+          "executionCount": 2,
+          "basis": 3640.0
+        },
+        {
+          "symbol": "FLY",
+          "campaignId": "FLY-2026-05-04-01",
+          "openDate": "2026-05-04",
+          "closeDate": "2026-05-05",
+          "quantity": 84.0,
+          "avgEntry": 35.8764,
+          "avgExit": 34.47,
+          "pnl": -118.14,
+          "returnPct": -3.92,
+          "executionCount": 4,
+          "basis": 3013.6175999999996
+        },
+        {
+          "symbol": "NVDL",
+          "campaignId": "NVDL-2026-05-05-01",
+          "openDate": "2026-05-05",
+          "closeDate": "2026-05-05",
+          "quantity": 40.0,
+          "avgEntry": 91.43,
+          "avgExit": 90.51,
+          "pnl": -36.8,
+          "returnPct": -1.01,
+          "executionCount": 2,
+          "basis": 3657.2000000000003
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-05T06:34:00-07:00",
+          "ticker": "FLY",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 36.53,
+          "notional": 365.3
+        },
+        {
+          "time": "2026-05-05T06:42:00-07:00",
+          "ticker": "LITE",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 1000.0,
+          "notional": 1000.0
+        },
+        {
+          "time": "2026-05-05T06:43:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 84.0,
+          "price": 34.47,
+          "notional": 2895.48
+        },
+        {
+          "time": "2026-05-05T06:43:00-07:00",
+          "ticker": "RNG",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 46.96,
+          "notional": 469.6
+        },
+        {
+          "time": "2026-05-05T06:47:00-07:00",
+          "ticker": "TSLL",
+          "side": "Sell",
+          "shares": 0.370892,
+          "price": 13.63,
+          "notional": 5.06
+        },
+        {
+          "time": "2026-05-05T07:43:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 40.0,
+          "price": 91.03,
+          "notional": 3641.2
+        },
+        {
+          "time": "2026-05-05T10:08:00-07:00",
+          "ticker": "NVDL",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 91.43,
+          "notional": 3657.2
+        },
+        {
+          "time": "2026-05-05T11:53:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 40.0,
+          "price": 90.51,
+          "notional": 3620.4
+        },
+        {
+          "time": "2026-05-05T13:04:00-07:00",
+          "ticker": "LITE",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 941.85,
+          "notional": 941.85
+        },
+        {
+          "time": "2026-05-05T14:32:00-07:00",
+          "ticker": "MU",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 651.0,
+          "notional": 651.0
+        }
+      ]
     },
     {
       "date": "2026-05-06",
       "day": 6,
       "pnl": -6.95,
-      "trades": 10
+      "returnPct": -0.07,
+      "closedTrades": 3,
+      "executions": 10,
+      "trades": 10,
+      "closedTradeDetails": [
+        {
+          "symbol": "AMPX",
+          "campaignId": "AMPX-2026-04-28-01",
+          "openDate": "2026-04-28",
+          "closeDate": "2026-05-06",
+          "quantity": 150.0,
+          "avgEntry": 19.81,
+          "avgExit": 19.5817,
+          "pnl": -34.25,
+          "returnPct": -1.15,
+          "executionCount": 3,
+          "basis": 2971.5
+        },
+        {
+          "symbol": "TSLL",
+          "campaignId": "TSLL-2026-05-06-01",
+          "openDate": "2026-05-06",
+          "closeDate": "2026-05-06",
+          "quantity": 330.0,
+          "avgEntry": 13.07,
+          "avgExit": 13.08,
+          "pnl": 3.3,
+          "returnPct": 0.08,
+          "executionCount": 2,
+          "basis": 4313.1
+        },
+        {
+          "symbol": "AMPX",
+          "campaignId": "AMPX-2026-05-06-01",
+          "openDate": "2026-05-06",
+          "closeDate": "2026-05-06",
+          "quantity": 125.0,
+          "avgEntry": 19.808,
+          "avgExit": 20.0,
+          "pnl": 24.0,
+          "returnPct": 0.97,
+          "executionCount": 3,
+          "basis": 2476.0
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-06T06:46:00-07:00",
+          "ticker": "NVDL",
+          "side": "Buy",
+          "shares": 45.0,
+          "price": 95.49,
+          "notional": 4297.05
+        },
+        {
+          "time": "2026-05-06T06:51:00-07:00",
+          "ticker": "TSLL",
+          "side": "Buy",
+          "shares": 330.0,
+          "price": 13.07,
+          "notional": 4313.1
+        },
+        {
+          "time": "2026-05-06T07:59:00-07:00",
+          "ticker": "TSLL",
+          "side": "Sell",
+          "shares": 330.0,
+          "price": 13.08,
+          "notional": 4316.4
+        },
+        {
+          "time": "2026-05-06T11:19:00-07:00",
+          "ticker": "AMPX",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 21.94,
+          "notional": 548.5
+        },
+        {
+          "time": "2026-05-06T12:55:00-07:00",
+          "ticker": "UUUU",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 23.5,
+          "notional": 587.5
+        },
+        {
+          "time": "2026-05-06T13:09:00-07:00",
+          "ticker": "AMPX",
+          "side": "Sell",
+          "shares": 125.0,
+          "price": 19.11,
+          "notional": 2388.75
+        },
+        {
+          "time": "2026-05-06T13:11:00-07:00",
+          "ticker": "AMPX",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 19.74,
+          "notional": 1974.0
+        },
+        {
+          "time": "2026-05-06T13:12:00-07:00",
+          "ticker": "AMPX",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 20.08,
+          "notional": 502.0
+        },
+        {
+          "time": "2026-05-06T13:12:00-07:00",
+          "ticker": "ARM",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 258.03,
+          "notional": 258.03
+        },
+        {
+          "time": "2026-05-06T15:34:00-07:00",
+          "ticker": "AMPX",
+          "side": "Sell",
+          "shares": 125.0,
+          "price": 20.0,
+          "notional": 2500.0
+        }
+      ]
     },
     {
       "date": "2026-05-07",
       "day": 7,
       "pnl": 0,
-      "trades": 9
+      "returnPct": null,
+      "closedTrades": 0,
+      "executions": 9,
+      "trades": 9,
+      "closedTradeDetails": [],
+      "executionDetails": [
+        {
+          "time": "2026-05-07T06:31:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 191.89,
+          "notional": 383.78
+        },
+        {
+          "time": "2026-05-07T06:54:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 102.26,
+          "notional": 511.3
+        },
+        {
+          "time": "2026-05-07T07:09:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 105.0,
+          "notional": 210.0
+        },
+        {
+          "time": "2026-05-07T07:27:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 106.47,
+          "notional": 212.94
+        },
+        {
+          "time": "2026-05-07T07:30:00-07:00",
+          "ticker": "NTNX",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 45.01,
+          "notional": 450.1
+        },
+        {
+          "time": "2026-05-07T07:50:00-07:00",
+          "ticker": "UUUU",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 25.53,
+          "notional": 127.65
+        },
+        {
+          "time": "2026-05-07T07:53:00-07:00",
+          "ticker": "NTNX",
+          "side": "Sell",
+          "shares": 3.0,
+          "price": 45.3,
+          "notional": 135.9
+        },
+        {
+          "time": "2026-05-07T08:15:00-07:00",
+          "ticker": "NTNX",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 45.43,
+          "notional": 90.86
+        },
+        {
+          "time": "2026-05-07T11:10:00-07:00",
+          "ticker": "CRML",
+          "side": "Buy",
+          "shares": 225.0,
+          "price": 13.1,
+          "notional": 2947.5
+        }
+      ]
     },
     {
       "date": "2026-05-08",
       "day": 8,
       "pnl": -56.25,
-      "trades": 4
+      "returnPct": -1.91,
+      "closedTrades": 1,
+      "executions": 4,
+      "trades": 4,
+      "closedTradeDetails": [
+        {
+          "symbol": "CRML",
+          "campaignId": "CRML-2026-05-07-01",
+          "openDate": "2026-05-07",
+          "closeDate": "2026-05-08",
+          "quantity": 225.0,
+          "avgEntry": 13.1,
+          "avgExit": 12.85,
+          "pnl": -56.25,
+          "returnPct": -1.91,
+          "executionCount": 2,
+          "basis": 2947.5
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-08T07:21:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 108.49,
+          "notional": 108.49
+        },
+        {
+          "time": "2026-05-08T07:22:00-07:00",
+          "ticker": "CRML",
+          "side": "Sell",
+          "shares": 225.0,
+          "price": 12.85,
+          "notional": 2891.25
+        },
+        {
+          "time": "2026-05-08T07:32:00-07:00",
+          "ticker": "PL",
+          "side": "Buy",
+          "shares": 85.0,
+          "price": 37.08,
+          "notional": 3151.8
+        },
+        {
+          "time": "2026-05-08T12:57:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 3.0,
+          "price": 200.0,
+          "notional": 600.0
+        }
+      ]
     },
     {
       "date": "2026-05-11",
       "day": 11,
       "pnl": 0,
-      "trades": 7
+      "returnPct": null,
+      "closedTrades": 0,
+      "executions": 7,
+      "trades": 7,
+      "closedTradeDetails": [],
+      "executionDetails": [
+        {
+          "time": "2026-05-11T06:27:00-07:00",
+          "ticker": "MU",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 800.0,
+          "notional": 800.0
+        },
+        {
+          "time": "2026-05-11T06:41:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 110.81,
+          "notional": 221.62
+        },
+        {
+          "time": "2026-05-11T06:53:00-07:00",
+          "ticker": "MU",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 773.55,
+          "notional": 773.55
+        },
+        {
+          "time": "2026-05-11T07:16:00-07:00",
+          "ticker": "PL",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 40.7,
+          "notional": 610.5
+        },
+        {
+          "time": "2026-05-11T07:36:00-07:00",
+          "ticker": "PL",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 42.5,
+          "notional": 212.5
+        },
+        {
+          "time": "2026-05-11T08:02:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 113.82,
+          "notional": 113.82
+        },
+        {
+          "time": "2026-05-11T08:46:00-07:00",
+          "ticker": "SIDU",
+          "side": "Buy",
+          "shares": 750.0,
+          "price": 3.69,
+          "notional": 2767.5
+        }
+      ]
     },
     {
       "date": "2026-05-12",
       "day": 12,
       "pnl": -484.5,
-      "trades": 15
+      "returnPct": -3.92,
+      "closedTrades": 4,
+      "executions": 15,
+      "trades": 15,
+      "closedTradeDetails": [
+        {
+          "symbol": "RNG",
+          "campaignId": "RNG-2026-04-30-01",
+          "openDate": "2026-04-30",
+          "closeDate": "2026-05-12",
+          "quantity": 70.0,
+          "avgEntry": 40.6257,
+          "avgExit": 42.9114,
+          "pnl": 160.0,
+          "returnPct": 5.63,
+          "executionCount": 7,
+          "basis": 2843.799
+        },
+        {
+          "symbol": "UAMY",
+          "campaignId": "UAMY-2026-05-01-01",
+          "openDate": "2026-05-01",
+          "closeDate": "2026-05-12",
+          "quantity": 300.0,
+          "avgEntry": 11.72,
+          "avgExit": 10.065,
+          "pnl": -496.5,
+          "returnPct": -14.12,
+          "executionCount": 3,
+          "basis": 3516.0
+        },
+        {
+          "symbol": "SIDU",
+          "campaignId": "SIDU-2026-05-11-01",
+          "openDate": "2026-05-11",
+          "closeDate": "2026-05-12",
+          "quantity": 750.0,
+          "avgEntry": 3.69,
+          "avgExit": 3.45,
+          "pnl": -180.0,
+          "returnPct": -6.5,
+          "executionCount": 2,
+          "basis": 2767.5
+        },
+        {
+          "symbol": "CGNX",
+          "campaignId": "CGNX-2026-05-12-01",
+          "openDate": "2026-05-12",
+          "closeDate": "2026-05-12",
+          "quantity": 50.0,
+          "avgEntry": 64.92,
+          "avgExit": 65.56,
+          "pnl": 32.0,
+          "returnPct": 0.99,
+          "executionCount": 2,
+          "basis": 3246.0
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-12T06:33:00-07:00",
+          "ticker": "RNG",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 42.85,
+          "notional": 857.0
+        },
+        {
+          "time": "2026-05-12T07:12:00-07:00",
+          "ticker": "FLY",
+          "side": "Buy",
+          "shares": 85.0,
+          "price": 38.62,
+          "notional": 3282.7
+        },
+        {
+          "time": "2026-05-12T07:26:00-07:00",
+          "ticker": "SIDU",
+          "side": "Sell",
+          "shares": 750.0,
+          "price": 3.45,
+          "notional": 2587.5
+        },
+        {
+          "time": "2026-05-12T08:06:00-07:00",
+          "ticker": "UAMY",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 10.12,
+          "notional": 1518.0
+        },
+        {
+          "time": "2026-05-12T08:11:00-07:00",
+          "ticker": "FLY",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 38.07,
+          "notional": 380.7
+        },
+        {
+          "time": "2026-05-12T08:12:00-07:00",
+          "ticker": "UAMY",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 10.01,
+          "notional": 1501.5
+        },
+        {
+          "time": "2026-05-12T08:18:00-07:00",
+          "ticker": "UUUU",
+          "side": "Sell",
+          "shares": 60.0,
+          "price": 20.23,
+          "notional": 1213.8
+        },
+        {
+          "time": "2026-05-12T08:36:00-07:00",
+          "ticker": "FLY",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 37.78,
+          "notional": 188.9
+        },
+        {
+          "time": "2026-05-12T08:50:00-07:00",
+          "ticker": "CGNX",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 64.92,
+          "notional": 3246.0
+        },
+        {
+          "time": "2026-05-12T12:49:00-07:00",
+          "ticker": "CGNX",
+          "side": "Sell",
+          "shares": 50.0,
+          "price": 65.56,
+          "notional": 3278.0
+        },
+        {
+          "time": "2026-05-12T12:42:00-07:00",
+          "ticker": "UUUU",
+          "side": "Buy",
+          "shares": 60.0,
+          "price": 21.0,
+          "notional": 1260.0
+        },
+        {
+          "time": "2026-05-12T12:35:00-07:00",
+          "ticker": "RNG",
+          "side": "Sell",
+          "shares": 40.0,
+          "price": 41.93,
+          "notional": 1677.2
+        },
+        {
+          "time": "2026-05-12T09:07:00-07:00",
+          "ticker": "AEHR",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 94.03,
+          "notional": 3761.2
+        },
+        {
+          "time": "2026-05-12T20:11:00-07:00",
+          "ticker": "NAVN",
+          "side": "Buy",
+          "shares": 70.0,
+          "price": 18.5,
+          "notional": 1295.0
+        },
+        {
+          "time": "2026-05-12T20:07:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 116.5,
+          "notional": 233.0
+        }
+      ]
     },
     {
       "date": "2026-05-13",
       "day": 13,
       "pnl": 82.1,
-      "trades": 9
+      "returnPct": 1.08,
+      "closedTrades": 2,
+      "executions": 9,
+      "trades": 9,
+      "closedTradeDetails": [
+        {
+          "symbol": "FLY",
+          "campaignId": "FLY-2026-05-12-01",
+          "openDate": "2026-05-12",
+          "closeDate": "2026-05-13",
+          "quantity": 100.0,
+          "avgEntry": 38.523,
+          "avgExit": 38.52,
+          "pnl": -0.3,
+          "returnPct": -0.01,
+          "executionCount": 4,
+          "basis": 3852.3
+        },
+        {
+          "symbol": "AEHR",
+          "campaignId": "AEHR-2026-05-12-01",
+          "openDate": "2026-05-12",
+          "closeDate": "2026-05-13",
+          "quantity": 40.0,
+          "avgEntry": 94.03,
+          "avgExit": 96.09,
+          "pnl": 82.4,
+          "returnPct": 2.19,
+          "executionCount": 3,
+          "basis": 3761.2
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-13T23:33:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 125.0,
+          "notional": 250.0
+        },
+        {
+          "time": "2026-05-13T11:42:00-07:00",
+          "ticker": "AEHR",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 104.67,
+          "notional": 523.35
+        },
+        {
+          "time": "2026-05-13T08:07:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 120.0,
+          "notional": 240.0
+        },
+        {
+          "time": "2026-05-13T07:46:00-07:00",
+          "ticker": "FIVN",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 21.72,
+          "notional": 3258.0
+        },
+        {
+          "time": "2026-05-13T07:20:00-07:00",
+          "ticker": "AEHR",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 94.75,
+          "notional": 3790.0
+        },
+        {
+          "time": "2026-05-13T06:55:00-07:00",
+          "ticker": "FLY",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 39.85,
+          "notional": 3985.0
+        },
+        {
+          "time": "2026-05-13T06:46:00-07:00",
+          "ticker": "AEHR",
+          "side": "Sell",
+          "shares": 30.0,
+          "price": 94.01,
+          "notional": 2820.3
+        },
+        {
+          "time": "2026-05-13T06:44:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 38.52,
+          "notional": 3852.0
+        },
+        {
+          "time": "2026-05-13T01:18:00-07:00",
+          "ticker": "AEHR",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 102.33,
+          "notional": 1023.3
+        }
+      ]
     },
     {
       "date": "2026-05-14",
       "day": 14,
       "pnl": -70.4,
-      "trades": 11
+      "returnPct": -0.89,
+      "closedTrades": 2,
+      "executions": 11,
+      "trades": 11,
+      "closedTradeDetails": [
+        {
+          "symbol": "UUUU",
+          "campaignId": "UUUU-2026-04-29-01",
+          "openDate": "2026-04-29",
+          "closeDate": "2026-05-14",
+          "quantity": 210.0,
+          "avgEntry": 20.1714,
+          "avgExit": 20.214,
+          "pnl": 8.95,
+          "returnPct": 0.21,
+          "executionCount": 6,
+          "basis": 4235.994
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "TEAM-2026-05-14-01",
+          "openDate": "2026-05-14",
+          "closeDate": "2026-05-14",
+          "quantity": 45.0,
+          "avgEntry": 82.1633,
+          "avgExit": 80.4,
+          "pnl": -79.35,
+          "returnPct": -2.15,
+          "executionCount": 3,
+          "basis": 3697.3485000000005
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-14T06:43:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 70.0,
+          "price": 17.08,
+          "notional": 1195.6
+        },
+        {
+          "time": "2026-05-14T06:44:00-07:00",
+          "ticker": "UUUU",
+          "side": "Sell",
+          "shares": 120.0,
+          "price": 19.3,
+          "notional": 2316.0
+        },
+        {
+          "time": "2026-05-14T06:46:00-07:00",
+          "ticker": "NAVN",
+          "side": "Buy",
+          "shares": 60.0,
+          "price": 17.33,
+          "notional": 1039.8
+        },
+        {
+          "time": "2026-05-14T07:09:00-07:00",
+          "ticker": "NAVN",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 17.76,
+          "notional": 355.2
+        },
+        {
+          "time": "2026-05-14T07:10:00-07:00",
+          "ticker": "FIVN",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 21.35,
+          "notional": 213.5
+        },
+        {
+          "time": "2026-05-14T07:54:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 82.16,
+          "notional": 3286.4
+        },
+        {
+          "time": "2026-05-14T07:57:00-07:00",
+          "ticker": "CRDO",
+          "side": "Buy",
+          "shares": 18.0,
+          "price": 183.39,
+          "notional": 3301.02
+        },
+        {
+          "time": "2026-05-14T09:01:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 82.19,
+          "notional": 410.95
+        },
+        {
+          "time": "2026-05-14T09:02:00-07:00",
+          "ticker": "CRDO",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 183.9,
+          "notional": 919.5
+        },
+        {
+          "time": "2026-05-14T10:30:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 45.0,
+          "price": 80.4,
+          "notional": 3618.0
+        },
+        {
+          "time": "2026-05-14T16:12:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 130.0,
+          "notional": 260.0
+        }
+      ]
     },
     {
       "date": "2026-05-15",
       "day": 15,
       "pnl": -538.59,
-      "trades": 12
+      "returnPct": -3.43,
+      "closedTrades": 4,
+      "executions": 12,
+      "trades": 12,
+      "closedTradeDetails": [
+        {
+          "symbol": "FLY",
+          "campaignId": "FLY-2026-05-13-01",
+          "openDate": "2026-05-13",
+          "closeDate": "2026-05-15",
+          "quantity": 100.0,
+          "avgEntry": 39.85,
+          "avgExit": 38.0,
+          "pnl": -185.0,
+          "returnPct": -4.64,
+          "executionCount": 2,
+          "basis": 3985.0
+        },
+        {
+          "symbol": "AEHR",
+          "campaignId": "AEHR-2026-05-13-01",
+          "openDate": "2026-05-13",
+          "closeDate": "2026-05-15",
+          "quantity": 40.0,
+          "avgEntry": 94.75,
+          "avgExit": 96.0512,
+          "pnl": 52.05,
+          "returnPct": 1.37,
+          "executionCount": 3,
+          "basis": 3790.0
+        },
+        {
+          "symbol": "CRDO",
+          "campaignId": "CRDO-2026-05-14-01",
+          "openDate": "2026-05-14",
+          "closeDate": "2026-05-15",
+          "quantity": 23.0,
+          "avgEntry": 183.5009,
+          "avgExit": 173.06,
+          "pnl": -240.14,
+          "returnPct": -5.69,
+          "executionCount": 3,
+          "basis": 4220.5207
+        },
+        {
+          "symbol": "GEVX",
+          "campaignId": "GEVX-2026-05-15-01",
+          "openDate": "2026-05-15",
+          "closeDate": "2026-05-15",
+          "quantity": 50.0,
+          "avgEntry": 73.81,
+          "avgExit": 70.5,
+          "pnl": -165.5,
+          "returnPct": -4.48,
+          "executionCount": 2,
+          "basis": 3690.5
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-15T06:31:00-07:00",
+          "ticker": "AEHR",
+          "side": "Sell",
+          "shares": 35.0,
+          "price": 94.82,
+          "notional": 3318.7
+        },
+        {
+          "time": "2026-05-15T06:34:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 75.0,
+          "price": 50.84,
+          "notional": 3813.0
+        },
+        {
+          "time": "2026-05-15T06:36:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 51.0,
+          "notional": 510.0
+        },
+        {
+          "time": "2026-05-15T06:39:00-07:00",
+          "ticker": "CRDO",
+          "side": "Sell",
+          "shares": 23.0,
+          "price": 173.06,
+          "notional": 3980.38
+        },
+        {
+          "time": "2026-05-15T06:46:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 50.89,
+          "notional": 254.45
+        },
+        {
+          "time": "2026-05-15T06:50:00-07:00",
+          "ticker": "GEVX",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 73.81,
+          "notional": 3690.5
+        },
+        {
+          "time": "2026-05-15T07:03:00-07:00",
+          "ticker": "GEVX",
+          "side": "Sell",
+          "shares": 50.0,
+          "price": 70.5,
+          "notional": 3525.0
+        },
+        {
+          "time": "2026-05-15T08:11:00-07:00",
+          "ticker": "NVTS",
+          "side": "Buy",
+          "shares": 175.0,
+          "price": 20.2,
+          "notional": 3535.0
+        },
+        {
+          "time": "2026-05-15T08:45:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 38.0,
+          "notional": 3800.0
+        },
+        {
+          "time": "2026-05-15T08:53:00-07:00",
+          "ticker": "FLY",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 38.65,
+          "notional": 3865.0
+        },
+        {
+          "time": "2026-05-15T12:12:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Buy",
+          "shares": 60.0,
+          "price": 47.55,
+          "notional": 2853.0
+        },
+        {
+          "time": "2026-05-15T12:58:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Buy",
+          "shares": 4.0,
+          "price": 47.47,
+          "notional": 189.88
+        }
+      ]
     },
     {
       "date": "2026-05-18",
       "day": 18,
       "pnl": 895.05,
-      "trades": 11
+      "returnPct": 10.35,
+      "closedTrades": 3,
+      "executions": 11,
+      "trades": 11,
+      "closedTradeDetails": [
+        {
+          "symbol": "WULF",
+          "campaignId": "WULF-2026-04-06-01",
+          "openDate": "2026-04-06",
+          "closeDate": "2026-05-18",
+          "quantity": 200.0,
+          "avgEntry": 15.34,
+          "avgExit": 20.3627,
+          "pnl": 1004.55,
+          "returnPct": 32.74,
+          "executionCount": 6,
+          "basis": 3068.0
+        },
+        {
+          "symbol": "NVTS",
+          "campaignId": "NVTS-2026-05-15-01",
+          "openDate": "2026-05-15",
+          "closeDate": "2026-05-18",
+          "quantity": 175.0,
+          "avgEntry": 20.2,
+          "avgExit": 20.18,
+          "pnl": -3.5,
+          "returnPct": -0.1,
+          "executionCount": 2,
+          "basis": 3535.0
+        },
+        {
+          "symbol": "NVTS",
+          "campaignId": "NVTS-2026-05-18-01",
+          "openDate": "2026-05-18",
+          "closeDate": "2026-05-18",
+          "quantity": 100.0,
+          "avgEntry": 20.49,
+          "avgExit": 19.43,
+          "pnl": -106.0,
+          "returnPct": -5.17,
+          "executionCount": 2,
+          "basis": 2049.0
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-18T06:31:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 45.46,
+          "notional": 454.6
+        },
+        {
+          "time": "2026-05-18T06:34:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 45.39,
+          "notional": 226.95
+        },
+        {
+          "time": "2026-05-18T06:35:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 46.69,
+          "notional": 233.45
+        },
+        {
+          "time": "2026-05-18T06:37:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 47.66,
+          "notional": 238.3
+        },
+        {
+          "time": "2026-05-18T06:41:00-07:00",
+          "ticker": "WULF",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 21.06,
+          "notional": 2106.0
+        },
+        {
+          "time": "2026-05-18T06:42:00-07:00",
+          "ticker": "NVTS",
+          "side": "Sell",
+          "shares": 175.0,
+          "price": 20.18,
+          "notional": 3531.5
+        },
+        {
+          "time": "2026-05-18T06:51:00-07:00",
+          "ticker": "NVTS",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 20.49,
+          "notional": 2049.0
+        },
+        {
+          "time": "2026-05-18T06:59:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 89.21,
+          "notional": 3568.4
+        },
+        {
+          "time": "2026-05-18T07:14:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 24.11,
+          "notional": 1205.5
+        },
+        {
+          "time": "2026-05-18T07:25:00-07:00",
+          "ticker": "NVTS",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 19.43,
+          "notional": 1943.0
+        },
+        {
+          "time": "2026-05-18T07:26:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 24.11,
+          "notional": 1205.5
+        }
+      ]
     },
     {
       "date": "2026-05-19",
       "day": 19,
       "pnl": 111.09,
-      "trades": 12
+      "returnPct": 0.51,
+      "closedTrades": 6,
+      "executions": 12,
+      "trades": 12,
+      "closedTradeDetails": [
+        {
+          "symbol": "PL",
+          "campaignId": "PL-2026-05-08-01",
+          "openDate": "2026-05-08",
+          "closeDate": "2026-05-19",
+          "quantity": 85.0,
+          "avgEntry": 37.08,
+          "avgExit": 39.0471,
+          "pnl": 167.2,
+          "returnPct": 5.3,
+          "executionCount": 4,
+          "basis": 3151.7999999999997
+        },
+        {
+          "symbol": "VIAV",
+          "campaignId": "VIAV-2026-05-15-01",
+          "openDate": "2026-05-15",
+          "closeDate": "2026-05-19",
+          "quantity": 90.0,
+          "avgEntry": 50.8606,
+          "avgExit": 48.14,
+          "pnl": -244.85,
+          "returnPct": -5.35,
+          "executionCount": 4,
+          "basis": 4577.454
+        },
+        {
+          "symbol": "DXYZ",
+          "campaignId": "DXYZ-2026-05-15-01",
+          "openDate": "2026-05-15",
+          "closeDate": "2026-05-19",
+          "quantity": 64.0,
+          "avgEntry": 47.545,
+          "avgExit": 49.68,
+          "pnl": 136.64,
+          "returnPct": 4.49,
+          "executionCount": 3,
+          "basis": 3042.88
+        },
+        {
+          "symbol": "FIG",
+          "campaignId": "FIG-2026-05-18-01",
+          "openDate": "2026-05-18",
+          "closeDate": "2026-05-19",
+          "quantity": 100.0,
+          "avgEntry": 24.11,
+          "avgExit": 24.4,
+          "pnl": 29.0,
+          "returnPct": 1.2,
+          "executionCount": 3,
+          "basis": 2411.0
+        },
+        {
+          "symbol": "WRBY",
+          "campaignId": "WRBY-2026-05-19-01",
+          "openDate": "2026-05-19",
+          "closeDate": "2026-05-19",
+          "quantity": 150.0,
+          "avgEntry": 27.19,
+          "avgExit": 27.17,
+          "pnl": -3.0,
+          "returnPct": -0.07,
+          "executionCount": 2,
+          "basis": 4078.5
+        },
+        {
+          "symbol": "VIAV",
+          "campaignId": "VIAV-2026-05-19-01",
+          "openDate": "2026-05-19",
+          "closeDate": "2026-05-19",
+          "quantity": 90.0,
+          "avgEntry": 48.64,
+          "avgExit": 48.93,
+          "pnl": 26.1,
+          "returnPct": 0.6,
+          "executionCount": 2,
+          "basis": 4377.6
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-19T06:40:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Sell",
+          "shares": 64.0,
+          "price": 49.68,
+          "notional": 3179.52
+        },
+        {
+          "time": "2026-05-19T07:03:00-07:00",
+          "ticker": "VIAV",
+          "side": "Sell",
+          "shares": 90.0,
+          "price": 48.14,
+          "notional": 4332.6
+        },
+        {
+          "time": "2026-05-19T07:14:00-07:00",
+          "ticker": "MU",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 659.65,
+          "notional": 1319.3
+        },
+        {
+          "time": "2026-05-19T07:15:00-07:00",
+          "ticker": "PL",
+          "side": "Sell",
+          "shares": 65.0,
+          "price": 38.4,
+          "notional": 2496.0
+        },
+        {
+          "time": "2026-05-19T07:18:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 12.0,
+          "price": 110.59,
+          "notional": 1327.08
+        },
+        {
+          "time": "2026-05-19T07:34:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Buy",
+          "shares": 75.0,
+          "price": 47.73,
+          "notional": 3579.75
+        },
+        {
+          "time": "2026-05-19T07:39:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 47.91,
+          "notional": 239.55
+        },
+        {
+          "time": "2026-05-19T07:47:00-07:00",
+          "ticker": "FIG",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 24.4,
+          "notional": 2440.0
+        },
+        {
+          "time": "2026-05-19T08:07:00-07:00",
+          "ticker": "WRBY",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 27.19,
+          "notional": 4078.5
+        },
+        {
+          "time": "2026-05-19T09:27:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 90.0,
+          "price": 48.64,
+          "notional": 4377.6
+        },
+        {
+          "time": "2026-05-19T11:01:00-07:00",
+          "ticker": "WRBY",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 27.17,
+          "notional": 4075.5
+        },
+        {
+          "time": "2026-05-19T12:52:00-07:00",
+          "ticker": "VIAV",
+          "side": "Sell",
+          "shares": 90.0,
+          "price": 48.93,
+          "notional": 4403.7
+        }
+      ]
     },
     {
       "date": "2026-05-20",
       "day": 20,
       "pnl": -295.25,
-      "trades": 12
+      "returnPct": -3.47,
+      "closedTrades": 3,
+      "executions": 12,
+      "trades": 12,
+      "closedTradeDetails": [
+        {
+          "symbol": "MRAM",
+          "campaignId": "MRAM-2026-05-20-01",
+          "openDate": "2026-05-20",
+          "closeDate": "2026-05-20",
+          "quantity": 65.0,
+          "avgEntry": 33.5323,
+          "avgExit": 30.64,
+          "pnl": -188.0,
+          "returnPct": -8.63,
+          "executionCount": 4,
+          "basis": 2179.5995
+        },
+        {
+          "symbol": "BLZE",
+          "campaignId": "BLZE-2026-05-20-01",
+          "openDate": "2026-05-20",
+          "closeDate": "2026-05-20",
+          "quantity": 400.0,
+          "avgEntry": 7.67,
+          "avgExit": 7.49,
+          "pnl": -72.0,
+          "returnPct": -2.35,
+          "executionCount": 2,
+          "basis": 3068.0
+        },
+        {
+          "symbol": "RNG",
+          "campaignId": "RNG-2026-05-20-01",
+          "openDate": "2026-05-20",
+          "closeDate": "2026-05-20",
+          "quantity": 75.0,
+          "avgEntry": 43.32,
+          "avgExit": 42.85,
+          "pnl": -35.25,
+          "returnPct": -1.08,
+          "executionCount": 2,
+          "basis": 3249.0
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-20T05:53:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 33.66,
+          "notional": 336.6
+        },
+        {
+          "time": "2026-05-20T05:53:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 33.5,
+          "notional": 1675.0
+        },
+        {
+          "time": "2026-05-20T05:54:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 33.6,
+          "notional": 168.0
+        },
+        {
+          "time": "2026-05-20T06:36:00-07:00",
+          "ticker": "MRAM",
+          "side": "Sell",
+          "shares": 65.0,
+          "price": 30.64,
+          "notional": 1991.6
+        },
+        {
+          "time": "2026-05-20T08:06:00-07:00",
+          "ticker": "BLZE",
+          "side": "Buy",
+          "shares": 400.0,
+          "price": 7.67,
+          "notional": 3068.0
+        },
+        {
+          "time": "2026-05-20T08:16:00-07:00",
+          "ticker": "RNG",
+          "side": "Buy",
+          "shares": 75.0,
+          "price": 43.32,
+          "notional": 3249.0
+        },
+        {
+          "time": "2026-05-20T08:26:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 117.45,
+          "notional": 234.9
+        },
+        {
+          "time": "2026-05-20T08:37:00-07:00",
+          "ticker": "BLZE",
+          "side": "Sell",
+          "shares": 400.0,
+          "price": 7.49,
+          "notional": 2996.0
+        },
+        {
+          "time": "2026-05-20T08:48:00-07:00",
+          "ticker": "NTNX",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 44.95,
+          "notional": 899.0
+        },
+        {
+          "time": "2026-05-20T09:13:00-07:00",
+          "ticker": "RNG",
+          "side": "Sell",
+          "shares": 75.0,
+          "price": 42.85,
+          "notional": 3213.75
+        },
+        {
+          "time": "2026-05-20T11:55:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 86.09,
+          "notional": 430.45
+        },
+        {
+          "time": "2026-05-20T12:47:00-07:00",
+          "ticker": "FIVN",
+          "side": "Buy",
+          "shares": 15.0,
+          "price": 22.14,
+          "notional": 332.1
+        }
+      ]
     },
     {
       "date": "2026-05-21",
       "day": 21,
       "pnl": -59.27,
-      "trades": 24
+      "returnPct": -0.63,
+      "closedTrades": 3,
+      "executions": 24,
+      "trades": 24,
+      "closedTradeDetails": [
+        {
+          "symbol": "QCML",
+          "campaignId": "QCML-2026-05-21-01",
+          "openDate": "2026-05-21",
+          "closeDate": "2026-05-21",
+          "quantity": 130.0,
+          "avgEntry": 27.0092,
+          "avgExit": 27.0754,
+          "pnl": 8.6,
+          "returnPct": 0.24,
+          "executionCount": 4,
+          "basis": 3511.196
+        },
+        {
+          "symbol": "QCML",
+          "campaignId": "QCML-2026-05-21-02",
+          "openDate": "2026-05-21",
+          "closeDate": "2026-05-21",
+          "quantity": 100.0,
+          "avgEntry": 27.34,
+          "avgExit": 27.33,
+          "pnl": -1.0,
+          "returnPct": -0.04,
+          "executionCount": 2,
+          "basis": 2734.0
+        },
+        {
+          "symbol": "ATRO",
+          "campaignId": "ATRO-2026-05-21-01",
+          "openDate": "2026-05-21",
+          "closeDate": "2026-05-21",
+          "quantity": 39.0,
+          "avgEntry": 81.0246,
+          "avgExit": 79.31,
+          "pnl": -66.87,
+          "returnPct": -2.12,
+          "executionCount": 3,
+          "basis": 3159.9594
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-21T06:32:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 82.17,
+          "notional": 410.85
+        },
+        {
+          "time": "2026-05-21T06:41:00-07:00",
+          "ticker": "QCML",
+          "side": "Buy",
+          "shares": 125.0,
+          "price": 27.02,
+          "notional": 3377.5
+        },
+        {
+          "time": "2026-05-21T06:42:00-07:00",
+          "ticker": "QCML",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 26.74,
+          "notional": 133.7
+        },
+        {
+          "time": "2026-05-21T06:55:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 53.0,
+          "notional": 795.0
+        },
+        {
+          "time": "2026-05-21T07:03:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 27.96,
+          "notional": 139.8
+        },
+        {
+          "time": "2026-05-21T07:21:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 125.0,
+          "price": 27.04,
+          "notional": 3380.0
+        },
+        {
+          "time": "2026-05-21T07:32:00-07:00",
+          "ticker": "QCML",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 27.34,
+          "notional": 2734.0
+        },
+        {
+          "time": "2026-05-21T07:50:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 27.33,
+          "notional": 2733.0
+        },
+        {
+          "time": "2026-05-21T07:54:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 21.91,
+          "notional": 3286.5
+        },
+        {
+          "time": "2026-05-21T07:59:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 57.0,
+          "notional": 285.0
+        },
+        {
+          "time": "2026-05-21T08:27:00-07:00",
+          "ticker": "QCML",
+          "side": "Buy",
+          "shares": 125.0,
+          "price": 25.88,
+          "notional": 3235.0
+        },
+        {
+          "time": "2026-05-21T08:48:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 27.69,
+          "notional": 692.25
+        },
+        {
+          "time": "2026-05-21T08:56:00-07:00",
+          "ticker": "AAOI",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 175.81,
+          "notional": 4395.25
+        },
+        {
+          "time": "2026-05-21T07:01:00-07:00",
+          "ticker": "ARM",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 281.68,
+          "notional": 281.68
+        },
+        {
+          "time": "2026-05-21T09:06:00-07:00",
+          "ticker": "ARM",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 288.11,
+          "notional": 288.11
+        },
+        {
+          "time": "2026-05-21T09:07:00-07:00",
+          "ticker": "ATRO",
+          "side": "Buy",
+          "shares": 38.0,
+          "price": 81.0,
+          "notional": 3078.0
+        },
+        {
+          "time": "2026-05-21T10:20:00-07:00",
+          "ticker": "ATRO",
+          "side": "Buy",
+          "shares": 1.0,
+          "price": 81.96,
+          "notional": 81.96
+        },
+        {
+          "time": "2026-05-21T10:47:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 28.65,
+          "notional": 429.75
+        },
+        {
+          "time": "2026-05-21T12:09:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 60.0,
+          "notional": 600.0
+        },
+        {
+          "time": "2026-05-21T12:11:00-07:00",
+          "ticker": "ATRO",
+          "side": "Sell",
+          "shares": 39.0,
+          "price": 79.31,
+          "notional": 3093.09
+        },
+        {
+          "time": "2026-05-21T12:45:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 80.0,
+          "price": 18.46,
+          "notional": 1476.8
+        },
+        {
+          "time": "2026-05-21T12:47:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 81.29,
+          "notional": 2032.25
+        },
+        {
+          "time": "2026-05-21T13:08:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 83.87,
+          "notional": 838.7
+        },
+        {
+          "time": "2026-05-21T17:39:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 220.0,
+          "notional": 220.0
+        }
+      ]
     },
     {
       "date": "2026-05-22",
       "day": 22,
       "pnl": 272.43,
-      "trades": 29
+      "returnPct": 0.84,
+      "closedTrades": 8,
+      "executions": 29,
+      "trades": 29,
+      "closedTradeDetails": [
+        {
+          "symbol": "NVDL",
+          "campaignId": "NVDL-2026-05-06-01",
+          "openDate": "2026-05-06",
+          "closeDate": "2026-05-22",
+          "quantity": 45.0,
+          "avgEntry": 95.49,
+          "avgExit": 111.0056,
+          "pnl": 698.2,
+          "returnPct": 16.25,
+          "executionCount": 14,
+          "basis": 4297.05
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "TEAM-2026-05-18-01",
+          "openDate": "2026-05-18",
+          "closeDate": "2026-05-22",
+          "quantity": 60.0,
+          "avgEntry": 87.4733,
+          "avgExit": 83.8275,
+          "pnl": -218.75,
+          "returnPct": -4.17,
+          "executionCount": 6,
+          "basis": 5248.397999999999
+        },
+        {
+          "symbol": "FIG",
+          "campaignId": "FIG-2026-05-21-01",
+          "openDate": "2026-05-21",
+          "closeDate": "2026-05-22",
+          "quantity": 150.0,
+          "avgEntry": 21.91,
+          "avgExit": 21.95,
+          "pnl": 6.0,
+          "returnPct": 0.18,
+          "executionCount": 2,
+          "basis": 3286.5
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "AAOI-2026-05-21-01",
+          "openDate": "2026-05-21",
+          "closeDate": "2026-05-22",
+          "quantity": 25.0,
+          "avgEntry": 175.81,
+          "avgExit": 167.6192,
+          "pnl": -204.77,
+          "returnPct": -4.66,
+          "executionCount": 3,
+          "basis": 4395.25
+        },
+        {
+          "symbol": "VIAV",
+          "campaignId": "VIAV-2026-05-22-01",
+          "openDate": "2026-05-22",
+          "closeDate": "2026-05-22",
+          "quantity": 100.0,
+          "avgEntry": 49.15,
+          "avgExit": 49.46,
+          "pnl": 31.0,
+          "returnPct": 0.63,
+          "executionCount": 2,
+          "basis": 4915.0
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "AAOI-2026-05-22-01",
+          "openDate": "2026-05-22",
+          "closeDate": "2026-05-22",
+          "quantity": 25.0,
+          "avgEntry": 171.81,
+          "avgExit": 169.79,
+          "pnl": -50.5,
+          "returnPct": -1.18,
+          "executionCount": 2,
+          "basis": 4295.25
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "TEAM-2026-05-22-01",
+          "openDate": "2026-05-22",
+          "closeDate": "2026-05-22",
+          "quantity": 40.0,
+          "avgEntry": 85.65,
+          "avgExit": 85.7,
+          "pnl": 2.0,
+          "returnPct": 0.06,
+          "executionCount": 2,
+          "basis": 3426.0
+        },
+        {
+          "symbol": "MRAM",
+          "campaignId": "MRAM-2026-05-22-01",
+          "openDate": "2026-05-22",
+          "closeDate": "2026-05-22",
+          "quantity": 75.0,
+          "avgEntry": 33.8767,
+          "avgExit": 34.0,
+          "pnl": 9.25,
+          "returnPct": 0.36,
+          "executionCount": 3,
+          "basis": 2540.7525
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-22T01:16:00-07:00",
+          "ticker": "ARM",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 300.0,
+          "notional": 300.0
+        },
+        {
+          "time": "2026-05-22T06:34:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 31.13,
+          "notional": 155.65
+        },
+        {
+          "time": "2026-05-22T06:36:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 31.63,
+          "notional": 158.15
+        },
+        {
+          "time": "2026-05-22T06:42:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 12.0,
+          "price": 167.25,
+          "notional": 2007.0
+        },
+        {
+          "time": "2026-05-22T06:43:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 70.0,
+          "notional": 350.0
+        },
+        {
+          "time": "2026-05-22T06:49:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 49.15,
+          "notional": 4915.0
+        },
+        {
+          "time": "2026-05-22T06:58:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 32.33,
+          "notional": 161.65
+        },
+        {
+          "time": "2026-05-22T07:03:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 13.0,
+          "price": 167.96,
+          "notional": 2183.48
+        },
+        {
+          "time": "2026-05-22T07:06:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 107.21,
+          "notional": 1072.1
+        },
+        {
+          "time": "2026-05-22T07:08:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 33.67,
+          "notional": 168.35
+        },
+        {
+          "time": "2026-05-22T07:14:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 35.0,
+          "price": 85.64,
+          "notional": 2997.4
+        },
+        {
+          "time": "2026-05-22T07:20:00-07:00",
+          "ticker": "AAOI",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 171.81,
+          "notional": 4295.25
+        },
+        {
+          "time": "2026-05-22T07:23:00-07:00",
+          "ticker": "FIG",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 21.95,
+          "notional": 3292.5
+        },
+        {
+          "time": "2026-05-22T07:24:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 169.79,
+          "notional": 4244.75
+        },
+        {
+          "time": "2026-05-22T07:34:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 35.95,
+          "notional": 179.75
+        },
+        {
+          "time": "2026-05-22T07:42:00-07:00",
+          "ticker": "ARM",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 311.81,
+          "notional": 311.81
+        },
+        {
+          "time": "2026-05-22T07:48:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 35.66,
+          "notional": 178.3
+        },
+        {
+          "time": "2026-05-22T08:05:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 36.84,
+          "notional": 184.2
+        },
+        {
+          "time": "2026-05-22T08:06:00-07:00",
+          "ticker": "ARM",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 314.75,
+          "notional": 314.75
+        },
+        {
+          "time": "2026-05-22T08:12:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 49.03,
+          "notional": 245.15
+        },
+        {
+          "time": "2026-05-22T08:57:00-07:00",
+          "ticker": "AAOI",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 176.28,
+          "notional": 4407.0
+        },
+        {
+          "time": "2026-05-22T08:57:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 85.65,
+          "notional": 3426.0
+        },
+        {
+          "time": "2026-05-22T11:10:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 33.89,
+          "notional": 1694.5
+        },
+        {
+          "time": "2026-05-22T11:11:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 33.85,
+          "notional": 846.25
+        },
+        {
+          "time": "2026-05-22T11:20:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 40.0,
+          "price": 85.7,
+          "notional": 3428.0
+        },
+        {
+          "time": "2026-05-22T12:04:00-07:00",
+          "ticker": "VIAV",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 49.46,
+          "notional": 4946.0
+        },
+        {
+          "time": "2026-05-22T12:13:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 50.0,
+          "notional": 250.0
+        },
+        {
+          "time": "2026-05-22T12:46:00-07:00",
+          "ticker": "MRAM",
+          "side": "Sell",
+          "shares": 75.0,
+          "price": 34.0,
+          "notional": 2550.0
+        },
+        {
+          "time": "2026-05-22T13:10:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 20.0,
+          "notional": 400.0
+        }
+      ]
     },
     {
       "date": "2026-05-26",
       "day": 26,
       "pnl": 720.85,
-      "trades": 20
+      "returnPct": 6.12,
+      "closedTrades": 3,
+      "executions": 20,
+      "trades": 20,
+      "closedTradeDetails": [
+        {
+          "symbol": "DXYZ",
+          "campaignId": "DXYZ-2026-05-19-01",
+          "openDate": "2026-05-19",
+          "closeDate": "2026-05-26",
+          "quantity": 80.0,
+          "avgEntry": 47.7412,
+          "avgExit": 58.0125,
+          "pnl": 821.7,
+          "returnPct": 21.51,
+          "executionCount": 8,
+          "basis": 3819.296
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "AAOI-2026-05-22-02",
+          "openDate": "2026-05-22",
+          "closeDate": "2026-05-26",
+          "quantity": 25.0,
+          "avgEntry": 176.28,
+          "avgExit": 179.822,
+          "pnl": 88.55,
+          "returnPct": 2.01,
+          "executionCount": 4,
+          "basis": 4407.0
+        },
+        {
+          "symbol": "MRAM",
+          "campaignId": "MRAM-2026-05-26-01",
+          "openDate": "2026-05-26",
+          "closeDate": "2026-05-26",
+          "quantity": 110.0,
+          "avgEntry": 32.2218,
+          "avgExit": 30.5,
+          "pnl": -189.4,
+          "returnPct": -5.34,
+          "executionCount": 3,
+          "basis": 3544.398
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-26T06:33:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 55.15,
+          "notional": 275.75
+        },
+        {
+          "time": "2026-05-26T06:52:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 32.28,
+          "notional": 3228.0
+        },
+        {
+          "time": "2026-05-26T06:53:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 31.64,
+          "notional": 316.4
+        },
+        {
+          "time": "2026-05-26T06:59:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 184.55,
+          "notional": 369.1
+        },
+        {
+          "time": "2026-05-26T07:08:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 85.58,
+          "notional": 855.8
+        },
+        {
+          "time": "2026-05-26T07:09:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 183.2,
+          "notional": 366.4
+        },
+        {
+          "time": "2026-05-26T07:13:00-07:00",
+          "ticker": "MRAM",
+          "side": "Sell",
+          "shares": 110.0,
+          "price": 30.5,
+          "notional": 3355.0
+        },
+        {
+          "time": "2026-05-26T07:25:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 37.62,
+          "notional": 75.24
+        },
+        {
+          "time": "2026-05-26T07:46:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 3.0,
+          "price": 41.03,
+          "notional": 123.09
+        },
+        {
+          "time": "2026-05-26T07:47:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 21.0,
+          "price": 179.05,
+          "notional": 3760.05
+        },
+        {
+          "time": "2026-05-26T09:25:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 30.3,
+          "notional": 3030.0
+        },
+        {
+          "time": "2026-05-26T09:34:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 31.0,
+          "notional": 1550.0
+        },
+        {
+          "time": "2026-05-26T09:43:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 85.42,
+          "notional": 854.2
+        },
+        {
+          "time": "2026-05-26T09:44:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 55.4,
+          "notional": 1108.0
+        },
+        {
+          "time": "2026-05-26T09:46:00-07:00",
+          "ticker": "NVDL",
+          "side": "Buy",
+          "shares": 45.0,
+          "price": 105.07,
+          "notional": 4728.15
+        },
+        {
+          "time": "2026-05-26T11:16:00-07:00",
+          "ticker": "DXYZ",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 60.12,
+          "notional": 1503.0
+        },
+        {
+          "time": "2026-05-26T11:17:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 85.48,
+          "notional": 854.8
+        },
+        {
+          "time": "2026-05-26T11:38:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 60.0,
+          "notional": 300.0
+        },
+        {
+          "time": "2026-05-26T12:59:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 84.92,
+          "notional": 424.6
+        },
+        {
+          "time": "2026-05-26T15:18:00-07:00",
+          "ticker": "AFRM",
+          "side": "Buy",
+          "shares": 45.0,
+          "price": 69.45,
+          "notional": 3125.25
+        }
+      ]
     },
     {
       "date": "2026-05-27",
       "day": 27,
       "pnl": 850.59,
-      "trades": 14
+      "returnPct": 4.78,
+      "closedTrades": 5,
+      "executions": 14,
+      "trades": 14,
+      "closedTradeDetails": [
+        {
+          "symbol": "NTNX",
+          "campaignId": "NTNX-2026-04-29-01",
+          "openDate": "2026-04-29",
+          "closeDate": "2026-05-27",
+          "quantity": 75.0,
+          "avgEntry": 42.0,
+          "avgExit": 45.1095,
+          "pnl": 233.21,
+          "returnPct": 7.4,
+          "executionCount": 7,
+          "basis": 3150.0
+        },
+        {
+          "symbol": "QCML",
+          "campaignId": "QCML-2026-05-21-03",
+          "openDate": "2026-05-21",
+          "closeDate": "2026-05-27",
+          "quantity": 125.0,
+          "avgEntry": 25.88,
+          "avgExit": 32.363,
+          "pnl": 810.38,
+          "returnPct": 25.05,
+          "executionCount": 13,
+          "basis": 3235.0
+        },
+        {
+          "symbol": "NVDL",
+          "campaignId": "NVDL-2026-05-26-01",
+          "openDate": "2026-05-26",
+          "closeDate": "2026-05-27",
+          "quantity": 45.0,
+          "avgEntry": 105.07,
+          "avgExit": 102.26,
+          "pnl": -126.45,
+          "returnPct": -2.67,
+          "executionCount": 2,
+          "basis": 4728.15
+        },
+        {
+          "symbol": "AFRM",
+          "campaignId": "AFRM-2026-05-26-01",
+          "openDate": "2026-05-26",
+          "closeDate": "2026-05-27",
+          "quantity": 45.0,
+          "avgEntry": 69.45,
+          "avgExit": 69.86,
+          "pnl": 18.45,
+          "returnPct": 0.59,
+          "executionCount": 2,
+          "basis": 3125.25
+        },
+        {
+          "symbol": "GEVX",
+          "campaignId": "GEVX-2026-05-27-01",
+          "openDate": "2026-05-27",
+          "closeDate": "2026-05-27",
+          "quantity": 50.0,
+          "avgEntry": 71.5,
+          "avgExit": 69.8,
+          "pnl": -85.0,
+          "returnPct": -2.38,
+          "executionCount": 2,
+          "basis": 3575.0
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-27T06:36:00-07:00",
+          "ticker": "NTNX",
+          "side": "Sell",
+          "shares": 35.0,
+          "price": 45.12,
+          "notional": 1579.2
+        },
+        {
+          "time": "2026-05-27T06:44:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 45.0,
+          "price": 102.26,
+          "notional": 4601.7
+        },
+        {
+          "time": "2026-05-27T06:45:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 86.7,
+          "notional": 433.5
+        },
+        {
+          "time": "2026-05-27T06:51:00-07:00",
+          "ticker": "QCML",
+          "side": "Sell",
+          "shares": 45.0,
+          "price": 34.2,
+          "notional": 1539.0
+        },
+        {
+          "time": "2026-05-27T08:25:00-07:00",
+          "ticker": "GEVX",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 71.5,
+          "notional": 3575.0
+        },
+        {
+          "time": "2026-05-27T08:50:00-07:00",
+          "ticker": "NTNX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 45.63,
+          "notional": 228.15
+        },
+        {
+          "time": "2026-05-27T09:00:00-07:00",
+          "ticker": "NVDL",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 101.4,
+          "notional": 4056.0
+        },
+        {
+          "time": "2026-05-27T09:06:00-07:00",
+          "ticker": "INOD",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 90.0,
+          "notional": 3600.0
+        },
+        {
+          "time": "2026-05-27T12:43:00-07:00",
+          "ticker": "AFRM",
+          "side": "Sell",
+          "shares": 45.0,
+          "price": 69.86,
+          "notional": 3143.7
+        },
+        {
+          "time": "2026-05-27T12:44:00-07:00",
+          "ticker": "GEVX",
+          "side": "Sell",
+          "shares": 50.0,
+          "price": 69.8,
+          "notional": 3490.0
+        },
+        {
+          "time": "2026-05-27T13:08:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 230.04,
+          "notional": 230.04
+        },
+        {
+          "time": "2026-05-27T13:13:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 235.0,
+          "notional": 235.0
+        },
+        {
+          "time": "2026-05-27T16:12:00-07:00",
+          "ticker": "INOD",
+          "side": "Sell",
+          "shares": 38.0,
+          "price": 89.25,
+          "notional": 3391.5
+        },
+        {
+          "time": "2026-05-27T13:12:00-07:00",
+          "ticker": "INOD",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 89.0,
+          "notional": 178.0
+        }
+      ]
     }
   ],
   "weeks": [
@@ -130,7 +2929,9 @@
       "start": "2026-05-01",
       "end": "2026-05-01",
       "pnl": 5.0,
+      "returnPct": 0.15,
       "trades": 11,
+      "closedTrades": 1,
       "winDays": 1,
       "lossDays": 0
     },
@@ -138,7 +2939,9 @@
       "start": "2026-05-04",
       "end": "2026-05-08",
       "pnl": 259.76,
+      "returnPct": 0.69,
       "trades": 41,
+      "closedTrades": 11,
       "winDays": 2,
       "lossDays": 2
     },
@@ -146,7 +2949,9 @@
       "start": "2026-05-11",
       "end": "2026-05-15",
       "pnl": -1011.39,
+      "returnPct": -2.32,
       "trades": 54,
+      "closedTrades": 12,
       "winDays": 1,
       "lossDays": 3
     },
@@ -154,7 +2959,9 @@
       "start": "2026-05-18",
       "end": "2026-05-22",
       "pnl": 924.05,
+      "returnPct": 1.15,
       "trades": 88,
+      "closedTrades": 23,
       "winDays": 3,
       "lossDays": 2
     },
@@ -162,7 +2969,9 @@
       "start": "2026-05-25",
       "end": "2026-05-29",
       "pnl": 1571.44,
+      "returnPct": 5.31,
       "trades": 34,
+      "closedTrades": 8,
       "winDays": 2,
       "lossDays": 0
     }
