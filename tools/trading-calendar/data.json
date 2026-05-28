@@ -1,13 +1,13 @@
 {
   "month": "2026-05",
   "title": "May 2026",
-  "generatedAt": "2026-05-28T06:08:11",
+  "generatedAt": "2026-05-28T06:14:32",
   "source": "Raw executions for activity; campaign CSVs for realized P/L and return %",
   "summary": {
-    "totalPnl": 1748.86,
-    "totalReturnPct": 0.9,
+    "totalPnl": 1718.36,
+    "totalReturnPct": 0.87,
     "tradeCount": 228,
-    "closedTradeCount": 55,
+    "closedTradeCount": 56,
     "winDays": 9,
     "lossDays": 7,
     "bestDay": {
@@ -2736,9 +2736,9 @@
     {
       "date": "2026-05-27",
       "day": 27,
-      "pnl": 850.59,
-      "returnPct": 4.78,
-      "closedTrades": 5,
+      "pnl": 820.09,
+      "returnPct": 3.83,
+      "closedTrades": 6,
       "executions": 14,
       "trades": 14,
       "closedTradeDetails": [
@@ -2806,6 +2806,19 @@
           "returnPct": -2.38,
           "executionCount": 2,
           "basis": 3575.0
+        },
+        {
+          "symbol": "INOD",
+          "campaignId": "INOD-2026-05-27-01",
+          "openDate": "2026-05-27",
+          "closeDate": "2026-05-27",
+          "quantity": 40.0,
+          "avgEntry": 90.0,
+          "avgExit": 89.2375,
+          "pnl": -30.5,
+          "returnPct": -0.85,
+          "executionCount": 3,
+          "basis": 3600.0
         }
       ],
       "executionDetails": [
@@ -2968,10 +2981,10 @@
     {
       "start": "2026-05-25",
       "end": "2026-05-29",
-      "pnl": 1571.44,
-      "returnPct": 5.31,
+      "pnl": 1540.94,
+      "returnPct": 4.64,
       "trades": 34,
-      "closedTrades": 8,
+      "closedTrades": 9,
       "winDays": 2,
       "lossDays": 0
     }
