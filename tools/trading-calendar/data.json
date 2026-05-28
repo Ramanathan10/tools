@@ -1,12 +1,12 @@
 {
   "month": "2026-05",
   "title": "May 2026",
-  "generatedAt": "2026-05-28T06:14:32",
+  "generatedAt": "2026-05-28T13:07:56",
   "source": "Raw executions for activity; campaign CSVs for realized P/L and return %",
   "summary": {
     "totalPnl": 1718.36,
     "totalReturnPct": 0.87,
-    "tradeCount": 228,
+    "tradeCount": 246,
     "closedTradeCount": 56,
     "winDays": 9,
     "lossDays": 7,
@@ -2739,8 +2739,8 @@
       "pnl": 820.09,
       "returnPct": 3.83,
       "closedTrades": 6,
-      "executions": 14,
-      "trades": 14,
+      "executions": 17,
+      "trades": 17,
       "closedTradeDetails": [
         {
           "symbol": "NTNX",
@@ -2933,6 +2933,162 @@
           "shares": 2.0,
           "price": 89.0,
           "notional": 178.0
+        },
+        {
+          "time": "2026-05-27T18:21:00-07:00",
+          "ticker": "ARM",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 303.0,
+          "notional": 606.0
+        },
+        {
+          "time": "2026-05-27T20:48:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 24.0,
+          "price": 101.45,
+          "notional": 2434.8
+        },
+        {
+          "time": "2026-05-27T20:49:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 16.0,
+          "price": 101.4,
+          "notional": 1622.4
+        }
+      ]
+    },
+    {
+      "date": "2026-05-28",
+      "day": 28,
+      "pnl": 0,
+      "returnPct": null,
+      "closedTrades": 0,
+      "executions": 15,
+      "trades": 15,
+      "closedTradeDetails": [],
+      "executionDetails": [
+        {
+          "time": "2026-05-28T06:42:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 28.66,
+          "notional": 286.6
+        },
+        {
+          "time": "2026-05-28T06:46:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 92.68,
+          "notional": 926.8
+        },
+        {
+          "time": "2026-05-28T07:25:00-07:00",
+          "ticker": "ORCX",
+          "side": "Buy",
+          "shares": 75.0,
+          "price": 45.38,
+          "notional": 3403.5
+        },
+        {
+          "time": "2026-05-28T07:30:00-07:00",
+          "ticker": "ORCX",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 45.08,
+          "notional": 450.8
+        },
+        {
+          "time": "2026-05-28T07:30:00-07:00",
+          "ticker": "RGTI",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 25.02,
+          "notional": 3753.0
+        },
+        {
+          "time": "2026-05-28T07:33:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 85.0,
+          "price": 44.75,
+          "notional": 3803.75
+        },
+        {
+          "time": "2026-05-28T07:40:00-07:00",
+          "ticker": "INFQ",
+          "side": "Buy",
+          "shares": 250.0,
+          "price": 16.52,
+          "notional": 4130.0
+        },
+        {
+          "time": "2026-05-28T07:41:00-07:00",
+          "ticker": "RGTI",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 25.55,
+          "notional": 255.5
+        },
+        {
+          "time": "2026-05-28T07:43:00-07:00",
+          "ticker": "ORCX",
+          "side": "Buy",
+          "shares": 80.0,
+          "price": 45.1,
+          "notional": 3608.0
+        },
+        {
+          "time": "2026-05-28T07:50:00-07:00",
+          "ticker": "ORCX",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 46.0,
+          "notional": 460.0
+        },
+        {
+          "time": "2026-05-28T08:02:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 47.84,
+          "notional": 239.2
+        },
+        {
+          "time": "2026-05-28T08:58:00-07:00",
+          "ticker": "MARA",
+          "side": "Buy",
+          "shares": 250.0,
+          "price": 14.0,
+          "notional": 3500.0
+        },
+        {
+          "time": "2026-05-28T10:34:00-07:00",
+          "ticker": "AMZU",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 44.46,
+          "notional": 4446.0
+        },
+        {
+          "time": "2026-05-28T11:36:00-07:00",
+          "ticker": "INFQ",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 18.0,
+          "notional": 450.0
+        },
+        {
+          "time": "2026-05-28T11:48:00-07:00",
+          "ticker": "RGTI",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 26.55,
+          "notional": 265.5
         }
       ]
     }
@@ -2983,7 +3139,7 @@
       "end": "2026-05-29",
       "pnl": 1540.94,
       "returnPct": 4.64,
-      "trades": 34,
+      "trades": 52,
       "closedTrades": 9,
       "winDays": 2,
       "lossDays": 0
