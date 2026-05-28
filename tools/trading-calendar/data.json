@@ -1,0 +1,170 @@
+{
+  "month": "2026-05",
+  "title": "May 2026",
+  "generatedAt": "2026-05-28T05:52:41",
+  "source": "Obsidian trading journal campaign and execution CSVs",
+  "summary": {
+    "totalPnl": 1748.86,
+    "tradeCount": 228,
+    "winDays": 9,
+    "lossDays": 7,
+    "bestDay": {
+      "date": "2026-05-18",
+      "day": 18,
+      "pnl": 895.05,
+      "trades": 11
+    }
+  },
+  "days": [
+    {
+      "date": "2026-05-01",
+      "day": 1,
+      "pnl": 5.0,
+      "trades": 11
+    },
+    {
+      "date": "2026-05-04",
+      "day": 4,
+      "pnl": 113.25,
+      "trades": 8
+    },
+    {
+      "date": "2026-05-05",
+      "day": 5,
+      "pnl": 209.71,
+      "trades": 10
+    },
+    {
+      "date": "2026-05-06",
+      "day": 6,
+      "pnl": -6.95,
+      "trades": 10
+    },
+    {
+      "date": "2026-05-07",
+      "day": 7,
+      "pnl": 0,
+      "trades": 9
+    },
+    {
+      "date": "2026-05-08",
+      "day": 8,
+      "pnl": -56.25,
+      "trades": 4
+    },
+    {
+      "date": "2026-05-11",
+      "day": 11,
+      "pnl": 0,
+      "trades": 7
+    },
+    {
+      "date": "2026-05-12",
+      "day": 12,
+      "pnl": -484.5,
+      "trades": 15
+    },
+    {
+      "date": "2026-05-13",
+      "day": 13,
+      "pnl": 82.1,
+      "trades": 9
+    },
+    {
+      "date": "2026-05-14",
+      "day": 14,
+      "pnl": -70.4,
+      "trades": 11
+    },
+    {
+      "date": "2026-05-15",
+      "day": 15,
+      "pnl": -538.59,
+      "trades": 12
+    },
+    {
+      "date": "2026-05-18",
+      "day": 18,
+      "pnl": 895.05,
+      "trades": 11
+    },
+    {
+      "date": "2026-05-19",
+      "day": 19,
+      "pnl": 111.09,
+      "trades": 12
+    },
+    {
+      "date": "2026-05-20",
+      "day": 20,
+      "pnl": -295.25,
+      "trades": 12
+    },
+    {
+      "date": "2026-05-21",
+      "day": 21,
+      "pnl": -59.27,
+      "trades": 24
+    },
+    {
+      "date": "2026-05-22",
+      "day": 22,
+      "pnl": 272.43,
+      "trades": 29
+    },
+    {
+      "date": "2026-05-26",
+      "day": 26,
+      "pnl": 720.85,
+      "trades": 20
+    },
+    {
+      "date": "2026-05-27",
+      "day": 27,
+      "pnl": 850.59,
+      "trades": 14
+    }
+  ],
+  "weeks": [
+    {
+      "start": "2026-05-01",
+      "end": "2026-05-01",
+      "pnl": 5.0,
+      "trades": 11,
+      "winDays": 1,
+      "lossDays": 0
+    },
+    {
+      "start": "2026-05-04",
+      "end": "2026-05-08",
+      "pnl": 259.76,
+      "trades": 41,
+      "winDays": 2,
+      "lossDays": 2
+    },
+    {
+      "start": "2026-05-11",
+      "end": "2026-05-15",
+      "pnl": -1011.39,
+      "trades": 54,
+      "winDays": 1,
+      "lossDays": 3
+    },
+    {
+      "start": "2026-05-18",
+      "end": "2026-05-22",
+      "pnl": 924.05,
+      "trades": 88,
+      "winDays": 3,
+      "lossDays": 2
+    },
+    {
+      "start": "2026-05-25",
+      "end": "2026-05-29",
+      "pnl": 1571.44,
+      "trades": 34,
+      "winDays": 2,
+      "lossDays": 0
+    }
+  ]
+}

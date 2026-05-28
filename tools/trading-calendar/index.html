@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Trading Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #060b0f;
+      --panel: rgba(13, 24, 31, 0.82);
+      --panel-strong: rgba(8, 45, 31, 0.9);
+      --line: rgba(44, 246, 155, 0.16);
+      --line-strong: rgba(44, 246, 155, 0.34);
+      --text: #f4fff9;
+      --muted: rgba(231, 247, 241, 0.58);
+      --muted-2: rgba(231, 247, 241, 0.34);
+      --green: #00e887;
+      --green-soft: #57ffb2;
+      --red: #ff5f6f;
+      --amber: #f8c04f;
+      --shadow: 0 18px 70px rgba(0, 0, 0, 0.46);
+      --radius: 8px;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(0, 232, 135, 0.18), transparent 34%),
+        linear-gradient(115deg, #082117 0%, #071016 46%, #04090f 100%);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 84px 84px;
+      mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.22));
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 34px));
+      margin: 0 auto;
+      padding: 34px 0 40px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 30px;
+    }
+
+    .eyebrow, .label, .weekday, .weekly-title {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: clamp(0.78rem, 1.8vw, 1rem);
+      margin: 34px 0 82px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 18px var(--green);
+      flex: 0 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(4.1rem, 10vw, 6.95rem);
+      line-height: 0.9;
+      font-weight: 900;
+    }
+
+    .brand {
+      display: grid;
+      justify-items: end;
+      gap: 44px;
+      padding-top: 8px;
+      min-width: 330px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      text-align: right;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    .mark {
+      width: 44px;
+      height: 44px;
+      border: 3px solid var(--green);
+      border-radius: 15px;
+      rotate: 45deg;
+      box-shadow: 0 0 24px rgba(0, 232, 135, 0.45);
+      position: relative;
+    }
+
+    .mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 3px solid var(--green);
+      border-radius: 12px;
+      rotate: 90deg;
+    }
+
+    .monthly-total {
+      text-align: right;
+    }
+
+    .monthly-total .label {
+      font-size: 0.94rem;
+      margin-bottom: 8px;
+    }
+
+    .total-value {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-size: clamp(2.65rem, 6vw, 4.6rem);
+      font-weight: 900;
+      text-shadow: 0 0 24px rgba(0, 232, 135, 0.55);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+
+    .stat, .day, .week-total {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      min-height: 116px;
+      padding: 22px 24px;
+    }
+
+    .stat .label {
+      font-size: 0.77rem;
+      margin-bottom: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 2.18rem;
+      line-height: 1;
+    }
+
+    .stat .green { color: var(--green); }
+    .stat .red { color: var(--red); }
+    .stat .date-note {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.76rem;
+      text-align: right;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .weekday, .weekly-title {
+      text-align: center;
+      font-size: 0.78rem;
+      padding: 0 0 4px;
+    }
+
+    .weekly-title {
+      color: var(--green-soft);
+    }
+
+    .day, .week-total {
+      min-height: 112px;
+      padding: 13px 14px 12px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .day.active, .week-total {
+      background: linear-gradient(145deg, rgba(0, 103, 63, 0.72), rgba(5, 53, 37, 0.86));
+      border-color: var(--line-strong);
+    }
+
+    .day.loss {
+      background: linear-gradient(145deg, rgba(77, 16, 25, 0.76), rgba(28, 22, 29, 0.88));
+      border-color: rgba(255, 95, 111, 0.28);
+    }
+
+    .day.blank {
+      opacity: 0.58;
+      box-shadow: none;
+    }
+
+    .day-number {
+      color: var(--green);
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .day.blank .day-number {
+      color: var(--muted-2);
+    }
+
+    .pnl {
+      align-self: end;
+      justify-self: end;
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-weight: 900;
+      font-size: clamp(1.15rem, 2.3vw, 1.62rem);
+      line-height: 1.05;
+      text-shadow: 0 0 14px rgba(0, 232, 135, 0.35);
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      text-align: right;
+    }
+
+    .loss .pnl { color: var(--red); text-shadow: none; }
+
+    .trade-count {
+      justify-self: end;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.79rem;
+      font-weight: 700;
+    }
+
+    .week-total {
+      justify-items: center;
+      text-align: center;
+    }
+
+    .week-total .pnl {
+      justify-self: center;
+      align-self: center;
+      font-size: clamp(1.28rem, 2.5vw, 1.9rem);
+    }
+
+    .week-total .trade-count {
+      justify-self: center;
+    }
+
+    .wins { color: var(--green-soft); }
+    .losses { color: var(--red); }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--muted-2);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .top { display: block; }
+      .eyebrow { margin-bottom: 34px; }
+      .brand { justify-items: start; min-width: 0; margin-top: 26px; gap: 22px; }
+      .brand small, .monthly-total { text-align: left; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .calendar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .weekday, .weekly-title { display: none; }
+      .week-total { min-height: 96px; }
+    }
+
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 22px, 1180px); padding-top: 24px; }
+      .stats { grid-template-columns: 1fr; gap: 10px; }
+      .stat { min-height: 96px; padding: 18px; }
+      .calendar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .day, .week-total { min-height: 104px; }
+      .logo { font-size: 1.35rem; }
+      .mark { width: 34px; height: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="top">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Monthly Trading Calendar</div>
+        <h1 id="title">May 2026</h1>
+      </div>
+      <aside class="brand" aria-label="Dashboard brand and monthly total">
+        <div>
+          <small>powered by</small>
+          <div class="logo"><span class="mark" aria-hidden="true"></span><span>ORACLE</span></div>
+        </div>
+        <div class="monthly-total">
+          <div class="label">Monthly Total</div>
+          <div class="total-value" id="monthlyTotal">+$0</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="stats" aria-label="Monthly summary">
+      <div class="stat">
+        <div class="label">Trades</div>
+        <strong id="tradeCount">0</strong>
+      </div>
+      <div class="stat">
+        <div class="label">Win Days</div>
+        <strong class="green" id="winDays">0</strong>
+      </div>
+      <div class="stat">
+        <div class="label">Loss Days</div>
+        <strong class="red" id="lossDays">0</strong>
+      </div>
+      <div class="stat">
+        <div class="label">Best Day</div>
+        <strong class="green" id="bestDay">+$0</strong>
+        <span class="date-note" id="bestDate"></span>
+      </div>
+    </section>
+
+    <section class="calendar" id="calendar" aria-label="Trading calendar"></section>
+
+    <footer class="footer">
+      <span id="source">Source: journal snapshot</span>
+      <span id="generatedAt"></span>
+    </footer>
+  </main>
+
+  <script>
+    const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    const wholeMoney = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0
+    });
+
+    const compactMoney = value => {
+      const sign = value >= 0 ? "+" : "-";
+      const abs = Math.abs(value);
+      if (abs >= 1000) {
+        const scaled = (abs / 1000).toFixed(2).replace(/\.?0+$/, "");
+        return `${sign}$${scaled}K`;
+      }
+      return `${sign}${wholeMoney.format(abs)}`;
+    };
+
+    const monthName = date => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric"
+    }).toUpperCase();
+
+    const buildCalendar = data => {
+      document.title = `${data.title} Trading Calendar`;
+      document.getElementById("title").textContent = data.title;
+      document.getElementById("monthlyTotal").textContent = compactMoney(data.summary.totalPnl);
+      document.getElementById("tradeCount").textContent = data.summary.tradeCount;
+      document.getElementById("winDays").textContent = data.summary.winDays;
+      document.getElementById("lossDays").textContent = data.summary.lossDays;
+      document.getElementById("bestDay").textContent = compactMoney(data.summary.bestDay.pnl);
+      document.getElementById("bestDate").textContent = monthName(data.summary.bestDay.date);
+      document.getElementById("source").textContent = `Source: ${data.source}`;
+      document.getElementById("generatedAt").textContent = `Updated ${data.generatedAt}`;
+
+      const calendar = document.getElementById("calendar");
+      calendar.innerHTML = "";
+      weekdays.forEach(day => {
+        const node = document.createElement("div");
+        node.className = "weekday";
+        node.textContent = day;
+        calendar.appendChild(node);
+      });
+      const weeklyHeader = document.createElement("div");
+      weeklyHeader.className = "weekly-title";
+      weeklyHeader.textContent = "Weekly Total";
+      calendar.appendChild(weeklyHeader);
+
+      const [year, month] = data.month.split("-").map(Number);
+      const first = new Date(year, month - 1, 1);
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const dayMap = new Map(data.days.map(day => [day.day, day]));
+      const weekMap = new Map(data.weeks.map(week => [new Date(`${week.start}T12:00:00`).getDate(), week]));
+      const startOffset = (first.getDay() + 6) % 7;
+      let day = 1;
+
+      while (day <= daysInMonth) {
+        const rowStart = day === 1 ? 1 - startOffset : day;
+        for (let col = 0; col < 5; col += 1) {
+          const current = rowStart + col;
+          const cell = document.createElement("article");
+          const record = dayMap.get(current);
+          const isValid = current >= 1 && current <= daysInMonth;
+          cell.className = `day ${record ? "active" : "blank"} ${record && record.pnl < 0 ? "loss" : ""}`;
+          cell.innerHTML = `
+            <div class="day-number">${isValid ? current : ""}</div>
+            <div class="pnl">${record && record.pnl !== 0 ? compactMoney(record.pnl) : ""}</div>
+            <div class="trade-count">${record ? `${record.trades} ${record.trades === 1 ? "trade" : "trades"}` : ""}</div>
+          `;
+          calendar.appendChild(cell);
+        }
+
+        const week = weekMap.get(Math.max(rowStart, 1));
+        const weekly = document.createElement("article");
+        weekly.className = `week-total ${week && week.pnl < 0 ? "loss" : ""}`;
+        weekly.innerHTML = week ? `
+          <div></div>
+          <div class="pnl">${compactMoney(week.pnl)}</div>
+          <div class="trade-count"><span class="wins">${week.winDays}W</span> / <span class="losses">${week.lossDays}L</span></div>
+        ` : "";
+        calendar.appendChild(weekly);
+
+        day = rowStart + 7;
+        if (day < 1) day = 1;
+      }
+    };
+
+    fetch("./data.json")
+      .then(response => {
+        if (!response.ok) throw new Error(`Data load failed: ${response.status}`);
+        return response.json();
+      })
+      .then(buildCalendar)
+      .catch(error => {
+        document.getElementById("calendar").textContent = error.message;
+      });
+  </script>
+</body>
+</html>
