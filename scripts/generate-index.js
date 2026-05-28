@@ -5,19 +5,32 @@ const repoRoot = path.resolve(__dirname, "..");
 const toolsDir = path.join(repoRoot, "tools");
 const outputFile = path.join(repoRoot, "index.html");
 
-const files = fs
+const fileTools = fs
   .readdirSync(toolsDir)
   .filter((file) => file.endsWith(".html"))
-  .sort();
+  .map((file) => ({
+    href: `tools/${file}`,
+    name: path.basename(file, ".html"),
+  }));
 
-const links = files
-  .map((file) => {
-    const name = path.basename(file, ".html");
-    const title = name
+const directoryTools = fs
+  .readdirSync(toolsDir, { withFileTypes: true })
+  .filter((entry) => entry.isDirectory())
+  .filter((entry) => fs.existsSync(path.join(toolsDir, entry.name, "index.html")))
+  .map((entry) => ({
+    href: `tools/${entry.name}/`,
+    name: entry.name,
+  }));
+
+const tools = [...fileTools, ...directoryTools].sort((a, b) => a.name.localeCompare(b.name));
+
+const links = tools
+  .map((tool) => {
+    const title = tool.name
       .replace(/[-_]/g, " ")
       .replace(/\b\w/g, (c) => c.toUpperCase());
 
-    return `<li><a href="tools/${file}">${title}</a></li>`;
+    return `<li><a href="${tool.href}">${title}</a></li>`;
   })
   .join("\n");
 
@@ -55,4 +68,4 @@ const html = `<!DOCTYPE html>
 </html>`;
 
 fs.writeFileSync(outputFile, html, "utf8");
-console.log(`Generated index.html with ${files.length} tools.`);
+console.log(`Generated index.html with ${tools.length} tools.`);
