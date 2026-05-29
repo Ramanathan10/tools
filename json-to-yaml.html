@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON → YAML</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Syne:wght@700;800&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --border: #252525;
+    --border-accent: #333;
+    --text: #e8e8e8;
+    --text-dim: #555;
+    --text-mid: #888;
+    --green: #4ade80;
+    --green-dim: #1a3d27;
+    --red: #f87171;
+    --red-dim: #3d1a1a;
+    --yellow: #fbbf24;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    padding: 20px 28px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  header h1 {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  header .pill {
+    font-size: 0.68rem;
+    font-weight: 600;
+    background: var(--green-dim);
+    color: var(--green);
+    border: 1px solid #2a5c3e;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .workspace {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .pane {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .pane + .pane {
+    border-left: 1px solid var(--border);
+  }
+
+  .pane-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
+  .pane-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+  }
+
+  .pane-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-accent);
+    background: transparent;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .btn:hover {
+    border-color: var(--text-mid);
+    color: var(--text);
+    background: #1e1e1e;
+  }
+
+  .btn.primary {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .btn.primary:hover {
+    background: var(--green-dim);
+  }
+
+  .btn.copy-success {
+    border-color: var(--green);
+    color: var(--green);
+    background: var(--green-dim);
+  }
+
+  textarea {
+    flex: 1;
+    background: var(--bg);
+    color: var(--text);
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.7;
+    padding: 16px;
+    tab-size: 2;
+    caret-color: var(--green);
+  }
+
+  textarea::placeholder { color: var(--text-dim); }
+
+  .output-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    white-space: pre;
+    font-family: var(--mono);
+    background: var(--bg);
+  }
+
+  .output-area.empty {
+    color: var(--text-dim);
+    white-space: normal;
+  }
+
+  .output-area.error {
+    color: var(--red);
+    background: var(--red-dim);
+    font-size: 0.75rem;
+  }
+
+  /* YAML syntax coloring */
+  .yaml-key    { color: #7dd3fc; }
+  .yaml-str    { color: #86efac; }
+  .yaml-num    { color: #fdba74; }
+  .yaml-bool   { color: #c084fc; }
+  .yaml-null   { color: #94a3b8; }
+  .yaml-dash   { color: var(--text-mid); }
+
+  .status-bar {
+    padding: 6px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    display: flex;
+    gap: 16px;
+    letter-spacing: 0.04em;
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
+  .status-ok   { color: var(--green); }
+  .status-err  { color: var(--red); }
+  .status-info { color: var(--text-mid); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 2px; }
+
+  @media (max-width: 700px) {
+    .workspace { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+    .pane + .pane { border-left: none; border-top: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>JSON → YAML</h1>
+  <span class="pill">Converter</span>
+</header>
+
+<div class="workspace">
+  <!-- LEFT: JSON input -->
+  <div class="pane">
+    <div class="pane-header">
+      <span class="pane-label">JSON Input</span>
+      <div class="pane-actions">
+        <button class="btn" id="btnClear">Clear</button>
+        <button class="btn" id="btnFormat">Format</button>
+      </div>
+    </div>
+    <textarea id="jsonInput" spellcheck="false"
+      placeholder='Paste your JSON here…&#10;&#10;{&#10;  "name": "example",&#10;  "version": 1&#10;}'></textarea>
+    <div class="status-bar" id="statusLeft">
+      <span class="status-info">ready</span>
+    </div>
+  </div>
+
+  <!-- RIGHT: YAML output -->
+  <div class="pane">
+    <div class="pane-header">
+      <span class="pane-label">YAML Output</span>
+      <div class="pane-actions">
+        <button class="btn primary" id="btnCopy">Copy</button>
+      </div>
+    </div>
+    <div class="output-area empty" id="yamlOutput">YAML will appear here…</div>
+    <div class="status-bar" id="statusRight">
+      <span class="status-info">waiting for input</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── JSON → YAML converter ────────────────────────────────────────────────────
+function jsonToYaml(value, indent = 0) {
+  const pad = '  '.repeat(indent);
+
+  if (value === null)      return 'null';
+  if (value === undefined) return '~';
+  if (typeof value === 'boolean') return value ? 'true' : 'false';
+  if (typeof value === 'number')  return String(value);
+
+  if (typeof value === 'string') {
+    // Strings that need quoting
+    const needsQuote =
+      value === '' ||
+      /^[\s]|[\s]$/.test(value) ||          // leading/trailing whitespace
+      /[:#\[\]{}&*!|>'"%@`]/.test(value[0]) || // special first chars
+      /\n/.test(value) ||                    // multiline → block scalar
+      /^(true|false|null|~|yes|no|on|off)$/i.test(value) || // yaml keywords
+      /^[\d]/.test(value) ||                 // starts with digit → ambiguous
+      /^0x|^0o|^0b/.test(value);            // hex/octal/binary literals
+
+    if (/\n/.test(value)) {
+      // Block scalar
+      const lines = value.split('\n');
+      return '|\n' + lines.map(l => pad + '  ' + l).join('\n');
+    }
+    if (needsQuote) {
+      return '"' + value.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
+    }
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    if (value.length === 0) return '[]';
+    return value.map(item => {
+      const rendered = jsonToYaml(item, indent + 1);
+      if (typeof item === 'object' && item !== null && !Array.isArray(item)) {
+        // Inline the first key after the dash
+        const lines = rendered.split('\n');
+        return pad + '- ' + lines.join('\n');
+      }
+      return pad + '- ' + rendered;
+    }).join('\n');
+  }
+
+  if (typeof value === 'object') {
+    const keys = Object.keys(value);
+    if (keys.length === 0) return '{}';
+    return keys.map(key => {
+      const val = value[key];
+      const safeKey = /[:#\[\]{}&*!|>'"%@`,\s]/.test(key) || key === ''
+        ? '"' + key.replace(/"/g, '\\"') + '"'
+        : key;
+      if (val === null)                           return pad + safeKey + ': null';
+      if (typeof val !== 'object' || val === null) return pad + safeKey + ': ' + jsonToYaml(val, indent);
+      if (Array.isArray(val) && val.length === 0)  return pad + safeKey + ': []';
+      if (!Array.isArray(val) && Object.keys(val).length === 0) return pad + safeKey + ': {}';
+      return pad + safeKey + ':\n' + jsonToYaml(val, indent + 1);
+    }).join('\n');
+  }
+
+  return String(value);
+}
+
+// ─── Syntax highlight ─────────────────────────────────────────────────────────
+function highlightYaml(yaml) {
+  return yaml
+    .split('\n')
+    .map(line => {
+      // Comment
+      if (/^\s*#/.test(line)) return `<span class="yaml-null">${esc(line)}</span>`;
+      // List item dash
+      const dashMatch = line.match(/^(\s*)(- )(.*)/);
+      if (dashMatch) {
+        const [, sp, dash, rest] = dashMatch;
+        return `${esc(sp)}<span class="yaml-dash">${esc(dash)}</span>${colorValue(rest)}`;
+      }
+      // Key: value
+      const kvMatch = line.match(/^(\s*)([^:]+)(:\s?)(.*)/);
+      if (kvMatch) {
+        const [, sp, key, colon, val] = kvMatch;
+        return `${esc(sp)}<span class="yaml-key">${esc(key)}</span>${esc(colon)}${colorValue(val)}`;
+      }
+      return esc(line);
+    })
+    .join('\n');
+}
+
+function colorValue(v) {
+  if (!v || v === '') return '';
+  if (v === 'null' || v === '~')   return `<span class="yaml-null">${v}</span>`;
+  if (v === 'true' || v === 'false') return `<span class="yaml-bool">${v}</span>`;
+  if (/^-?\d/.test(v))             return `<span class="yaml-num">${esc(v)}</span>`;
+  if (v.startsWith('"') || v.startsWith("'")) return `<span class="yaml-str">${esc(v)}</span>`;
+  if (v === '|' || v === '>' || v === '|-' || v === '>-') return `<span class="yaml-str">${v}</span>`;
+  return `<span class="yaml-str">${esc(v)}</span>`;
+}
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ─── UI wiring ────────────────────────────────────────────────────────────────
+const jsonInput  = document.getElementById('jsonInput');
+const yamlOutput = document.getElementById('yamlOutput');
+const statusL    = document.getElementById('statusLeft');
+const statusR    = document.getElementById('statusRight');
+
+function setStatus(el, type, msg) {
+  el.innerHTML = `<span class="status-${type}">${msg}</span>`;
+}
+
+function countLines(str) {
+  return str ? str.split('\n').length : 0;
+}
+
+function convert() {
+  const raw = jsonInput.value.trim();
+  if (!raw) {
+    yamlOutput.className = 'output-area empty';
+    yamlOutput.textContent = 'YAML will appear here…';
+    setStatus(statusL, 'info', 'ready');
+    setStatus(statusR, 'info', 'waiting for input');
+    return;
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+    const chars = raw.length;
+    setStatus(statusL, 'ok', `✓ valid JSON  ·  ${chars.toLocaleString()} chars`);
+  } catch (e) {
+    yamlOutput.className = 'output-area error';
+    yamlOutput.textContent = '⚠ ' + e.message;
+    setStatus(statusL, 'err', '✗ invalid JSON');
+    setStatus(statusR, 'err', 'parse error');
+    return;
+  }
+
+  const yaml = jsonToYaml(parsed);
+  yamlOutput.className = 'output-area';
+  yamlOutput.innerHTML = highlightYaml(yaml);
+  setStatus(statusR, 'ok', `✓ converted  ·  ${countLines(yaml)} lines`);
+}
+
+jsonInput.addEventListener('input', convert);
+
+// Format button
+document.getElementById('btnFormat').addEventListener('click', () => {
+  try {
+    const pretty = JSON.stringify(JSON.parse(jsonInput.value), null, 2);
+    jsonInput.value = pretty;
+    convert();
+  } catch {}
+});
+
+// Clear button
+document.getElementById('btnClear').addEventListener('click', () => {
+  jsonInput.value = '';
+  convert();
+});
+
+// Copy button
+document.getElementById('btnCopy').addEventListener('click', () => {
+  const text = yamlOutput.textContent;
+  if (!text || text === 'YAML will appear here…') return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('btnCopy');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copy-success');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copy-success');
+    }, 1500);
+  });
+});
+</script>
+</body>
+</html>

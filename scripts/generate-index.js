@@ -2,23 +2,25 @@ const fs = require("fs");
 const path = require("path");
 
 const repoRoot = path.resolve(__dirname, "..");
-const toolsDir = path.join(repoRoot, "tools");
 const outputFile = path.join(repoRoot, "index.html");
+const excludedDirs = new Set([".git", ".github", "scripts", "tools"]);
 
 const fileTools = fs
-  .readdirSync(toolsDir)
+  .readdirSync(repoRoot)
   .filter((file) => file.endsWith(".html"))
+  .filter((file) => file !== "index.html")
   .map((file) => ({
-    href: `tools/${file}`,
+    href: file,
     name: path.basename(file, ".html"),
   }));
 
 const directoryTools = fs
-  .readdirSync(toolsDir, { withFileTypes: true })
+  .readdirSync(repoRoot, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
-  .filter((entry) => fs.existsSync(path.join(toolsDir, entry.name, "index.html")))
+  .filter((entry) => !excludedDirs.has(entry.name))
+  .filter((entry) => fs.existsSync(path.join(repoRoot, entry.name, "index.html")))
   .map((entry) => ({
-    href: `tools/${entry.name}/`,
+    href: `${entry.name}/`,
     name: entry.name,
   }));
 

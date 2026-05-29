@@ -245,7 +245,7 @@ def main():
     )
     parser.add_argument(
         "--output",
-        default=r"C:\repos\tools.github.io\tools\trading-calendar\data.json",
+        default=r"C:\repos\tools.github.io\trading-calendar\data.json",
         help="Output JSON path.",
     )
     args = parser.parse_args()
