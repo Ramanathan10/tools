@@ -1,13 +1,13 @@
 {
   "month": "2026-05",
   "title": "May 2026",
-  "generatedAt": "2026-05-28T16:13:14",
+  "generatedAt": "2026-05-28T17:00:46",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 5359.97,
-    "totalReturnPct": 2.51,
-    "tradeCount": 246,
-    "closedTradeCount": 148,
+    "totalPnl": 5402.97,
+    "totalReturnPct": 2.52,
+    "tradeCount": 248,
+    "closedTradeCount": 150,
     "winDays": 15,
     "lossDays": 4,
     "bestDay": {
@@ -4680,11 +4680,11 @@
     {
       "date": "2026-05-28",
       "day": 28,
-      "pnl": 14.62,
-      "returnPct": 0.31,
-      "closedTrades": 4,
-      "executions": 15,
-      "trades": 15,
+      "pnl": 57.62,
+      "returnPct": 1.11,
+      "closedTrades": 6,
+      "executions": 17,
+      "trades": 17,
       "closedTradeDetails": [
         {
           "symbol": "ORCX",
@@ -4741,6 +4741,34 @@
           "executionCount": 1,
           "basis": 250.53125,
           "time": "2026-05-28T11:48:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-28",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 48.5,
+          "pnl": 16.5,
+          "returnPct": 7.3,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-05-28T13:19:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-28",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 50.5,
+          "pnl": 26.5,
+          "returnPct": 11.73,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-05-28T14:21:00-07:00"
         }
       ],
       "executionDetails": [
@@ -4863,6 +4891,22 @@
           "shares": 10.0,
           "price": 26.55,
           "notional": 265.5
+        },
+        {
+          "time": "2026-05-28T13:19:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 48.5,
+          "notional": 242.5
+        },
+        {
+          "time": "2026-05-28T14:21:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 50.5,
+          "notional": 252.5
         }
       ]
     }
@@ -4911,10 +4955,10 @@
     {
       "start": "2026-05-25",
       "end": "2026-05-29",
-      "pnl": 1413.52,
-      "returnPct": 3.73,
-      "trades": 52,
-      "closedTrades": 27,
+      "pnl": 1456.52,
+      "returnPct": 3.8,
+      "trades": 54,
+      "closedTrades": 29,
       "winDays": 3,
       "lossDays": 0
     }
