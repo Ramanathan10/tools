@@ -1,15 +1,15 @@
 {
   "month": "2026-05",
   "title": "May 2026",
-  "generatedAt": "2026-05-29T09:00:51",
+  "generatedAt": "2026-05-29T13:00:52",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 5671.42,
-    "totalReturnPct": 2.43,
-    "tradeCount": 268,
-    "closedTradeCount": 161,
-    "winDays": 16,
-    "lossDays": 4,
+    "totalPnl": 5115.38,
+    "totalReturnPct": 2.13,
+    "tradeCount": 273,
+    "closedTradeCount": 164,
+    "winDays": 15,
+    "lossDays": 5,
     "bestDay": {
       "date": "2026-05-22",
       "day": 22,
@@ -5299,14 +5299,14 @@
     {
       "date": "2026-05-29",
       "day": 29,
-      "pnl": 456.99,
-      "returnPct": 3.15,
-      "rawPnl": 456.99,
+      "pnl": -99.05,
+      "returnPct": -0.47,
+      "rawPnl": -99.05,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 10,
-      "executions": 19,
-      "trades": 19,
+      "closedTrades": 13,
+      "executions": 24,
+      "trades": 24,
       "closedTradeDetails": [
         {
           "symbol": "RGTI",
@@ -5447,6 +5447,48 @@
           "executionCount": 1,
           "basis": 226.0,
           "time": "2026-05-29T08:06:00-07:00"
+        },
+        {
+          "symbol": "MRAM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 170.0,
+          "avgEntry": 30.2641,
+          "avgExit": 26.81,
+          "pnl": -587.2,
+          "returnPct": -11.41,
+          "executionCount": 1,
+          "basis": 5144.900000000001,
+          "time": "2026-05-29T11:17:00-07:00"
+        },
+        {
+          "symbol": "INFQ",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 80.0,
+          "avgEntry": 16.5894,
+          "avgExit": 15.72,
+          "pnl": -69.55,
+          "returnPct": -5.24,
+          "executionCount": 1,
+          "basis": 1327.148387096774,
+          "time": "2026-05-29T11:45:00-07:00"
+        },
+        {
+          "symbol": "DDOG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 1.0,
+          "avgEntry": 144.29,
+          "avgExit": 245.0,
+          "pnl": 100.71,
+          "returnPct": 69.8,
+          "executionCount": 1,
+          "basis": 144.29,
+          "time": "2026-05-29T12:50:00-07:00"
         }
       ],
       "executionDetails": [
@@ -5601,6 +5643,46 @@
           "shares": 5.0,
           "price": 56.0,
           "notional": 280.0
+        },
+        {
+          "time": "2026-05-29T09:11:00-07:00",
+          "ticker": "RGTI",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 25.69,
+          "notional": 256.9
+        },
+        {
+          "time": "2026-05-29T09:35:00-07:00",
+          "ticker": "RGTI",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 25.25,
+          "notional": 126.25
+        },
+        {
+          "time": "2026-05-29T11:17:00-07:00",
+          "ticker": "MRAM",
+          "side": "Sell",
+          "shares": 170.0,
+          "price": 26.81,
+          "notional": 4557.7
+        },
+        {
+          "time": "2026-05-29T11:45:00-07:00",
+          "ticker": "INFQ",
+          "side": "Sell",
+          "shares": 80.0,
+          "price": 15.72,
+          "notional": 1257.6
+        },
+        {
+          "time": "2026-05-29T12:50:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 245.0,
+          "notional": 245.0
         }
       ]
     }
@@ -5649,12 +5731,12 @@
     {
       "start": "2026-05-25",
       "end": "2026-05-29",
-      "pnl": 1897.99,
-      "returnPct": 3.31,
-      "trades": 74,
-      "closedTrades": 40,
-      "winDays": 4,
-      "lossDays": 0
+      "pnl": 1341.95,
+      "returnPct": 2.1,
+      "trades": 79,
+      "closedTrades": 43,
+      "winDays": 3,
+      "lossDays": 1
     }
   ]
 }
