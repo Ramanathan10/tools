@@ -174,7 +174,7 @@
 
     .segmented {
       display: inline-grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 4px;
       padding: 4px;
       border: 1px solid var(--line);
@@ -259,6 +259,10 @@
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     }
 
+    .calendar.month-view {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
     .weekday, .weekly-title {
       text-align: center;
       font-size: 0.78rem;
@@ -269,7 +273,7 @@
       color: var(--green-soft);
     }
 
-    .day, .week-total {
+    .day, .week-total, .month-panel {
       min-height: 112px;
       padding: 13px 14px 12px;
       display: grid;
@@ -281,7 +285,7 @@
       text-align: left;
     }
 
-    .day.active, .week-total {
+    .day.active, .week-total, .month-panel {
       background: linear-gradient(145deg, rgba(0, 103, 63, 0.72), rgba(5, 53, 37, 0.86));
       border-color: var(--line-strong);
     }
@@ -378,6 +382,92 @@
 
     .week-total .trade-count {
       justify-self: center;
+    }
+
+    .month-panel {
+      min-height: 360px;
+      padding: clamp(20px, 4vw, 36px);
+      align-content: start;
+      gap: 24px;
+    }
+
+    .month-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 20px;
+    }
+
+    .month-head h2 {
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 4.1rem);
+      line-height: 0.92;
+    }
+
+    .month-total {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-size: clamp(2.1rem, 5vw, 3.8rem);
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .month-total.red {
+      color: var(--red);
+    }
+
+    .month-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .month-stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 16px;
+      min-height: 104px;
+    }
+
+    .month-stat > span {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+    }
+
+    .month-stat strong {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(1.35rem, 2.6vw, 2.05rem);
+      line-height: 1.05;
+      overflow-wrap: anywhere;
+    }
+
+    .month-stat small {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    .month-note {
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
 
     .wins { color: var(--green-soft); }
@@ -531,6 +621,9 @@
       .calendar.day-view { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .weekday, .weekly-title { display: none; }
       .week-total { min-height: 96px; }
+      .month-head { display: block; }
+      .month-total { text-align: left; margin-top: 14px; }
+      .month-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
@@ -542,6 +635,7 @@
       .segmented { width: 100%; }
       .calendar.day-view { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .day, .week-total { min-height: 104px; }
+      .month-stats { grid-template-columns: 1fr; }
       .logo { font-size: 1.35rem; }
       .mark { width: 34px; height: 34px; }
       .dialog { padding: 18px; }
@@ -592,6 +686,7 @@
       <div class="segmented" role="tablist" aria-label="Calendar view">
         <button class="active" id="dayView" type="button" role="tab" aria-selected="true">Days</button>
         <button id="weekView" type="button" role="tab" aria-selected="false">Weeks</button>
+        <button id="monthView" type="button" role="tab" aria-selected="false">Month</button>
       </div>
     </section>
 
@@ -807,21 +902,70 @@
       });
     };
 
+    const renderMonthView = data => {
+      const calendar = document.getElementById("calendar");
+      const summary = data.summary;
+      const bestDay = summary.bestDay;
+      const brokerDays = data.days.filter(day => day.brokerPnl !== null && day.brokerPnl !== undefined).length;
+      const brokerAdjustments = data.days.reduce((total, day) => total + Math.abs(day.brokerAdjustment || 0), 0);
+      calendar.innerHTML = "";
+      calendar.className = "calendar month-view";
+
+      const panel = document.createElement("article");
+      panel.className = "month-panel";
+      panel.innerHTML = `
+        <div class="month-head">
+          <div>
+            <div class="label">Month View</div>
+            <h2>${data.title}</h2>
+          </div>
+          <div class="month-total ${summary.totalPnl < 0 ? "red" : ""}">
+            ${compactMoney(summary.totalPnl)}
+            <div class="pct">${signedPct(summary.totalReturnPct) || "N/A"}</div>
+          </div>
+        </div>
+        <div class="month-stats">
+          <div class="month-stat"><span>Executions</span><strong>${summary.tradeCount}</strong></div>
+          <div class="month-stat"><span>Closed Trades</span><strong>${summary.closedTradeCount}</strong></div>
+          <div class="month-stat"><span>Win / Loss Days</span><strong><span class="wins">${summary.winDays}</span> / <span class="losses">${summary.lossDays}</span></strong><small>W / L</small></div>
+          <div class="month-stat"><span>Best Day</span><strong>${bestDay ? compactMoney(bestDay.pnl) : "N/A"}</strong><small>${bestDay ? monthName(bestDay.date) : ""}</small></div>
+          <div class="month-stat"><span>Weekly Avg</span><strong>${compactMoney(summary.totalPnl / Math.max(data.weeks.length, 1))}</strong></div>
+          <div class="month-stat"><span>Active Days</span><strong>${data.days.length}</strong></div>
+          <div class="month-stat"><span>Broker Days</span><strong>${brokerDays}</strong></div>
+          <div class="month-stat"><span>Broker Adj.</span><strong>${signedMoney(brokerAdjustments)}</strong></div>
+        </div>
+        <div class="month-note">
+          ${brokerDays
+            ? `${brokerDays} day totals use broker realized P/L overrides. Raw execution and tax-lot audit detail remains available in day drilldowns.`
+            : "Totals are derived from raw execution realized P/L."}
+        </div>
+      `;
+      calendar.appendChild(panel);
+    };
+
     const renderCurrentView = () => {
       if (!dashboardData) return;
-      if (currentView === "weeks") {
+      if (currentView === "month") {
+        renderMonthView(dashboardData);
+      } else if (currentView === "weeks") {
         renderWeekView(dashboardData);
       } else {
         renderDayView(dashboardData);
       }
     };
 
-    const setView = view => {
+    const normalizeView = value => ["days", "weeks", "month"].includes(value) ? value : "days";
+
+    const setView = (view, updateHash = true) => {
+      view = normalizeView(view);
       currentView = view;
       document.getElementById("dayView").classList.toggle("active", view === "days");
       document.getElementById("weekView").classList.toggle("active", view === "weeks");
+      document.getElementById("monthView").classList.toggle("active", view === "month");
       document.getElementById("dayView").setAttribute("aria-selected", String(view === "days"));
       document.getElementById("weekView").setAttribute("aria-selected", String(view === "weeks"));
+      document.getElementById("monthView").setAttribute("aria-selected", String(view === "month"));
+      if (updateHash) history.replaceState(null, "", `#${view}`);
       renderCurrentView();
     };
 
@@ -837,12 +981,13 @@
       document.getElementById("bestDate").textContent = data.summary.bestDay ? `${monthName(data.summary.bestDay.date)} ${signedPct(data.summary.bestDay.returnPct)}` : "";
       document.getElementById("source").textContent = `Source: ${data.source}`;
       document.getElementById("generatedAt").textContent = `Updated ${data.generatedAt} | Month ${signedPct(data.summary.totalReturnPct) || "N/A"}`;
-      renderCurrentView();
+      setView(normalizeView(location.hash.replace("#", "")), false);
     };
 
     document.getElementById("closeDetail").addEventListener("click", closeDetail);
     document.getElementById("dayView").addEventListener("click", () => setView("days"));
     document.getElementById("weekView").addEventListener("click", () => setView("weeks"));
+    document.getElementById("monthView").addEventListener("click", () => setView("month"));
     document.getElementById("detailBackdrop").addEventListener("click", event => {
       if (event.target.id === "detailBackdrop") closeDetail();
     });
