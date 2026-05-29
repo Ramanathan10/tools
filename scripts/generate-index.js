@@ -3,7 +3,7 @@ const path = require("path");
 
 const repoRoot = path.resolve(__dirname, "..");
 const outputFile = path.join(repoRoot, "index.html");
-const excludedDirs = new Set([".git", ".github", "scripts", "tools"]);
+const excludedDirs = new Set([".git", ".github", "scripts"]);
 
 const fileTools = fs
   .readdirSync(repoRoot)
@@ -24,7 +24,35 @@ const directoryTools = fs
     name: entry.name,
   }));
 
-const tools = [...fileTools, ...directoryTools].sort((a, b) => a.name.localeCompare(b.name));
+const nestedToolRoot = path.join(repoRoot, "tools");
+const nestedFileTools = fs.existsSync(nestedToolRoot)
+  ? fs
+      .readdirSync(nestedToolRoot)
+      .filter((file) => file.endsWith(".html"))
+      .map((file) => ({
+        href: `tools/${file}`,
+        name: path.basename(file, ".html"),
+      }))
+  : [];
+
+const nestedDirectoryTools = fs.existsSync(nestedToolRoot)
+  ? fs
+      .readdirSync(nestedToolRoot, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .filter((entry) => fs.existsSync(path.join(nestedToolRoot, entry.name, "index.html")))
+      .map((entry) => ({
+        href: `tools/${entry.name}/`,
+        name: entry.name,
+      }))
+  : [];
+
+const toolsByName = new Map();
+for (const tool of [...fileTools, ...directoryTools, ...nestedFileTools, ...nestedDirectoryTools]) {
+  if (!toolsByName.has(tool.name)) {
+    toolsByName.set(tool.name, tool);
+  }
+}
+const tools = [...toolsByName.values()].sort((a, b) => a.name.localeCompare(b.name));
 
 const links = tools
   .map((tool) => {
