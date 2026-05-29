@@ -1,14 +1,14 @@
 {
   "month": "2026-05",
   "title": "May 2026",
-  "generatedAt": "2026-05-28T21:16:30",
+  "generatedAt": "2026-05-29T09:00:51",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 5214.43,
+    "totalPnl": 5671.42,
     "totalReturnPct": 2.43,
-    "tradeCount": 248,
-    "closedTradeCount": 150,
-    "winDays": 15,
+    "tradeCount": 268,
+    "closedTradeCount": 161,
+    "winDays": 16,
     "lossDays": 4,
     "bestDay": {
       "date": "2026-05-22",
@@ -5026,13 +5026,13 @@
       "date": "2026-05-28",
       "day": 28,
       "pnl": 58.0,
-      "returnPct": 1.12,
+      "returnPct": 0.6,
       "rawPnl": 57.62,
       "brokerPnl": 58.0,
       "brokerAdjustment": 0.38,
-      "closedTrades": 6,
-      "executions": 17,
-      "trades": 17,
+      "closedTrades": 7,
+      "executions": 18,
+      "trades": 18,
       "closedTradeDetails": [
         {
           "symbol": "ORCX",
@@ -5117,6 +5117,20 @@
           "executionCount": 1,
           "basis": 226.0,
           "time": "2026-05-28T14:21:00-07:00"
+        },
+        {
+          "symbol": "AMZU",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-28",
+          "quantity": 100.0,
+          "avgEntry": 44.46,
+          "avgExit": 44.46,
+          "pnl": 0.0,
+          "returnPct": 0.0,
+          "executionCount": 1,
+          "basis": 4446.0,
+          "time": "2026-05-28T20:12:00-07:00"
         },
         {
           "kind": "broker_adjustment",
@@ -5271,6 +5285,322 @@
           "shares": 5.0,
           "price": 50.5,
           "notional": 252.5
+        },
+        {
+          "time": "2026-05-28T20:12:00-07:00",
+          "ticker": "AMZU",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 44.46,
+          "notional": 4446.0
+        }
+      ]
+    },
+    {
+      "date": "2026-05-29",
+      "day": 29,
+      "pnl": 456.99,
+      "returnPct": 3.15,
+      "rawPnl": 456.99,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 10,
+      "executions": 19,
+      "trades": 19,
+      "closedTradeDetails": [
+        {
+          "symbol": "RGTI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 150.0,
+          "avgEntry": 25.0531,
+          "avgExit": 25.1,
+          "pnl": 7.03,
+          "returnPct": 0.19,
+          "executionCount": 1,
+          "basis": 3757.96875,
+          "time": "2026-05-29T06:38:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 52.86,
+          "pnl": 38.3,
+          "returnPct": 16.95,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-05-29T06:39:00-07:00"
+        },
+        {
+          "symbol": "INFQ",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 225.0,
+          "avgEntry": 16.52,
+          "avgExit": 16.54,
+          "pnl": 4.5,
+          "returnPct": 0.12,
+          "executionCount": 1,
+          "basis": 3717.0,
+          "time": "2026-05-29T06:40:00-07:00"
+        },
+        {
+          "symbol": "FLY",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 15.0,
+          "avgEntry": 38.65,
+          "avgExit": 45.76,
+          "pnl": 106.65,
+          "returnPct": 18.4,
+          "executionCount": 1,
+          "basis": 579.75,
+          "time": "2026-05-29T07:09:00-07:00"
+        },
+        {
+          "symbol": "INFQ",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 75.0,
+          "avgEntry": 16.5894,
+          "avgExit": 16.1,
+          "pnl": -36.7,
+          "returnPct": -2.95,
+          "executionCount": 1,
+          "basis": 1244.2016129032259,
+          "time": "2026-05-29T07:10:00-07:00"
+        },
+        {
+          "symbol": "BW",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 150.0,
+          "avgEntry": 18.92,
+          "avgExit": 18.31,
+          "pnl": -91.5,
+          "returnPct": -3.22,
+          "executionCount": 1,
+          "basis": 2838.0000000000005,
+          "time": "2026-05-29T07:13:00-07:00"
+        },
+        {
+          "symbol": "DDOG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 1.0,
+          "avgEntry": 144.29,
+          "avgExit": 240.0,
+          "pnl": 95.71,
+          "returnPct": 66.33,
+          "executionCount": 1,
+          "basis": 144.29,
+          "time": "2026-05-29T07:34:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 55.0,
+          "pnl": 49.0,
+          "returnPct": 21.68,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-05-29T07:35:00-07:00"
+        },
+        {
+          "symbol": "FLY",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 40.0,
+          "avgEntry": 38.65,
+          "avgExit": 44.4,
+          "pnl": 230.0,
+          "returnPct": 14.88,
+          "executionCount": 1,
+          "basis": 1546.0,
+          "time": "2026-05-29T07:38:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-05-29",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 56.0,
+          "pnl": 54.0,
+          "returnPct": 23.89,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-05-29T08:06:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-05-29T06:38:00-07:00",
+          "ticker": "RGTI",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 25.1,
+          "notional": 3765.0
+        },
+        {
+          "time": "2026-05-29T06:39:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 52.86,
+          "notional": 264.3
+        },
+        {
+          "time": "2026-05-29T06:40:00-07:00",
+          "ticker": "INFQ",
+          "side": "Sell",
+          "shares": 225.0,
+          "price": 16.54,
+          "notional": 3721.5
+        },
+        {
+          "time": "2026-05-29T06:46:00-07:00",
+          "ticker": "BW",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 18.92,
+          "notional": 2838.0
+        },
+        {
+          "time": "2026-05-29T06:50:00-07:00",
+          "ticker": "RGTI",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 25.24,
+          "notional": 3786.0
+        },
+        {
+          "time": "2026-05-29T06:52:00-07:00",
+          "ticker": "INFQ",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 16.58,
+          "notional": 1658.0
+        },
+        {
+          "time": "2026-05-29T06:53:00-07:00",
+          "ticker": "INFQ",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 16.63,
+          "notional": 831.5
+        },
+        {
+          "time": "2026-05-29T07:06:00-07:00",
+          "ticker": "INFQ",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 16.37,
+          "notional": 81.85
+        },
+        {
+          "time": "2026-05-29T07:09:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 45.76,
+          "notional": 686.4
+        },
+        {
+          "time": "2026-05-29T07:10:00-07:00",
+          "ticker": "INFQ",
+          "side": "Sell",
+          "shares": 75.0,
+          "price": 16.1,
+          "notional": 1207.5
+        },
+        {
+          "time": "2026-05-29T07:13:00-07:00",
+          "ticker": "BW",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 18.31,
+          "notional": 2746.5
+        },
+        {
+          "time": "2026-05-29T07:34:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 240.0,
+          "notional": 240.0
+        },
+        {
+          "time": "2026-05-29T07:35:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 55.0,
+          "notional": 275.0
+        },
+        {
+          "time": "2026-05-29T07:37:00-07:00",
+          "ticker": "INOD",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 102.97,
+          "notional": 2059.4
+        },
+        {
+          "time": "2026-05-29T07:38:00-07:00",
+          "ticker": "FLY",
+          "side": "Sell",
+          "shares": 40.0,
+          "price": 44.4,
+          "notional": 1776.0
+        },
+        {
+          "time": "2026-05-29T07:46:00-07:00",
+          "ticker": "INOD",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 100.46,
+          "notional": 502.3
+        },
+        {
+          "time": "2026-05-29T07:49:00-07:00",
+          "ticker": "INOD",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 100.86,
+          "notional": 504.3
+        },
+        {
+          "time": "2026-05-29T07:58:00-07:00",
+          "ticker": "MRAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 27.83,
+          "notional": 278.3
+        },
+        {
+          "time": "2026-05-29T08:06:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 56.0,
+          "notional": 280.0
         }
       ]
     }
@@ -5319,11 +5649,11 @@
     {
       "start": "2026-05-25",
       "end": "2026-05-29",
-      "pnl": 1441.0,
-      "returnPct": 3.76,
-      "trades": 54,
-      "closedTrades": 29,
-      "winDays": 3,
+      "pnl": 1897.99,
+      "returnPct": 3.31,
+      "trades": 74,
+      "closedTrades": 40,
+      "winDays": 4,
       "lossDays": 0
     }
   ]
