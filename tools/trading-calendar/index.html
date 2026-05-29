@@ -169,6 +169,9 @@
     .view-bar {
       display: flex;
       justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: 18px;
     }
 
@@ -206,6 +209,10 @@
     .segmented button:focus-visible {
       outline: 2px solid var(--green-soft);
       outline-offset: 2px;
+    }
+
+    .display-mode {
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .stat, .day, .week-total {
@@ -345,6 +352,22 @@
       font-size: 0.82rem;
       font-weight: 800;
       margin-top: 4px;
+    }
+
+    .metric-pct {
+      display: block;
+      color: var(--blue);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.52em;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-top: 5px;
+      text-shadow: none;
+    }
+
+    .total-value .metric-pct,
+    .month-total .metric-pct {
+      font-size: 0.32em;
     }
 
     .trade-count {
@@ -683,6 +706,11 @@
     </section>
 
     <section class="view-bar" aria-label="Calendar view switcher">
+      <div class="segmented display-mode" role="tablist" aria-label="P/L display mode">
+        <button id="moneyMode" type="button" role="tab" aria-selected="false">$</button>
+        <button id="percentMode" type="button" role="tab" aria-selected="false">%</button>
+        <button class="active" id="bothMode" type="button" role="tab" aria-selected="true">Both</button>
+      </div>
       <div class="segmented" role="tablist" aria-label="Calendar view">
         <button class="active" id="dayView" type="button" role="tab" aria-selected="true">Days</button>
         <button id="weekView" type="button" role="tab" aria-selected="false">Weeks</button>
@@ -730,6 +758,7 @@
     });
     let dashboardData = null;
     let currentView = "days";
+    let displayMode = "both";
 
     const compactMoney = value => {
       const sign = value >= 0 ? "+" : "-";
@@ -747,6 +776,14 @@
     };
 
     const signedMoney = value => `${value >= 0 ? "+" : ""}${preciseMoney.format(value)}`;
+
+    const metricHtml = (value, pct, formatter = compactMoney) => {
+      const money = formatter(value);
+      const percent = signedPct(pct) || "N/A";
+      if (displayMode === "percent") return percent;
+      if (displayMode === "both") return `${money}<span class="metric-pct">${percent}</span>`;
+      return money;
+    };
 
     const displayShares = value => Number.isInteger(value) ? String(value) : value.toFixed(4).replace(/\.?0+$/, "");
 
@@ -786,7 +823,7 @@
       const backdrop = document.getElementById("detailBackdrop");
       document.getElementById("detailTitle").textContent = detailDate(day.date);
       document.getElementById("detailStats").innerHTML = `
-        <div class="detail-stat"><span>Realized P/L</span><strong class="${day.pnl < 0 ? "red" : "green"}">${signedMoney(day.pnl)}</strong></div>
+        <div class="detail-stat"><span>Realized P/L</span><strong class="${day.pnl < 0 ? "red" : "green"}">${metricHtml(day.pnl, day.returnPct, signedMoney)}</strong></div>
         <div class="detail-stat"><span>Return</span><strong>${signedPct(day.returnPct) || "N/A"}</strong></div>
         <div class="detail-stat"><span>Closed Trades</span><strong>${day.closedTrades}</strong></div>
         <div class="detail-stat"><span>Executions</span><strong>${day.executions}</strong></div>
@@ -870,8 +907,7 @@
           cell.innerHTML = `
             <div class="day-number">${isValid ? current : ""}</div>
             <div>
-              <div class="pnl">${record && record.pnl !== 0 ? compactMoney(record.pnl) : ""}</div>
-              <div class="pct">${record ? signedPct(record.returnPct) : ""}</div>
+              <div class="pnl">${record && record.pnl !== 0 ? metricHtml(record.pnl, record.returnPct) : ""}</div>
             </div>
             <div class="trade-count">${record ? `${record.closedTrades} closed / ${record.executions} exec` : ""}</div>
           `;
@@ -893,8 +929,7 @@
         weekly.innerHTML = `
           <div class="week-range">Week ${index + 1} | ${shortDate(week.start)} - ${shortDate(week.end)}</div>
           <div>
-            <div class="pnl">${compactMoney(week.pnl)}</div>
-            <div class="pct">${signedPct(week.returnPct) || "N/A"}</div>
+            <div class="pnl">${metricHtml(week.pnl, week.returnPct)}</div>
           </div>
           <div class="trade-count"><span class="wins">${week.winDays}W</span> / <span class="losses">${week.lossDays}L</span> | ${week.closedTrades} closed / ${week.trades} exec</div>
         `;
@@ -908,6 +943,11 @@
       const bestDay = summary.bestDay;
       const brokerDays = data.days.filter(day => day.brokerPnl !== null && day.brokerPnl !== undefined).length;
       const brokerAdjustments = data.days.reduce((total, day) => total + Math.abs(day.brokerAdjustment || 0), 0);
+      const weeklyAvgPnl = summary.totalPnl / Math.max(data.weeks.length, 1);
+      const weeklyReturnValues = data.weeks.map(week => week.returnPct).filter(value => value !== null && value !== undefined);
+      const weeklyAvgReturn = weeklyReturnValues.length
+        ? weeklyReturnValues.reduce((total, value) => total + value, 0) / weeklyReturnValues.length
+        : null;
       calendar.innerHTML = "";
       calendar.className = "calendar month-view";
 
@@ -920,19 +960,18 @@
             <h2>${data.title}</h2>
           </div>
           <div class="month-total ${summary.totalPnl < 0 ? "red" : ""}">
-            ${compactMoney(summary.totalPnl)}
-            <div class="pct">${signedPct(summary.totalReturnPct) || "N/A"}</div>
+            ${metricHtml(summary.totalPnl, summary.totalReturnPct)}
           </div>
         </div>
         <div class="month-stats">
           <div class="month-stat"><span>Executions</span><strong>${summary.tradeCount}</strong></div>
           <div class="month-stat"><span>Closed Trades</span><strong>${summary.closedTradeCount}</strong></div>
           <div class="month-stat"><span>Win / Loss Days</span><strong><span class="wins">${summary.winDays}</span> / <span class="losses">${summary.lossDays}</span></strong><small>W / L</small></div>
-          <div class="month-stat"><span>Best Day</span><strong>${bestDay ? compactMoney(bestDay.pnl) : "N/A"}</strong><small>${bestDay ? monthName(bestDay.date) : ""}</small></div>
-          <div class="month-stat"><span>Weekly Avg</span><strong>${compactMoney(summary.totalPnl / Math.max(data.weeks.length, 1))}</strong></div>
+          <div class="month-stat"><span>Best Day</span><strong>${bestDay ? metricHtml(bestDay.pnl, bestDay.returnPct) : "N/A"}</strong><small>${bestDay ? monthName(bestDay.date) : ""}</small></div>
+          <div class="month-stat"><span>Weekly Avg</span><strong>${metricHtml(weeklyAvgPnl, weeklyAvgReturn)}</strong></div>
           <div class="month-stat"><span>Active Days</span><strong>${data.days.length}</strong></div>
           <div class="month-stat"><span>Broker Days</span><strong>${brokerDays}</strong></div>
-          <div class="month-stat"><span>Broker Adj.</span><strong>${signedMoney(brokerAdjustments)}</strong></div>
+          <div class="month-stat"><span>Broker Adj.</span><strong>${metricHtml(brokerAdjustments, null, signedMoney)}</strong></div>
         </div>
         <div class="month-note">
           ${brokerDays
@@ -955,6 +994,26 @@
     };
 
     const normalizeView = value => ["days", "weeks", "month"].includes(value) ? value : "days";
+    const normalizeDisplayMode = value => ["money", "percent", "both"].includes(value) ? value : "both";
+
+    const readUrlState = () => {
+      const params = new URLSearchParams(location.search);
+      return {
+        view: normalizeView(location.hash.replace("#", "")),
+        display: normalizeDisplayMode(params.get("display")),
+      };
+    };
+
+    const updateUrlState = () => {
+      const params = new URLSearchParams(location.search);
+      if (displayMode === "both") {
+        params.delete("display");
+      } else {
+        params.set("display", displayMode);
+      }
+      const query = params.toString();
+      history.replaceState(null, "", `${location.pathname}${query ? `?${query}` : ""}#${currentView}`);
+    };
 
     const setView = (view, updateHash = true) => {
       view = normalizeView(view);
@@ -965,26 +1024,47 @@
       document.getElementById("dayView").setAttribute("aria-selected", String(view === "days"));
       document.getElementById("weekView").setAttribute("aria-selected", String(view === "weeks"));
       document.getElementById("monthView").setAttribute("aria-selected", String(view === "month"));
-      if (updateHash) history.replaceState(null, "", `#${view}`);
+      if (updateHash) updateUrlState();
       renderCurrentView();
+    };
+
+    const setDisplayMode = (mode, updateUrl = true) => {
+      displayMode = normalizeDisplayMode(mode);
+      document.getElementById("moneyMode").classList.toggle("active", displayMode === "money");
+      document.getElementById("percentMode").classList.toggle("active", displayMode === "percent");
+      document.getElementById("bothMode").classList.toggle("active", displayMode === "both");
+      document.getElementById("moneyMode").setAttribute("aria-selected", String(displayMode === "money"));
+      document.getElementById("percentMode").setAttribute("aria-selected", String(displayMode === "percent"));
+      document.getElementById("bothMode").setAttribute("aria-selected", String(displayMode === "both"));
+      if (updateUrl) updateUrlState();
+      if (dashboardData) updateSummaryMetrics(dashboardData);
+      renderCurrentView();
+    };
+
+    const updateSummaryMetrics = data => {
+      document.getElementById("monthlyTotal").innerHTML = metricHtml(data.summary.totalPnl, data.summary.totalReturnPct);
+      document.getElementById("bestDay").innerHTML = data.summary.bestDay ? metricHtml(data.summary.bestDay.pnl, data.summary.bestDay.returnPct) : "$0";
+      document.getElementById("bestDate").textContent = data.summary.bestDay ? monthName(data.summary.bestDay.date) : "";
     };
 
     const buildCalendar = data => {
       dashboardData = data;
       document.title = `${data.title} Trading Calendar`;
       document.getElementById("title").textContent = data.title;
-      document.getElementById("monthlyTotal").textContent = compactMoney(data.summary.totalPnl);
       document.getElementById("tradeCount").textContent = data.summary.tradeCount;
       document.getElementById("winDays").textContent = data.summary.winDays;
       document.getElementById("lossDays").textContent = data.summary.lossDays;
-      document.getElementById("bestDay").textContent = data.summary.bestDay ? compactMoney(data.summary.bestDay.pnl) : "$0";
-      document.getElementById("bestDate").textContent = data.summary.bestDay ? `${monthName(data.summary.bestDay.date)} ${signedPct(data.summary.bestDay.returnPct)}` : "";
       document.getElementById("source").textContent = `Source: ${data.source}`;
       document.getElementById("generatedAt").textContent = `Updated ${data.generatedAt} | Month ${signedPct(data.summary.totalReturnPct) || "N/A"}`;
-      setView(normalizeView(location.hash.replace("#", "")), false);
+      const state = readUrlState();
+      setDisplayMode(state.display, false);
+      setView(state.view, false);
     };
 
     document.getElementById("closeDetail").addEventListener("click", closeDetail);
+    document.getElementById("moneyMode").addEventListener("click", () => setDisplayMode("money"));
+    document.getElementById("percentMode").addEventListener("click", () => setDisplayMode("percent"));
+    document.getElementById("bothMode").addEventListener("click", () => setDisplayMode("both"));
     document.getElementById("dayView").addEventListener("click", () => setView("days"));
     document.getElementById("weekView").addEventListener("click", () => setView("weeks"));
     document.getElementById("monthView").addEventListener("click", () => setView("month"));
