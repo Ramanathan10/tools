@@ -699,13 +699,13 @@
 
       const closedRows = day.closedTradeDetails.map(trade => `
         <tr>
-          <td>${trade.symbol}</td>
-          <td>${trade.openDate}</td>
-          <td>${displayShares(trade.quantity)}</td>
-          <td>${preciseMoney.format(trade.avgEntry)}</td>
-          <td>${preciseMoney.format(trade.avgExit)}</td>
+          <td>${trade.kind === "broker_adjustment" ? "Broker adj." : trade.symbol}</td>
+          <td>${trade.kind === "broker_adjustment" ? "Daily total" : trade.openDate}</td>
+          <td>${trade.kind === "broker_adjustment" ? "" : displayShares(trade.quantity)}</td>
+          <td>${trade.kind === "broker_adjustment" ? "" : preciseMoney.format(trade.avgEntry)}</td>
+          <td>${trade.kind === "broker_adjustment" ? "" : preciseMoney.format(trade.avgExit)}</td>
           <td class="${trade.pnl < 0 ? "sell" : "buy"}">${signedMoney(trade.pnl)}</td>
-          <td>${signedPct(trade.returnPct)}</td>
+          <td>${trade.kind === "broker_adjustment" ? "Override" : signedPct(trade.returnPct)}</td>
         </tr>
       `);
       document.getElementById("closedTrades").innerHTML = renderTable(

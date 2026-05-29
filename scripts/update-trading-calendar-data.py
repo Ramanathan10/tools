@@ -108,6 +108,24 @@ def read_realized_exits(journal_root, year, month):
     return daily
 
 
+def read_broker_realized_pnl(journal_root, month):
+    path = journal_root / "BrokerRealizedPnL" / f"{month}.csv"
+    if not path.exists():
+        return {}
+
+    daily = {}
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            date = (row.get("date") or "")[:10]
+            if date.startswith(month):
+                daily[date] = {
+                    "pnl": round(float(row.get("realized_pnl") or 0), 2),
+                    "source": row.get("source") or "Broker realized P/L",
+                    "notes": row.get("notes") or "",
+                }
+    return daily
+
+
 def summarize_realized(exits):
     pnl = sum(item["pnl"] for item in exits)
     basis = sum(item["basis"] for item in exits)
@@ -123,7 +141,36 @@ def build_snapshot(journal_root, month):
     year, month_number = [int(part) for part in month.split("-")]
     executions = read_executions(journal_root / "Executions" / f"{month}.csv", month)
     realized_exits = read_realized_exits(journal_root, year, month)
+    broker_daily = read_broker_realized_pnl(journal_root, month)
     daily = {date: summarize_realized(items) for date, items in realized_exits.items()}
+    for date, broker in broker_daily.items():
+        summary = daily.setdefault(date, {"pnl": 0, "returnPct": None, "closedTrades": 0, "basis": 0})
+        raw_pnl = summary["pnl"]
+        adjustment = round(broker["pnl"] - raw_pnl, 2)
+        basis = summary["basis"]
+        summary["rawPnl"] = raw_pnl
+        summary["pnl"] = broker["pnl"]
+        summary["returnPct"] = round((broker["pnl"] / basis) * 100, 2) if basis else None
+        summary["brokerPnl"] = broker["pnl"]
+        summary["brokerSource"] = broker["source"]
+        summary["brokerAdjustment"] = adjustment
+        if abs(adjustment) >= 0.01:
+            realized_exits.setdefault(date, []).append({
+                "kind": "broker_adjustment",
+                "symbol": "BROKER",
+                "campaignId": "",
+                "openDate": "",
+                "closeDate": date,
+                "quantity": 0,
+                "avgEntry": 0,
+                "avgExit": 0,
+                "pnl": adjustment,
+                "returnPct": None,
+                "executionCount": 0,
+                "basis": 0,
+                "time": f"{date}T23:59:59",
+                "note": f"Broker daily realized P/L override: raw {raw_pnl:+.2f}, broker {broker['pnl']:+.2f}",
+            })
 
     days = []
     for day in range(1, calendar.monthrange(year, month_number)[1] + 1):
@@ -136,6 +183,9 @@ def build_snapshot(journal_root, month):
                 "day": day,
                 "pnl": day_summary["pnl"],
                 "returnPct": day_summary["returnPct"],
+                "rawPnl": day_summary.get("rawPnl", day_summary["pnl"]),
+                "brokerPnl": day_summary.get("brokerPnl"),
+                "brokerAdjustment": day_summary.get("brokerAdjustment", 0),
                 "closedTrades": day_summary["closedTrades"],
                 "executions": len(day_executions),
                 "trades": len(day_executions),
