@@ -1,26 +1,26 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-01T13:00:55",
+  "generatedAt": "2026-06-01T15:08:17",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 928.27,
-    "totalReturnPct": 9.16,
-    "tradeCount": 19,
-    "closedTradeCount": 15,
+    "totalPnl": 1063.98,
+    "totalReturnPct": 10.36,
+    "tradeCount": 20,
+    "closedTradeCount": 16,
     "winDays": 1,
     "lossDays": 0,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
-      "pnl": 928.27,
-      "returnPct": 9.16,
-      "rawPnl": 928.27,
+      "pnl": 1063.98,
+      "returnPct": 10.36,
+      "rawPnl": 1063.98,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 15,
-      "executions": 19,
-      "trades": 19,
+      "closedTrades": 16,
+      "executions": 20,
+      "trades": 20,
       "closedTradeDetails": [
         {
           "symbol": "ORCX",
@@ -231,6 +231,20 @@
           "executionCount": 1,
           "basis": 85.12272727272729,
           "time": "2026-06-01T12:36:00-07:00"
+        },
+        {
+          "symbol": "DDOG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 1.0,
+          "avgEntry": 144.29,
+          "avgExit": 280.0,
+          "pnl": 135.71,
+          "returnPct": 94.05,
+          "executionCount": 1,
+          "basis": 144.29000000000002,
+          "time": "2026-06-01T13:03:00-07:00"
         }
       ],
       "executionDetails": [
@@ -385,6 +399,14 @@
           "shares": 5.0,
           "price": 23.0,
           "notional": 115.0
+        },
+        {
+          "time": "2026-06-01T13:03:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 280.0,
+          "notional": 280.0
         }
       ]
     }
@@ -393,14 +415,14 @@
     {
       "date": "2026-06-01",
       "day": 1,
-      "pnl": 928.27,
-      "returnPct": 9.16,
-      "rawPnl": 928.27,
+      "pnl": 1063.98,
+      "returnPct": 10.36,
+      "rawPnl": 1063.98,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 15,
-      "executions": 19,
-      "trades": 19,
+      "closedTrades": 16,
+      "executions": 20,
+      "trades": 20,
       "closedTradeDetails": [
         {
           "symbol": "ORCX",
@@ -611,6 +633,20 @@
           "executionCount": 1,
           "basis": 85.12272727272729,
           "time": "2026-06-01T12:36:00-07:00"
+        },
+        {
+          "symbol": "DDOG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 1.0,
+          "avgEntry": 144.29,
+          "avgExit": 280.0,
+          "pnl": 135.71,
+          "returnPct": 94.05,
+          "executionCount": 1,
+          "basis": 144.29000000000002,
+          "time": "2026-06-01T13:03:00-07:00"
         }
       ],
       "executionDetails": [
@@ -765,6 +801,14 @@
           "shares": 5.0,
           "price": 23.0,
           "notional": 115.0
+        },
+        {
+          "time": "2026-06-01T13:03:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 280.0,
+          "notional": 280.0
         }
       ]
     }
@@ -773,10 +817,10 @@
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": 928.27,
-      "returnPct": 9.16,
-      "trades": 19,
-      "closedTrades": 15,
+      "pnl": 1063.98,
+      "returnPct": 10.36,
+      "trades": 20,
+      "closedTrades": 16,
       "winDays": 1,
       "lossDays": 0
     },
