@@ -1,0 +1,632 @@
+{
+  "month": "2026-06",
+  "title": "June 2026",
+  "generatedAt": "2026-06-01T09:00:47",
+  "source": "Raw executions for activity, realized P/L, and return %",
+  "summary": {
+    "totalPnl": 868.1,
+    "totalReturnPct": 14.18,
+    "tradeCount": 14,
+    "closedTradeCount": 11,
+    "winDays": 1,
+    "lossDays": 0,
+    "bestDay": {
+      "date": "2026-06-01",
+      "day": 1,
+      "pnl": 868.1,
+      "returnPct": 14.18,
+      "rawPnl": 868.1,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 11,
+      "executions": 14,
+      "trades": 14,
+      "closedTradeDetails": [
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 61.41,
+          "pnl": 81.05,
+          "returnPct": 35.86,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-06-01T06:17:00-07:00"
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 86.994,
+          "avgExit": 111.36,
+          "pnl": 121.83,
+          "returnPct": 28.01,
+          "executionCount": 1,
+          "basis": 434.97,
+          "time": "2026-06-01T06:17:00-07:00"
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 86.994,
+          "avgExit": 115.0,
+          "pnl": 140.03,
+          "returnPct": 32.19,
+          "executionCount": 1,
+          "basis": 434.9699999999999,
+          "time": "2026-06-01T06:28:00-07:00"
+        },
+        {
+          "symbol": "INOD",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 2.0,
+          "avgEntry": 102.2,
+          "avgExit": 105.58,
+          "pnl": 6.76,
+          "returnPct": 3.31,
+          "executionCount": 1,
+          "basis": 204.4,
+          "time": "2026-06-01T06:33:00-07:00"
+        },
+        {
+          "symbol": "NAVN",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 10.0,
+          "avgEntry": 17.0245,
+          "avgExit": 22.07,
+          "pnl": 50.45,
+          "returnPct": 29.64,
+          "executionCount": 1,
+          "basis": 170.2454545454546,
+          "time": "2026-06-01T06:35:00-07:00"
+        },
+        {
+          "symbol": "DDOG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 1.0,
+          "avgEntry": 144.29,
+          "avgExit": 260.0,
+          "pnl": 115.71,
+          "returnPct": 80.19,
+          "executionCount": 1,
+          "basis": 144.29000000000002,
+          "time": "2026-06-01T06:46:00-07:00"
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 159.33,
+          "avgExit": 170.0,
+          "pnl": 53.35,
+          "returnPct": 6.7,
+          "executionCount": 1,
+          "basis": 796.6500000000001,
+          "time": "2026-06-01T06:49:00-07:00"
+        },
+        {
+          "symbol": "INOD",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 28.0,
+          "avgEntry": 102.2,
+          "avgExit": 102.1,
+          "pnl": -2.8,
+          "returnPct": -0.1,
+          "executionCount": 1,
+          "basis": 2861.6,
+          "time": "2026-06-01T06:54:00-07:00"
+        },
+        {
+          "symbol": "DDOG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 1.0,
+          "avgEntry": 144.29,
+          "avgExit": 270.0,
+          "pnl": 125.71,
+          "returnPct": 87.12,
+          "executionCount": 1,
+          "basis": 144.29000000000002,
+          "time": "2026-06-01T07:58:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 65.0,
+          "pnl": 99.0,
+          "returnPct": 43.81,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-06-01T08:00:00-07:00"
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 3.0,
+          "avgEntry": 159.33,
+          "avgExit": 185.0,
+          "pnl": 77.01,
+          "returnPct": 16.11,
+          "executionCount": 1,
+          "basis": 477.99,
+          "time": "2026-06-01T08:43:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-01T06:17:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 61.41,
+          "notional": 307.05
+        },
+        {
+          "time": "2026-06-01T06:17:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 111.36,
+          "notional": 556.8
+        },
+        {
+          "time": "2026-06-01T06:28:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 115.0,
+          "notional": 575.0
+        },
+        {
+          "time": "2026-06-01T06:32:00-07:00",
+          "ticker": "AAOI",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 159.33,
+          "notional": 3983.25
+        },
+        {
+          "time": "2026-06-01T06:33:00-07:00",
+          "ticker": "INOD",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 105.58,
+          "notional": 211.16
+        },
+        {
+          "time": "2026-06-01T06:35:00-07:00",
+          "ticker": "NAVN",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 22.1,
+          "notional": 110.5
+        },
+        {
+          "time": "2026-06-01T06:35:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 22.07,
+          "notional": 220.7
+        },
+        {
+          "time": "2026-06-01T06:46:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 260.0,
+          "notional": 260.0
+        },
+        {
+          "time": "2026-06-01T06:49:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 170.0,
+          "notional": 850.0
+        },
+        {
+          "time": "2026-06-01T06:54:00-07:00",
+          "ticker": "INOD",
+          "side": "Sell",
+          "shares": 28.0,
+          "price": 102.1,
+          "notional": 2858.8
+        },
+        {
+          "time": "2026-06-01T07:19:00-07:00",
+          "ticker": "IREN",
+          "side": "Buy",
+          "shares": 55.0,
+          "price": 62.78,
+          "notional": 3452.9
+        },
+        {
+          "time": "2026-06-01T07:58:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 270.0,
+          "notional": 270.0
+        },
+        {
+          "time": "2026-06-01T08:00:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 65.0,
+          "notional": 325.0
+        },
+        {
+          "time": "2026-06-01T08:43:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 3.0,
+          "price": 185.0,
+          "notional": 555.0
+        }
+      ]
+    }
+  },
+  "days": [
+    {
+      "date": "2026-06-01",
+      "day": 1,
+      "pnl": 868.1,
+      "returnPct": 14.18,
+      "rawPnl": 868.1,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 11,
+      "executions": 14,
+      "trades": 14,
+      "closedTradeDetails": [
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 61.41,
+          "pnl": 81.05,
+          "returnPct": 35.86,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-06-01T06:17:00-07:00"
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 86.994,
+          "avgExit": 111.36,
+          "pnl": 121.83,
+          "returnPct": 28.01,
+          "executionCount": 1,
+          "basis": 434.97,
+          "time": "2026-06-01T06:17:00-07:00"
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 86.994,
+          "avgExit": 115.0,
+          "pnl": 140.03,
+          "returnPct": 32.19,
+          "executionCount": 1,
+          "basis": 434.9699999999999,
+          "time": "2026-06-01T06:28:00-07:00"
+        },
+        {
+          "symbol": "INOD",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 2.0,
+          "avgEntry": 102.2,
+          "avgExit": 105.58,
+          "pnl": 6.76,
+          "returnPct": 3.31,
+          "executionCount": 1,
+          "basis": 204.4,
+          "time": "2026-06-01T06:33:00-07:00"
+        },
+        {
+          "symbol": "NAVN",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 10.0,
+          "avgEntry": 17.0245,
+          "avgExit": 22.07,
+          "pnl": 50.45,
+          "returnPct": 29.64,
+          "executionCount": 1,
+          "basis": 170.2454545454546,
+          "time": "2026-06-01T06:35:00-07:00"
+        },
+        {
+          "symbol": "DDOG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 1.0,
+          "avgEntry": 144.29,
+          "avgExit": 260.0,
+          "pnl": 115.71,
+          "returnPct": 80.19,
+          "executionCount": 1,
+          "basis": 144.29000000000002,
+          "time": "2026-06-01T06:46:00-07:00"
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 159.33,
+          "avgExit": 170.0,
+          "pnl": 53.35,
+          "returnPct": 6.7,
+          "executionCount": 1,
+          "basis": 796.6500000000001,
+          "time": "2026-06-01T06:49:00-07:00"
+        },
+        {
+          "symbol": "INOD",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 28.0,
+          "avgEntry": 102.2,
+          "avgExit": 102.1,
+          "pnl": -2.8,
+          "returnPct": -0.1,
+          "executionCount": 1,
+          "basis": 2861.6,
+          "time": "2026-06-01T06:54:00-07:00"
+        },
+        {
+          "symbol": "DDOG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 1.0,
+          "avgEntry": 144.29,
+          "avgExit": 270.0,
+          "pnl": 125.71,
+          "returnPct": 87.12,
+          "executionCount": 1,
+          "basis": 144.29000000000002,
+          "time": "2026-06-01T07:58:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 65.0,
+          "pnl": 99.0,
+          "returnPct": 43.81,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-06-01T08:00:00-07:00"
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 3.0,
+          "avgEntry": 159.33,
+          "avgExit": 185.0,
+          "pnl": 77.01,
+          "returnPct": 16.11,
+          "executionCount": 1,
+          "basis": 477.99,
+          "time": "2026-06-01T08:43:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-01T06:17:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 61.41,
+          "notional": 307.05
+        },
+        {
+          "time": "2026-06-01T06:17:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 111.36,
+          "notional": 556.8
+        },
+        {
+          "time": "2026-06-01T06:28:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 115.0,
+          "notional": 575.0
+        },
+        {
+          "time": "2026-06-01T06:32:00-07:00",
+          "ticker": "AAOI",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 159.33,
+          "notional": 3983.25
+        },
+        {
+          "time": "2026-06-01T06:33:00-07:00",
+          "ticker": "INOD",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 105.58,
+          "notional": 211.16
+        },
+        {
+          "time": "2026-06-01T06:35:00-07:00",
+          "ticker": "NAVN",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 22.1,
+          "notional": 110.5
+        },
+        {
+          "time": "2026-06-01T06:35:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 22.07,
+          "notional": 220.7
+        },
+        {
+          "time": "2026-06-01T06:46:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 260.0,
+          "notional": 260.0
+        },
+        {
+          "time": "2026-06-01T06:49:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 170.0,
+          "notional": 850.0
+        },
+        {
+          "time": "2026-06-01T06:54:00-07:00",
+          "ticker": "INOD",
+          "side": "Sell",
+          "shares": 28.0,
+          "price": 102.1,
+          "notional": 2858.8
+        },
+        {
+          "time": "2026-06-01T07:19:00-07:00",
+          "ticker": "IREN",
+          "side": "Buy",
+          "shares": 55.0,
+          "price": 62.78,
+          "notional": 3452.9
+        },
+        {
+          "time": "2026-06-01T07:58:00-07:00",
+          "ticker": "DDOG",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 270.0,
+          "notional": 270.0
+        },
+        {
+          "time": "2026-06-01T08:00:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 65.0,
+          "notional": 325.0
+        },
+        {
+          "time": "2026-06-01T08:43:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 3.0,
+          "price": 185.0,
+          "notional": 555.0
+        }
+      ]
+    }
+  ],
+  "weeks": [
+    {
+      "start": "2026-06-01",
+      "end": "2026-06-05",
+      "pnl": 868.1,
+      "returnPct": 14.18,
+      "trades": 14,
+      "closedTrades": 11,
+      "winDays": 1,
+      "lossDays": 0
+    },
+    {
+      "start": "2026-06-08",
+      "end": "2026-06-12",
+      "pnl": 0,
+      "returnPct": null,
+      "trades": 0,
+      "closedTrades": 0,
+      "winDays": 0,
+      "lossDays": 0
+    },
+    {
+      "start": "2026-06-15",
+      "end": "2026-06-19",
+      "pnl": 0,
+      "returnPct": null,
+      "trades": 0,
+      "closedTrades": 0,
+      "winDays": 0,
+      "lossDays": 0
+    },
+    {
+      "start": "2026-06-22",
+      "end": "2026-06-26",
+      "pnl": 0,
+      "returnPct": null,
+      "trades": 0,
+      "closedTrades": 0,
+      "winDays": 0,
+      "lossDays": 0
+    },
+    {
+      "start": "2026-06-29",
+      "end": "2026-06-30",
+      "pnl": 0,
+      "returnPct": null,
+      "trades": 0,
+      "closedTrades": 0,
+      "winDays": 0,
+      "lossDays": 0
+    }
+  ]
+}

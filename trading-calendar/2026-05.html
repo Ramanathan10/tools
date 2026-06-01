@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Trading Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #060b0f;
+      --panel: rgba(13, 24, 31, 0.82);
+      --panel-strong: rgba(8, 45, 31, 0.9);
+      --line: rgba(44, 246, 155, 0.16);
+      --line-strong: rgba(44, 246, 155, 0.34);
+      --text: #f4fff9;
+      --muted: rgba(231, 247, 241, 0.58);
+      --muted-2: rgba(231, 247, 241, 0.34);
+      --green: #00e887;
+      --green-soft: #57ffb2;
+      --red: #ff5f6f;
+      --amber: #f8c04f;
+      --blue: #66d9ff;
+      --shadow: 0 18px 70px rgba(0, 0, 0, 0.46);
+      --radius: 8px;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(0, 232, 135, 0.18), transparent 34%),
+        linear-gradient(115deg, #082117 0%, #071016 46%, #04090f 100%);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 84px 84px;
+      mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.22));
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 34px));
+      margin: 0 auto;
+      padding: 34px 0 40px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 30px;
+    }
+
+    .eyebrow, .label, .weekday, .weekly-title {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: clamp(0.78rem, 1.8vw, 1rem);
+      margin: 34px 0 82px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 18px var(--green);
+      flex: 0 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(4.1rem, 10vw, 6.95rem);
+      line-height: 0.9;
+      font-weight: 900;
+    }
+
+    .brand {
+      display: grid;
+      justify-items: end;
+      gap: 44px;
+      padding-top: 8px;
+      min-width: 330px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      text-align: right;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    .mark {
+      width: 44px;
+      height: 44px;
+      border: 3px solid var(--green);
+      border-radius: 15px;
+      rotate: 45deg;
+      box-shadow: 0 0 24px rgba(0, 232, 135, 0.45);
+      position: relative;
+    }
+
+    .mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 3px solid var(--green);
+      border-radius: 12px;
+      rotate: 90deg;
+    }
+
+    .monthly-total {
+      text-align: right;
+    }
+
+    .monthly-total .label {
+      font-size: 0.94rem;
+      margin-bottom: 8px;
+    }
+
+    .total-value {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-size: clamp(2.65rem, 6vw, 4.6rem);
+      font-weight: 900;
+      text-shadow: 0 0 24px rgba(0, 232, 135, 0.55);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .view-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .segmented {
+      display: inline-grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .segmented button {
+      min-width: 92px;
+      min-height: 38px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .segmented button.active {
+      background: rgba(0, 232, 135, 0.16);
+      color: var(--text);
+      box-shadow: inset 0 0 0 1px var(--line-strong);
+    }
+
+    .segmented button:focus-visible {
+      outline: 2px solid var(--green-soft);
+      outline-offset: 2px;
+    }
+
+    .stat, .day, .week-total {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      min-height: 116px;
+      padding: 22px 24px;
+    }
+
+    .stat .label {
+      font-size: 0.77rem;
+      margin-bottom: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 2.18rem;
+      line-height: 1;
+    }
+
+    .stat .green { color: var(--green); }
+    .stat .red { color: var(--red); }
+    .stat .date-note {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.76rem;
+      text-align: right;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .calendar {
+      display: grid;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .calendar.day-view {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .calendar.week-view {
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+
+    .calendar.month-view {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .weekday, .weekly-title {
+      text-align: center;
+      font-size: 0.78rem;
+      padding: 0 0 4px;
+    }
+
+    .weekly-title {
+      color: var(--green-soft);
+    }
+
+    .day, .week-total, .month-panel {
+      min-height: 112px;
+      padding: 13px 14px 12px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+    }
+
+    .day.active, .week-total, .month-panel {
+      background: linear-gradient(145deg, rgba(0, 103, 63, 0.72), rgba(5, 53, 37, 0.86));
+      border-color: var(--line-strong);
+    }
+
+    button.day {
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button.day:hover, button.day:focus-visible {
+      border-color: rgba(87, 255, 178, 0.72);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .day.loss {
+      background: linear-gradient(145deg, rgba(77, 16, 25, 0.76), rgba(28, 22, 29, 0.88));
+      border-color: rgba(255, 95, 111, 0.28);
+    }
+
+    .day.blank {
+      opacity: 0.58;
+      box-shadow: none;
+    }
+
+    .day-number {
+      color: var(--green);
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .day.blank .day-number {
+      color: var(--muted-2);
+    }
+
+    .pnl {
+      align-self: end;
+      justify-self: end;
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-weight: 900;
+      font-size: clamp(1.15rem, 2.3vw, 1.62rem);
+      line-height: 1.05;
+      text-shadow: 0 0 14px rgba(0, 232, 135, 0.35);
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      text-align: right;
+    }
+
+    .loss .pnl { color: var(--red); text-shadow: none; }
+
+    .trade-count {
+      justify-self: end;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.79rem;
+      font-weight: 700;
+    }
+
+    .week-total {
+      justify-items: center;
+      text-align: center;
+    }
+
+    .week-total {
+      min-height: 164px;
+      align-content: space-between;
+    }
+
+    .week-range {
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .week-total .pnl {
+      justify-self: center;
+      align-self: center;
+      font-size: clamp(1.28rem, 2.5vw, 1.9rem);
+    }
+
+    .week-total .trade-count {
+      justify-self: center;
+    }
+
+    .month-panel {
+      min-height: 360px;
+      padding: clamp(20px, 4vw, 36px);
+      align-content: start;
+      gap: 24px;
+    }
+
+    .month-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 20px;
+    }
+
+    .month-head h2 {
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 4.1rem);
+      line-height: 0.92;
+    }
+
+    .month-total {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-size: clamp(2.1rem, 5vw, 3.8rem);
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .month-total.red {
+      color: var(--red);
+    }
+
+    .month-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .month-stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 16px;
+      min-height: 104px;
+    }
+
+    .month-stat > span {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+    }
+
+    .month-stat strong {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(1.35rem, 2.6vw, 2.05rem);
+      line-height: 1.05;
+      overflow-wrap: anywhere;
+    }
+
+    .month-stat small {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    .month-note {
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .wins { color: var(--green-soft); }
+    .losses { color: var(--red); }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--muted-2);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .dialog-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.64);
+      z-index: 10;
+    }
+
+    .dialog-backdrop.open { display: flex; }
+
+    .dialog {
+      width: min(940px, 100%);
+      max-height: min(82vh, 820px);
+      overflow: auto;
+      background: rgba(7, 18, 24, 0.98);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .dialog-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+
+    .dialog h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 4vw, 2.25rem);
+      line-height: 1;
+    }
+
+    .close {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-size: 1.35rem;
+      cursor: pointer;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .detail-stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .detail-stat span {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+    }
+
+    .detail-stat strong {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.22rem;
+    }
+
+    .section-title {
+      margin: 22px 0 10px;
+      font-family: "JetBrains Mono", monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.82rem;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child, td:first-child,
+    th:nth-child(2), td:nth-child(2) {
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    .green, .buy { color: var(--green-soft); }
+    .red, .sell { color: var(--red); }
+    .empty { color: var(--muted); padding: 14px; }
+
+    @media (max-width: 900px) {
+      .top { display: block; }
+      .eyebrow { margin-bottom: 34px; }
+      .brand { justify-items: start; min-width: 0; margin-top: 26px; gap: 22px; }
+      .brand small, .monthly-total { text-align: left; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .calendar.day-view { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .weekday, .weekly-title { display: none; }
+      .week-total { min-height: 96px; }
+      .month-head { display: block; }
+      .month-total { text-align: left; margin-top: 14px; }
+      .month-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 22px, 1180px); padding-top: 24px; }
+      .stats { grid-template-columns: 1fr; gap: 10px; }
+      .stat { min-height: 96px; padding: 18px; }
+      .view-bar { justify-content: stretch; }
+      .segmented { width: 100%; }
+      .calendar.day-view { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .day, .week-total { min-height: 104px; }
+      .month-stats { grid-template-columns: 1fr; }
+      .logo { font-size: 1.35rem; }
+      .mark { width: 34px; height: 34px; }
+      .dialog { padding: 18px; }
+      .detail-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="top">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Monthly Trading Calendar</div>
+        <h1 id="title">May 2026</h1>
+      </div>
+      <aside class="brand" aria-label="Dashboard brand and monthly total">
+        <div>
+          <small>powered by</small>
+          <div class="logo"><span class="mark" aria-hidden="true"></span><span>ORACLE</span></div>
+        </div>
+        <div class="monthly-total">
+          <div class="label">Monthly Total</div>
+          <div class="total-value" id="monthlyTotal">+$0</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="stats" aria-label="Monthly summary">
+      <div class="stat">
+        <div class="label">Trades</div>
+        <strong id="tradeCount">0</strong>
+      </div>
+      <div class="stat">
+        <div class="label">Win Days</div>
+        <strong class="green" id="winDays">0</strong>
+      </div>
+      <div class="stat">
+        <div class="label">Loss Days</div>
+        <strong class="red" id="lossDays">0</strong>
+      </div>
+      <div class="stat">
+        <div class="label">Best Day</div>
+        <strong class="green" id="bestDay">+$0</strong>
+        <span class="date-note" id="bestDate"></span>
+      </div>
+    </section>
+
+    <section class="view-bar" aria-label="Calendar view switcher">
+      <div class="segmented" role="tablist" aria-label="Calendar view">
+        <button class="active" id="dayView" type="button" role="tab" aria-selected="true">Days</button>
+        <button id="weekView" type="button" role="tab" aria-selected="false">Weeks</button>
+        <button id="monthView" type="button" role="tab" aria-selected="false">Month</button>
+      </div>
+    </section>
+
+    <section class="calendar" id="calendar" aria-label="Trading calendar"></section>
+
+    <footer class="footer">
+      <span id="source">Source: journal snapshot</span>
+      <span id="generatedAt"></span>
+    </footer>
+  </main>
+
+  <div class="dialog-backdrop" id="detailBackdrop" aria-hidden="true">
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <div class="dialog-top">
+        <div>
+          <div class="eyebrow" style="margin: 0 0 12px; font-size: 0.72rem;"><span class="dot"></span>Daily Detail</div>
+          <h2 id="detailTitle"></h2>
+        </div>
+        <button class="close" id="closeDetail" type="button" aria-label="Close detail">&times;</button>
+      </div>
+      <div class="detail-grid" id="detailStats"></div>
+      <div class="section-title">Closed Trades</div>
+      <div class="table-wrap" id="closedTrades"></div>
+      <div class="section-title">Raw Executions</div>
+      <div class="table-wrap" id="rawExecutions"></div>
+    </section>
+  </div>
+
+  <script>
+    const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    const wholeMoney = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0
+    });
+    const preciseMoney = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+    let dashboardData = null;
+    let currentView = "days";
+
+    const compactMoney = value => {
+      const sign = value >= 0 ? "+" : "-";
+      const abs = Math.abs(value);
+      if (abs >= 1000) {
+        const scaled = (abs / 1000).toFixed(2).replace(/\.?0+$/, "");
+        return `${sign}$${scaled}K`;
+      }
+      return `${sign}${wholeMoney.format(abs)}`;
+    };
+
+    const signedMoney = value => `${value >= 0 ? "+" : ""}${preciseMoney.format(value)}`;
+
+    const displayShares = value => Number.isInteger(value) ? String(value) : value.toFixed(4).replace(/\.?0+$/, "");
+
+    const monthName = date => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric"
+    }).toUpperCase();
+
+    const shortDate = date => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric"
+    });
+
+    const detailDate = date => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+
+    const detailTime = value => new Date(value).toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit"
+    });
+
+    const renderTable = (headers, rows, emptyText) => {
+      if (!rows.length) return `<div class="empty">${emptyText}</div>`;
+      return `
+        <table>
+          <thead><tr>${headers.map(header => `<th>${header}</th>`).join("")}</tr></thead>
+          <tbody>${rows.join("")}</tbody>
+        </table>
+      `;
+    };
+
+    const openDetail = day => {
+      const backdrop = document.getElementById("detailBackdrop");
+      document.getElementById("detailTitle").textContent = detailDate(day.date);
+      document.getElementById("detailStats").innerHTML = `
+        <div class="detail-stat"><span>Realized P/L</span><strong class="${day.pnl < 0 ? "red" : "green"}">${signedMoney(day.pnl)}</strong></div>
+        <div class="detail-stat"><span>Closed Trades</span><strong>${day.closedTrades}</strong></div>
+        <div class="detail-stat"><span>Executions</span><strong>${day.executions}</strong></div>
+      `;
+
+      const closedRows = day.closedTradeDetails.map(trade => `
+        <tr>
+          <td>${trade.kind === "broker_adjustment" ? "Broker adj." : trade.symbol}</td>
+          <td>${trade.kind === "broker_adjustment" ? "Daily total" : trade.openDate}</td>
+          <td>${trade.kind === "broker_adjustment" ? "" : displayShares(trade.quantity)}</td>
+          <td>${trade.kind === "broker_adjustment" ? "" : preciseMoney.format(trade.avgEntry)}</td>
+          <td>${trade.kind === "broker_adjustment" ? "" : preciseMoney.format(trade.avgExit)}</td>
+          <td class="${trade.pnl < 0 ? "sell" : "buy"}">${signedMoney(trade.pnl)}</td>
+          <td>${trade.kind === "broker_adjustment" ? "Override" : trade.executionCount}</td>
+        </tr>
+      `);
+      document.getElementById("closedTrades").innerHTML = renderTable(
+        ["Symbol", "Opened", "Qty", "Avg Entry", "Avg Exit", "P/L", "Execs"],
+        closedRows,
+        "No campaigns closed on this day."
+      );
+
+      const executionRows = day.executionDetails.map(execution => `
+        <tr>
+          <td>${detailTime(execution.time)}</td>
+          <td>${execution.ticker}</td>
+          <td class="${execution.side.toLowerCase()}">${execution.side}</td>
+          <td>${displayShares(execution.shares)}</td>
+          <td>${preciseMoney.format(execution.price)}</td>
+          <td>${preciseMoney.format(execution.notional)}</td>
+        </tr>
+      `);
+      document.getElementById("rawExecutions").innerHTML = renderTable(
+        ["Time", "Ticker", "Side", "Shares", "Price", "Notional"],
+        executionRows,
+        "No raw executions on this day."
+      );
+
+      backdrop.classList.add("open");
+      backdrop.setAttribute("aria-hidden", "false");
+      document.getElementById("closeDetail").focus();
+    };
+
+    const closeDetail = () => {
+      const backdrop = document.getElementById("detailBackdrop");
+      backdrop.classList.remove("open");
+      backdrop.setAttribute("aria-hidden", "true");
+    };
+
+    const renderDayView = data => {
+      const calendar = document.getElementById("calendar");
+      calendar.innerHTML = "";
+      calendar.className = "calendar day-view";
+      weekdays.forEach(day => {
+        const node = document.createElement("div");
+        node.className = "weekday";
+        node.textContent = day;
+        calendar.appendChild(node);
+      });
+
+      const [year, month] = data.month.split("-").map(Number);
+      const first = new Date(year, month - 1, 1);
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const dayMap = new Map(data.days.map(day => [day.day, day]));
+      const startOffset = (first.getDay() + 6) % 7;
+      let day = 1;
+
+      while (day <= daysInMonth) {
+        const rowStart = day === 1 ? 1 - startOffset : day;
+        for (let col = 0; col < 5; col += 1) {
+          const current = rowStart + col;
+          const record = dayMap.get(current);
+          const isValid = current >= 1 && current <= daysInMonth;
+          const cell = document.createElement(record ? "button" : "article");
+          if (record) {
+            cell.type = "button";
+            cell.setAttribute("aria-label", `Open details for ${record.date}`);
+            cell.addEventListener("click", () => openDetail(record));
+          }
+          cell.className = `day ${record ? "active" : "blank"} ${record && record.pnl < 0 ? "loss" : ""}`;
+          cell.innerHTML = `
+            <div class="day-number">${isValid ? current : ""}</div>
+            <div>
+              <div class="pnl">${record && record.pnl !== 0 ? compactMoney(record.pnl) : ""}</div>
+            </div>
+            <div class="trade-count">${record ? `${record.closedTrades} closed / ${record.executions} exec` : ""}</div>
+          `;
+          calendar.appendChild(cell);
+        }
+        day = rowStart + 7;
+        if (day < 1) day = 1;
+      }
+    };
+
+    const renderWeekView = data => {
+      const calendar = document.getElementById("calendar");
+      calendar.innerHTML = "";
+      calendar.className = "calendar week-view";
+
+      data.weeks.forEach((week, index) => {
+        const weekly = document.createElement("article");
+        weekly.className = `week-total ${week.pnl < 0 ? "loss" : ""}`;
+        weekly.innerHTML = `
+          <div class="week-range">Week ${index + 1} | ${shortDate(week.start)} - ${shortDate(week.end)}</div>
+          <div>
+            <div class="pnl">${compactMoney(week.pnl)}</div>
+          </div>
+          <div class="trade-count"><span class="wins">${week.winDays}W</span> / <span class="losses">${week.lossDays}L</span> | ${week.closedTrades} closed / ${week.trades} exec</div>
+        `;
+        calendar.appendChild(weekly);
+      });
+    };
+
+    const renderMonthView = data => {
+      const calendar = document.getElementById("calendar");
+      const summary = data.summary;
+      const bestDay = summary.bestDay;
+      const brokerDays = data.days.filter(day => day.brokerPnl !== null && day.brokerPnl !== undefined).length;
+      const brokerAdjustments = data.days.reduce((total, day) => total + Math.abs(day.brokerAdjustment || 0), 0);
+      const weeklyAvgPnl = summary.totalPnl / Math.max(data.weeks.length, 1);
+      calendar.innerHTML = "";
+      calendar.className = "calendar month-view";
+
+      const panel = document.createElement("article");
+      panel.className = "month-panel";
+      panel.innerHTML = `
+        <div class="month-head">
+          <div>
+            <div class="label">Month View</div>
+            <h2>${data.title}</h2>
+          </div>
+          <div class="month-total ${summary.totalPnl < 0 ? "red" : ""}">
+            ${compactMoney(summary.totalPnl)}
+          </div>
+        </div>
+        <div class="month-stats">
+          <div class="month-stat"><span>Executions</span><strong>${summary.tradeCount}</strong></div>
+          <div class="month-stat"><span>Closed Trades</span><strong>${summary.closedTradeCount}</strong></div>
+          <div class="month-stat"><span>Win / Loss Days</span><strong><span class="wins">${summary.winDays}</span> / <span class="losses">${summary.lossDays}</span></strong><small>W / L</small></div>
+          <div class="month-stat"><span>Best Day</span><strong>${bestDay ? compactMoney(bestDay.pnl) : "N/A"}</strong><small>${bestDay ? monthName(bestDay.date) : ""}</small></div>
+          <div class="month-stat"><span>Weekly Avg</span><strong>${compactMoney(weeklyAvgPnl)}</strong></div>
+          <div class="month-stat"><span>Active Days</span><strong>${data.days.length}</strong></div>
+          <div class="month-stat"><span>Broker Days</span><strong>${brokerDays}</strong></div>
+          <div class="month-stat"><span>Broker Adj.</span><strong>${signedMoney(brokerAdjustments)}</strong></div>
+        </div>
+        <div class="month-note">
+          ${brokerDays
+            ? `${brokerDays} day totals use broker realized P/L overrides. Raw execution and tax-lot audit detail remains available in day drilldowns.`
+            : "Totals are derived from raw execution realized P/L."}
+        </div>
+      `;
+      calendar.appendChild(panel);
+    };
+
+    const renderCurrentView = () => {
+      if (!dashboardData) return;
+      if (currentView === "month") {
+        renderMonthView(dashboardData);
+      } else if (currentView === "weeks") {
+        renderWeekView(dashboardData);
+      } else {
+        renderDayView(dashboardData);
+      }
+    };
+
+    const normalizeView = value => ["days", "weeks", "month"].includes(value) ? value : "days";
+    const readUrlState = () => {
+      return {
+        view: normalizeView(location.hash.replace("#", "")),
+      };
+    };
+
+    const updateUrlState = () => {
+      history.replaceState(null, "", `${location.pathname}#${currentView}`);
+    };
+
+    const setView = (view, updateHash = true) => {
+      view = normalizeView(view);
+      currentView = view;
+      document.getElementById("dayView").classList.toggle("active", view === "days");
+      document.getElementById("weekView").classList.toggle("active", view === "weeks");
+      document.getElementById("monthView").classList.toggle("active", view === "month");
+      document.getElementById("dayView").setAttribute("aria-selected", String(view === "days"));
+      document.getElementById("weekView").setAttribute("aria-selected", String(view === "weeks"));
+      document.getElementById("monthView").setAttribute("aria-selected", String(view === "month"));
+      if (updateHash) updateUrlState();
+      renderCurrentView();
+    };
+
+    const updateSummaryMetrics = data => {
+      document.getElementById("monthlyTotal").textContent = compactMoney(data.summary.totalPnl);
+      document.getElementById("bestDay").textContent = data.summary.bestDay ? compactMoney(data.summary.bestDay.pnl) : "$0";
+      document.getElementById("bestDate").textContent = data.summary.bestDay ? monthName(data.summary.bestDay.date) : "";
+    };
+
+    const buildCalendar = data => {
+      dashboardData = data;
+      document.title = `${data.title} Trading Calendar`;
+      document.getElementById("title").textContent = data.title;
+      document.getElementById("tradeCount").textContent = data.summary.tradeCount;
+      document.getElementById("winDays").textContent = data.summary.winDays;
+      document.getElementById("lossDays").textContent = data.summary.lossDays;
+      document.getElementById("source").textContent = `Source: ${data.source}`;
+      document.getElementById("generatedAt").textContent = `Updated ${data.generatedAt}`;
+      const state = readUrlState();
+      updateSummaryMetrics(data);
+      setView(state.view, false);
+    };
+
+    document.getElementById("closeDetail").addEventListener("click", closeDetail);
+    document.getElementById("dayView").addEventListener("click", () => setView("days"));
+    document.getElementById("weekView").addEventListener("click", () => setView("weeks"));
+    document.getElementById("monthView").addEventListener("click", () => setView("month"));
+    document.getElementById("detailBackdrop").addEventListener("click", event => {
+      if (event.target.id === "detailBackdrop") closeDetail();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeDetail();
+    });
+
+    fetch(`./data-2026-05.json?v=${Date.now()}`, { cache: "no-store" })
+      .then(response => {
+        if (!response.ok) throw new Error(`Data load failed: ${response.status}`);
+        return response.json();
+      })
+      .then(buildCalendar)
+      .catch(error => {
+        document.getElementById("calendar").textContent = error.message;
+      });
+  </script>
+</body>
+</html>
