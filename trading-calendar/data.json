@@ -1,26 +1,26 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-01T11:42:23",
+  "generatedAt": "2026-06-01T13:00:55",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 1055.89,
-    "totalReturnPct": 15.84,
-    "tradeCount": 17,
-    "closedTradeCount": 13,
+    "totalPnl": 928.27,
+    "totalReturnPct": 9.16,
+    "tradeCount": 19,
+    "closedTradeCount": 15,
     "winDays": 1,
     "lossDays": 0,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
-      "pnl": 1055.89,
-      "returnPct": 15.84,
-      "rawPnl": 1055.89,
+      "pnl": 928.27,
+      "returnPct": 9.16,
+      "rawPnl": 928.27,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 13,
-      "executions": 17,
-      "trades": 17,
+      "closedTrades": 15,
+      "executions": 19,
+      "trades": 19,
       "closedTradeDetails": [
         {
           "symbol": "ORCX",
@@ -203,6 +203,34 @@
           "executionCount": 1,
           "basis": 226.0,
           "time": "2026-06-01T11:12:00-07:00"
+        },
+        {
+          "symbol": "VELO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 150.0,
+          "avgEntry": 22.53,
+          "avgExit": 21.48,
+          "pnl": -157.5,
+          "returnPct": -4.66,
+          "executionCount": 1,
+          "basis": 3379.5,
+          "time": "2026-06-01T12:29:00-07:00"
+        },
+        {
+          "symbol": "NAVN",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 17.0245,
+          "avgExit": 23.0,
+          "pnl": 29.88,
+          "returnPct": 35.1,
+          "executionCount": 1,
+          "basis": 85.12272727272729,
+          "time": "2026-06-01T12:36:00-07:00"
         }
       ],
       "executionDetails": [
@@ -341,6 +369,22 @@
           "shares": 5.0,
           "price": 70.49,
           "notional": 352.45
+        },
+        {
+          "time": "2026-06-01T12:29:00-07:00",
+          "ticker": "VELO",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 21.48,
+          "notional": 3222.0
+        },
+        {
+          "time": "2026-06-01T12:36:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 23.0,
+          "notional": 115.0
         }
       ]
     }
@@ -349,14 +393,14 @@
     {
       "date": "2026-06-01",
       "day": 1,
-      "pnl": 1055.89,
-      "returnPct": 15.84,
-      "rawPnl": 1055.89,
+      "pnl": 928.27,
+      "returnPct": 9.16,
+      "rawPnl": 928.27,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 13,
-      "executions": 17,
-      "trades": 17,
+      "closedTrades": 15,
+      "executions": 19,
+      "trades": 19,
       "closedTradeDetails": [
         {
           "symbol": "ORCX",
@@ -539,6 +583,34 @@
           "executionCount": 1,
           "basis": 226.0,
           "time": "2026-06-01T11:12:00-07:00"
+        },
+        {
+          "symbol": "VELO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 150.0,
+          "avgEntry": 22.53,
+          "avgExit": 21.48,
+          "pnl": -157.5,
+          "returnPct": -4.66,
+          "executionCount": 1,
+          "basis": 3379.5,
+          "time": "2026-06-01T12:29:00-07:00"
+        },
+        {
+          "symbol": "NAVN",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 17.0245,
+          "avgExit": 23.0,
+          "pnl": 29.88,
+          "returnPct": 35.1,
+          "executionCount": 1,
+          "basis": 85.12272727272729,
+          "time": "2026-06-01T12:36:00-07:00"
         }
       ],
       "executionDetails": [
@@ -677,6 +749,22 @@
           "shares": 5.0,
           "price": 70.49,
           "notional": 352.45
+        },
+        {
+          "time": "2026-06-01T12:29:00-07:00",
+          "ticker": "VELO",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 21.48,
+          "notional": 3222.0
+        },
+        {
+          "time": "2026-06-01T12:36:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 23.0,
+          "notional": 115.0
         }
       ]
     }
@@ -685,10 +773,10 @@
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": 1055.89,
-      "returnPct": 15.84,
-      "trades": 17,
-      "closedTrades": 13,
+      "pnl": 928.27,
+      "returnPct": 9.16,
+      "trades": 19,
+      "closedTrades": 15,
       "winDays": 1,
       "lossDays": 0
     },
