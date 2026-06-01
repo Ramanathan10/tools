@@ -1,26 +1,26 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-01T09:00:47",
+  "generatedAt": "2026-06-01T11:42:23",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 868.1,
-    "totalReturnPct": 14.18,
-    "tradeCount": 14,
-    "closedTradeCount": 11,
+    "totalPnl": 1055.89,
+    "totalReturnPct": 15.84,
+    "tradeCount": 17,
+    "closedTradeCount": 13,
     "winDays": 1,
     "lossDays": 0,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
-      "pnl": 868.1,
-      "returnPct": 14.18,
-      "rawPnl": 868.1,
+      "pnl": 1055.89,
+      "returnPct": 15.84,
+      "rawPnl": 1055.89,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 11,
-      "executions": 14,
-      "trades": 14,
+      "closedTrades": 13,
+      "executions": 17,
+      "trades": 17,
       "closedTradeDetails": [
         {
           "symbol": "ORCX",
@@ -175,6 +175,34 @@
           "executionCount": 1,
           "basis": 477.99,
           "time": "2026-06-01T08:43:00-07:00"
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 2.0,
+          "avgEntry": 159.33,
+          "avgExit": 190.0,
+          "pnl": 61.34,
+          "returnPct": 19.25,
+          "executionCount": 1,
+          "basis": 318.6600000000001,
+          "time": "2026-06-01T10:18:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 70.49,
+          "pnl": 126.45,
+          "returnPct": 55.95,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-06-01T11:12:00-07:00"
         }
       ],
       "executionDetails": [
@@ -289,6 +317,30 @@
           "shares": 3.0,
           "price": 185.0,
           "notional": 555.0
+        },
+        {
+          "time": "2026-06-01T09:07:00-07:00",
+          "ticker": "VELO",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 22.53,
+          "notional": 3379.5
+        },
+        {
+          "time": "2026-06-01T10:18:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 190.0,
+          "notional": 380.0
+        },
+        {
+          "time": "2026-06-01T11:12:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 70.49,
+          "notional": 352.45
         }
       ]
     }
@@ -297,14 +349,14 @@
     {
       "date": "2026-06-01",
       "day": 1,
-      "pnl": 868.1,
-      "returnPct": 14.18,
-      "rawPnl": 868.1,
+      "pnl": 1055.89,
+      "returnPct": 15.84,
+      "rawPnl": 1055.89,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 11,
-      "executions": 14,
-      "trades": 14,
+      "closedTrades": 13,
+      "executions": 17,
+      "trades": 17,
       "closedTradeDetails": [
         {
           "symbol": "ORCX",
@@ -459,6 +511,34 @@
           "executionCount": 1,
           "basis": 477.99,
           "time": "2026-06-01T08:43:00-07:00"
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 2.0,
+          "avgEntry": 159.33,
+          "avgExit": 190.0,
+          "pnl": 61.34,
+          "returnPct": 19.25,
+          "executionCount": 1,
+          "basis": 318.6600000000001,
+          "time": "2026-06-01T10:18:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-01",
+          "quantity": 5.0,
+          "avgEntry": 45.2,
+          "avgExit": 70.49,
+          "pnl": 126.45,
+          "returnPct": 55.95,
+          "executionCount": 1,
+          "basis": 226.0,
+          "time": "2026-06-01T11:12:00-07:00"
         }
       ],
       "executionDetails": [
@@ -573,6 +653,30 @@
           "shares": 3.0,
           "price": 185.0,
           "notional": 555.0
+        },
+        {
+          "time": "2026-06-01T09:07:00-07:00",
+          "ticker": "VELO",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 22.53,
+          "notional": 3379.5
+        },
+        {
+          "time": "2026-06-01T10:18:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 190.0,
+          "notional": 380.0
+        },
+        {
+          "time": "2026-06-01T11:12:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 70.49,
+          "notional": 352.45
         }
       ]
     }
@@ -581,10 +685,10 @@
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": 868.1,
-      "returnPct": 14.18,
-      "trades": 14,
-      "closedTrades": 11,
+      "pnl": 1055.89,
+      "returnPct": 15.84,
+      "trades": 17,
+      "closedTrades": 13,
       "winDays": 1,
       "lossDays": 0
     },
