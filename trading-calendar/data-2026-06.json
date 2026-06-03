@@ -1,13 +1,13 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-03T09:00:50",
+  "generatedAt": "2026-06-03T13:00:59",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 977.82,
-    "totalReturnPct": 4.31,
-    "tradeCount": 33,
-    "closedTradeCount": 21,
+    "totalPnl": 775.27,
+    "totalReturnPct": 2.89,
+    "tradeCount": 34,
+    "closedTradeCount": 22,
     "winDays": 1,
     "lossDays": 1,
     "bestDay": {
@@ -815,14 +815,14 @@
     {
       "date": "2026-06-03",
       "day": 3,
-      "pnl": -86.16,
-      "returnPct": -0.69,
-      "rawPnl": -86.16,
+      "pnl": -288.71,
+      "returnPct": -1.74,
+      "rawPnl": -288.71,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 5,
-      "executions": 13,
-      "trades": 13,
+      "closedTrades": 6,
+      "executions": 14,
+      "trades": 14,
       "closedTradeDetails": [
         {
           "symbol": "IREN",
@@ -893,6 +893,20 @@
           "executionCount": 1,
           "basis": 4415.25,
           "time": "2026-06-03T08:21:00-07:00"
+        },
+        {
+          "symbol": "RGTI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-03",
+          "quantity": 165.0,
+          "avgEntry": 25.2676,
+          "avgExit": 24.04,
+          "pnl": -202.55,
+          "returnPct": -4.86,
+          "executionCount": 1,
+          "basis": 4169.15,
+          "time": "2026-06-03T09:51:00-07:00"
         }
       ],
       "executionDetails": [
@@ -999,6 +1013,14 @@
           "shares": 65.0,
           "price": 65.8,
           "notional": 4277.0
+        },
+        {
+          "time": "2026-06-03T09:51:00-07:00",
+          "ticker": "RGTI",
+          "side": "Sell",
+          "shares": 165.0,
+          "price": 24.04,
+          "notional": 3966.6
         }
       ]
     }
@@ -1007,10 +1029,10 @@
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": 977.82,
-      "returnPct": 4.31,
-      "trades": 33,
-      "closedTrades": 21,
+      "pnl": 775.27,
+      "returnPct": 2.89,
+      "trades": 34,
+      "closedTrades": 22,
       "winDays": 1,
       "lossDays": 1
     },
