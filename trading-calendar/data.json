@@ -1,15 +1,15 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-01T15:08:17",
+  "generatedAt": "2026-06-03T09:00:50",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 1063.98,
-    "totalReturnPct": 10.36,
-    "tradeCount": 20,
-    "closedTradeCount": 16,
+    "totalPnl": 977.82,
+    "totalReturnPct": 4.31,
+    "tradeCount": 33,
+    "closedTradeCount": 21,
     "winDays": 1,
-    "lossDays": 0,
+    "lossDays": 1,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
@@ -811,18 +811,208 @@
           "notional": 280.0
         }
       ]
+    },
+    {
+      "date": "2026-06-03",
+      "day": 3,
+      "pnl": -86.16,
+      "returnPct": -0.69,
+      "rawPnl": -86.16,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 5,
+      "executions": 13,
+      "trades": 13,
+      "closedTradeDetails": [
+        {
+          "symbol": "IREN",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-03",
+          "quantity": 10.0,
+          "avgEntry": 62.78,
+          "avgExit": 70.5,
+          "pnl": 77.2,
+          "returnPct": 12.3,
+          "executionCount": 1,
+          "basis": 627.8,
+          "time": "2026-06-03T05:29:00-07:00"
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-03",
+          "quantity": 2.0,
+          "avgEntry": 159.33,
+          "avgExit": 200.0,
+          "pnl": 81.34,
+          "returnPct": 25.53,
+          "executionCount": 1,
+          "basis": 318.6600000000001,
+          "time": "2026-06-03T06:29:00-07:00"
+        },
+        {
+          "symbol": "VIAV",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-03",
+          "quantity": 55.0,
+          "avgEntry": 54.14,
+          "avgExit": 52.9,
+          "pnl": -68.2,
+          "returnPct": -2.29,
+          "executionCount": 1,
+          "basis": 2977.7,
+          "time": "2026-06-03T06:43:00-07:00"
+        },
+        {
+          "symbol": "FIG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-03",
+          "quantity": 175.0,
+          "avgEntry": 23.1886,
+          "avgExit": 22.97,
+          "pnl": -38.25,
+          "returnPct": -0.94,
+          "executionCount": 1,
+          "basis": 4058.0,
+          "time": "2026-06-03T07:35:00-07:00"
+        },
+        {
+          "symbol": "OKLO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-03",
+          "quantity": 65.0,
+          "avgEntry": 67.9269,
+          "avgExit": 65.8,
+          "pnl": -138.25,
+          "returnPct": -3.13,
+          "executionCount": 1,
+          "basis": 4415.25,
+          "time": "2026-06-03T08:21:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-03T05:29:00-07:00",
+          "ticker": "IREN",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 70.5,
+          "notional": 705.0
+        },
+        {
+          "time": "2026-06-03T06:29:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 200.0,
+          "notional": 400.0
+        },
+        {
+          "time": "2026-06-03T06:33:00-07:00",
+          "ticker": "MARA",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 14.28,
+          "notional": 142.8
+        },
+        {
+          "time": "2026-06-03T06:34:00-07:00",
+          "ticker": "MARA",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 14.28,
+          "notional": 571.2
+        },
+        {
+          "time": "2026-06-03T06:38:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 55.0,
+          "price": 54.14,
+          "notional": 2977.7
+        },
+        {
+          "time": "2026-06-03T06:43:00-07:00",
+          "ticker": "VIAV",
+          "side": "Sell",
+          "shares": 55.0,
+          "price": 52.9,
+          "notional": 2909.5
+        },
+        {
+          "time": "2026-06-03T07:01:00-07:00",
+          "ticker": "OKLO",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 68.13,
+          "notional": 340.65
+        },
+        {
+          "time": "2026-06-03T07:01:00-07:00",
+          "ticker": "OKLO",
+          "side": "Buy",
+          "shares": 60.0,
+          "price": 67.91,
+          "notional": 4074.6
+        },
+        {
+          "time": "2026-06-03T07:14:00-07:00",
+          "ticker": "AMKR",
+          "side": "Buy",
+          "shares": 60.0,
+          "price": 76.92,
+          "notional": 4615.2
+        },
+        {
+          "time": "2026-06-03T07:27:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 23.19,
+          "notional": 3478.5
+        },
+        {
+          "time": "2026-06-03T07:28:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 23.18,
+          "notional": 579.5
+        },
+        {
+          "time": "2026-06-03T07:35:00-07:00",
+          "ticker": "FIG",
+          "side": "Sell",
+          "shares": 175.0,
+          "price": 22.97,
+          "notional": 4019.75
+        },
+        {
+          "time": "2026-06-03T08:21:00-07:00",
+          "ticker": "OKLO",
+          "side": "Sell",
+          "shares": 65.0,
+          "price": 65.8,
+          "notional": 4277.0
+        }
+      ]
     }
   ],
   "weeks": [
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": 1063.98,
-      "returnPct": 10.36,
-      "trades": 20,
-      "closedTrades": 16,
+      "pnl": 977.82,
+      "returnPct": 4.31,
+      "trades": 33,
+      "closedTrades": 21,
       "winDays": 1,
-      "lossDays": 0
+      "lossDays": 1
     },
     {
       "start": "2026-06-08",
