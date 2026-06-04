@@ -1,12 +1,12 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-04T10:26:08",
+  "generatedAt": "2026-06-04T13:00:40",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
     "totalPnl": 1438.59,
     "totalReturnPct": 4.47,
-    "tradeCount": 44,
+    "tradeCount": 45,
     "closedTradeCount": 25,
     "winDays": 2,
     "lossDays": 1,
@@ -1055,8 +1055,8 @@
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 2,
-      "executions": 9,
-      "trades": 9,
+      "executions": 10,
+      "trades": 10,
       "closedTradeDetails": [
         {
           "symbol": "AAOI",
@@ -1159,6 +1159,14 @@
           "shares": 5.0,
           "price": 74.92,
           "notional": 374.6
+        },
+        {
+          "time": "2026-06-04T12:09:00-07:00",
+          "ticker": "AXTI",
+          "side": "Buy",
+          "shares": 45.0,
+          "price": 108.0,
+          "notional": 4860.0
         }
       ]
     }
@@ -1169,7 +1177,7 @@
       "end": "2026-06-05",
       "pnl": 1438.59,
       "returnPct": 4.47,
-      "trades": 44,
+      "trades": 45,
       "closedTrades": 25,
       "winDays": 2,
       "lossDays": 1
