@@ -1,14 +1,14 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-03T17:00:52",
+  "generatedAt": "2026-06-04T10:26:08",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 721.27,
-    "totalReturnPct": 2.43,
-    "tradeCount": 35,
-    "closedTradeCount": 23,
-    "winDays": 1,
+    "totalPnl": 1438.59,
+    "totalReturnPct": 4.47,
+    "tradeCount": 44,
+    "closedTradeCount": 25,
+    "winDays": 2,
     "lossDays": 1,
     "bestDay": {
       "date": "2026-06-01",
@@ -1045,17 +1045,133 @@
           "notional": 2771.1
         }
       ]
+    },
+    {
+      "date": "2026-06-04",
+      "day": 4,
+      "pnl": 717.32,
+      "returnPct": 28.65,
+      "rawPnl": 717.32,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 2,
+      "executions": 9,
+      "trades": 9,
+      "closedTradeDetails": [
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-04",
+          "quantity": 13.0,
+          "avgEntry": 159.33,
+          "avgExit": 172.61,
+          "pnl": 172.64,
+          "returnPct": 8.33,
+          "executionCount": 1,
+          "basis": 2071.290000000001,
+          "time": "2026-06-04T07:04:00-07:00"
+        },
+        {
+          "symbol": "MU",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-04",
+          "quantity": 1.0,
+          "avgEntry": 432.5885,
+          "avgExit": 977.27,
+          "pnl": 544.68,
+          "returnPct": 125.91,
+          "executionCount": 1,
+          "basis": 432.5884722222223,
+          "time": "2026-06-04T07:05:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-04T06:39:00-07:00",
+          "ticker": "MARA",
+          "side": "Buy",
+          "shares": 15.0,
+          "price": 13.68,
+          "notional": 205.2
+        },
+        {
+          "time": "2026-06-04T06:44:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 23.16,
+          "notional": 3474.0
+        },
+        {
+          "time": "2026-06-04T06:51:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 23.01,
+          "notional": 575.25
+        },
+        {
+          "time": "2026-06-04T07:04:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 13.0,
+          "price": 172.61,
+          "notional": 2243.93
+        },
+        {
+          "time": "2026-06-04T07:05:00-07:00",
+          "ticker": "MU",
+          "side": "Sell",
+          "shares": 1.0,
+          "price": 977.27,
+          "notional": 977.27
+        },
+        {
+          "time": "2026-06-04T07:16:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 75.0,
+          "price": 49.36,
+          "notional": 3702.0
+        },
+        {
+          "time": "2026-06-04T07:29:00-07:00",
+          "ticker": "INFQ",
+          "side": "Buy",
+          "shares": 200.0,
+          "price": 17.17,
+          "notional": 3434.0
+        },
+        {
+          "time": "2026-06-04T07:38:00-07:00",
+          "ticker": "AMKR",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 74.03,
+          "notional": 370.15
+        },
+        {
+          "time": "2026-06-04T09:37:00-07:00",
+          "ticker": "AMKR",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 74.92,
+          "notional": 374.6
+        }
+      ]
     }
   ],
   "weeks": [
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": 721.27,
-      "returnPct": 2.43,
-      "trades": 35,
-      "closedTrades": 23,
-      "winDays": 1,
+      "pnl": 1438.59,
+      "returnPct": 4.47,
+      "trades": 44,
+      "closedTrades": 25,
+      "winDays": 2,
       "lossDays": 1
     },
     {
