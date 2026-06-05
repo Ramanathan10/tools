@@ -1,13 +1,13 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-04T13:00:40",
+  "generatedAt": "2026-06-04T17:00:47",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 1438.59,
-    "totalReturnPct": 4.47,
-    "tradeCount": 45,
-    "closedTradeCount": 25,
+    "totalPnl": 1406.59,
+    "totalReturnPct": 3.95,
+    "tradeCount": 46,
+    "closedTradeCount": 26,
     "winDays": 2,
     "lossDays": 1,
     "bestDay": {
@@ -1049,14 +1049,14 @@
     {
       "date": "2026-06-04",
       "day": 4,
-      "pnl": 717.32,
-      "returnPct": 28.65,
-      "rawPnl": 717.32,
+      "pnl": 685.32,
+      "returnPct": 11.54,
+      "rawPnl": 685.32,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 2,
-      "executions": 10,
-      "trades": 10,
+      "closedTrades": 3,
+      "executions": 11,
+      "trades": 11,
       "closedTradeDetails": [
         {
           "symbol": "AAOI",
@@ -1085,6 +1085,20 @@
           "executionCount": 1,
           "basis": 432.5884722222223,
           "time": "2026-06-04T07:05:00-07:00"
+        },
+        {
+          "symbol": "INFQ",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-04",
+          "quantity": 200.0,
+          "avgEntry": 17.17,
+          "avgExit": 17.01,
+          "pnl": -32.0,
+          "returnPct": -0.93,
+          "executionCount": 1,
+          "basis": 3434.0000000000005,
+          "time": "2026-06-04T12:58:00-07:00"
         }
       ],
       "executionDetails": [
@@ -1167,6 +1181,14 @@
           "shares": 45.0,
           "price": 108.0,
           "notional": 4860.0
+        },
+        {
+          "time": "2026-06-04T12:58:00-07:00",
+          "ticker": "INFQ",
+          "side": "Sell",
+          "shares": 200.0,
+          "price": 17.01,
+          "notional": 3402.0
         }
       ]
     }
@@ -1175,10 +1197,10 @@
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": 1438.59,
-      "returnPct": 4.47,
-      "trades": 45,
-      "closedTrades": 25,
+      "pnl": 1406.59,
+      "returnPct": 3.95,
+      "trades": 46,
+      "closedTrades": 26,
       "winDays": 2,
       "lossDays": 1
     },
