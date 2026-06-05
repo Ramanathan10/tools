@@ -1,13 +1,13 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-05T09:00:43",
+  "generatedAt": "2026-06-05T13:00:39",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -188.01,
-    "totalReturnPct": -0.32,
-    "tradeCount": 57,
-    "closedTradeCount": 33,
+    "totalPnl": -312.66,
+    "totalReturnPct": -0.45,
+    "tradeCount": 64,
+    "closedTradeCount": 36,
     "winDays": 2,
     "lossDays": 2,
     "bestDay": {
@@ -1195,14 +1195,14 @@
     {
       "date": "2026-06-05",
       "day": 5,
-      "pnl": -1594.6,
-      "returnPct": -6.86,
-      "rawPnl": -1594.6,
+      "pnl": -1719.25,
+      "returnPct": -4.97,
+      "rawPnl": -1719.25,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 7,
-      "executions": 11,
-      "trades": 11,
+      "closedTrades": 10,
+      "executions": 18,
+      "trades": 18,
       "closedTradeDetails": [
         {
           "symbol": "FIG",
@@ -1301,6 +1301,48 @@
           "executionCount": 1,
           "basis": 678.0,
           "time": "2026-06-05T08:56:00-07:00"
+        },
+        {
+          "symbol": "KLIC",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 45.0,
+          "avgEntry": 101.85,
+          "avgExit": 100.85,
+          "pnl": -45.0,
+          "returnPct": -0.98,
+          "executionCount": 1,
+          "basis": 4583.25,
+          "time": "2026-06-05T09:09:00-07:00"
+        },
+        {
+          "symbol": "VIAV",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 75.0,
+          "avgEntry": 49.36,
+          "avgExit": 49.37,
+          "pnl": 0.75,
+          "returnPct": 0.02,
+          "executionCount": 1,
+          "basis": 3702.0,
+          "time": "2026-06-05T09:10:00-07:00"
+        },
+        {
+          "symbol": "COCO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 40.0,
+          "avgEntry": 76.21,
+          "avgExit": 74.2,
+          "pnl": -80.4,
+          "returnPct": -2.64,
+          "executionCount": 1,
+          "basis": 3048.3999999999996,
+          "time": "2026-06-05T12:42:00-07:00"
         }
       ],
       "executionDetails": [
@@ -1391,6 +1433,62 @@
           "shares": 15.0,
           "price": 53.29,
           "notional": 799.35
+        },
+        {
+          "time": "2026-06-05T09:09:00-07:00",
+          "ticker": "KLIC",
+          "side": "Sell",
+          "shares": 45.0,
+          "price": 100.85,
+          "notional": 4538.25
+        },
+        {
+          "time": "2026-06-05T09:10:00-07:00",
+          "ticker": "VIAV",
+          "side": "Sell",
+          "shares": 75.0,
+          "price": 49.37,
+          "notional": 3702.75
+        },
+        {
+          "time": "2026-06-05T09:33:00-07:00",
+          "ticker": "LION",
+          "side": "Buy",
+          "shares": 300.0,
+          "price": 13.55,
+          "notional": 4065.0
+        },
+        {
+          "time": "2026-06-05T10:56:00-07:00",
+          "ticker": "FIG",
+          "side": "Buy",
+          "shares": 200.0,
+          "price": 21.87,
+          "notional": 4374.0
+        },
+        {
+          "time": "2026-06-05T12:28:00-07:00",
+          "ticker": "RDW",
+          "side": "Buy",
+          "shares": 250.0,
+          "price": 18.17,
+          "notional": 4542.5
+        },
+        {
+          "time": "2026-06-05T12:35:00-07:00",
+          "ticker": "OUST",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 39.83,
+          "notional": 3983.0
+        },
+        {
+          "time": "2026-06-05T12:42:00-07:00",
+          "ticker": "COCO",
+          "side": "Sell",
+          "shares": 40.0,
+          "price": 74.2,
+          "notional": 2968.0
         }
       ]
     }
@@ -1399,10 +1497,10 @@
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": -188.01,
-      "returnPct": -0.32,
-      "trades": 57,
-      "closedTrades": 33,
+      "pnl": -312.66,
+      "returnPct": -0.45,
+      "trades": 64,
+      "closedTrades": 36,
       "winDays": 2,
       "lossDays": 2
     },
