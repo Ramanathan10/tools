@@ -1,15 +1,15 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-04T17:00:47",
+  "generatedAt": "2026-06-05T09:00:43",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": 1406.59,
-    "totalReturnPct": 3.95,
-    "tradeCount": 46,
-    "closedTradeCount": 26,
+    "totalPnl": -188.01,
+    "totalReturnPct": -0.32,
+    "tradeCount": 57,
+    "closedTradeCount": 33,
     "winDays": 2,
-    "lossDays": 1,
+    "lossDays": 2,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
@@ -1191,18 +1191,220 @@
           "notional": 3402.0
         }
       ]
+    },
+    {
+      "date": "2026-06-05",
+      "day": 5,
+      "pnl": -1594.6,
+      "returnPct": -6.86,
+      "rawPnl": -1594.6,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 7,
+      "executions": 11,
+      "trades": 11,
+      "closedTradeDetails": [
+        {
+          "symbol": "FIG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 175.0,
+          "avgEntry": 23.1386,
+          "avgExit": 22.1,
+          "pnl": -181.75,
+          "returnPct": -4.49,
+          "executionCount": 1,
+          "basis": 4049.25,
+          "time": "2026-06-05T06:41:00-07:00"
+        },
+        {
+          "symbol": "MARA",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 315.0,
+          "avgEntry": 14.0292,
+          "avgExit": 12.9,
+          "pnl": -355.7,
+          "returnPct": -8.05,
+          "executionCount": 1,
+          "basis": 4419.2,
+          "time": "2026-06-05T06:41:00-07:00"
+        },
+        {
+          "symbol": "INFQ",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 250.0,
+          "avgEntry": 15.49,
+          "avgExit": 15.11,
+          "pnl": -95.0,
+          "returnPct": -2.45,
+          "executionCount": 1,
+          "basis": 3872.5,
+          "time": "2026-06-05T08:09:00-07:00"
+        },
+        {
+          "symbol": "AMKR",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 70.0,
+          "avgEntry": 76.5707,
+          "avgExit": 68.02,
+          "pnl": -598.55,
+          "returnPct": -11.17,
+          "executionCount": 1,
+          "basis": 5359.95,
+          "time": "2026-06-05T08:36:00-07:00"
+        },
+        {
+          "symbol": "AXTI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 20.0,
+          "avgEntry": 108.0,
+          "avgExit": 97.74,
+          "pnl": -205.2,
+          "returnPct": -9.5,
+          "executionCount": 1,
+          "basis": 2160.0,
+          "time": "2026-06-05T08:37:00-07:00"
+        },
+        {
+          "symbol": "AXTI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 25.0,
+          "avgEntry": 108.0,
+          "avgExit": 96.81,
+          "pnl": -279.75,
+          "returnPct": -10.36,
+          "executionCount": 1,
+          "basis": 2700.0,
+          "time": "2026-06-05T08:42:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 15.0,
+          "avgEntry": 45.2,
+          "avgExit": 53.29,
+          "pnl": 121.35,
+          "returnPct": 17.9,
+          "executionCount": 1,
+          "basis": 678.0,
+          "time": "2026-06-05T08:56:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-05T06:41:00-07:00",
+          "ticker": "FIG",
+          "side": "Sell",
+          "shares": 175.0,
+          "price": 22.1,
+          "notional": 3867.5
+        },
+        {
+          "time": "2026-06-05T06:41:00-07:00",
+          "ticker": "MARA",
+          "side": "Sell",
+          "shares": 315.0,
+          "price": 12.9,
+          "notional": 4063.5
+        },
+        {
+          "time": "2026-06-05T06:56:00-07:00",
+          "ticker": "KLIC",
+          "side": "Buy",
+          "shares": 45.0,
+          "price": 101.85,
+          "notional": 4583.25
+        },
+        {
+          "time": "2026-06-05T07:19:00-07:00",
+          "ticker": "INFQ",
+          "side": "Buy",
+          "shares": 250.0,
+          "price": 15.49,
+          "notional": 3872.5
+        },
+        {
+          "time": "2026-06-05T08:09:00-07:00",
+          "ticker": "INFQ",
+          "side": "Sell",
+          "shares": 250.0,
+          "price": 15.11,
+          "notional": 3777.5
+        },
+        {
+          "time": "2026-06-05T08:35:00-07:00",
+          "ticker": "COCO",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 76.01,
+          "notional": 1520.2
+        },
+        {
+          "time": "2026-06-05T08:36:00-07:00",
+          "ticker": "AMKR",
+          "side": "Sell",
+          "shares": 70.0,
+          "price": 68.02,
+          "notional": 4761.4
+        },
+        {
+          "time": "2026-06-05T08:37:00-07:00",
+          "ticker": "AXTI",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 97.74,
+          "notional": 1954.8
+        },
+        {
+          "time": "2026-06-05T08:42:00-07:00",
+          "ticker": "AXTI",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 96.81,
+          "notional": 2420.25
+        },
+        {
+          "time": "2026-06-05T08:54:00-07:00",
+          "ticker": "COCO",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 76.41,
+          "notional": 1528.2
+        },
+        {
+          "time": "2026-06-05T08:56:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 53.29,
+          "notional": 799.35
+        }
+      ]
     }
   ],
   "weeks": [
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": 1406.59,
-      "returnPct": 3.95,
-      "trades": 46,
-      "closedTrades": 26,
+      "pnl": -188.01,
+      "returnPct": -0.32,
+      "trades": 57,
+      "closedTrades": 33,
       "winDays": 2,
-      "lossDays": 1
+      "lossDays": 2
     },
     {
       "start": "2026-06-08",
