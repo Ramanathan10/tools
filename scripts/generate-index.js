@@ -3,7 +3,66 @@ const path = require("path");
 
 const repoRoot = path.resolve(__dirname, "..");
 const outputFile = path.join(repoRoot, "index.html");
-const excludedDirs = new Set([".git", ".github", "scripts"]);
+const excludedDirs = new Set([".git", ".github", "scripts", "tools"]);
+const toolDescriptions = new Map([
+  ["json-to-yaml", "Paste JSON, get clean YAML. Built for quick config and data handoffs without opening a heavyweight editor."],
+  ["trading-calendar", "Monthly trading archive with executions, P&L, and session context for Ram's swing-trading review loop."],
+]);
+
+function readTitle(filePath, fallback) {
+  const html = fs.readFileSync(filePath, "utf8");
+  const match = html.match(/<title>(.*?)<\/title>/is);
+  if (!match) {
+    return formatName(fallback);
+  }
+
+  return match[1].replace(/\s+/g, " ").trim();
+}
+
+function formatName(name) {
+  return name
+    .replace(/[-_]/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function describeTool(name) {
+  return toolDescriptions.get(name) ?? "Small personal utility for Ram's recurring workflows.";
+}
+
+function getNestedOnlyTools() {
+  const nestedToolsDir = path.join(repoRoot, "tools");
+  if (!fs.existsSync(nestedToolsDir)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(nestedToolsDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() || entry.name.endsWith(".html"))
+    .map((entry) => {
+      const name = entry.isDirectory() ? entry.name : path.basename(entry.name, ".html");
+      const rootFile = path.join(repoRoot, `${name}.html`);
+      const rootDir = path.join(repoRoot, name, "index.html");
+      return { name, hasRootTool: fs.existsSync(rootFile) || fs.existsSync(rootDir) };
+    })
+    .filter((tool) => !tool.hasRootTool)
+    .map((tool) => tool.name);
+}
+
+const nestedOnlyTools = getNestedOnlyTools();
+if (nestedOnlyTools.length > 0) {
+  console.error(
+    `Nested-only tools are not listed on the public root index: ${nestedOnlyTools.join(", ")}`
+  );
+  process.exit(1);
+}
 
 const fileTools = fs
   .readdirSync(repoRoot)
@@ -12,6 +71,7 @@ const fileTools = fs
   .map((file) => ({
     href: file,
     name: path.basename(file, ".html"),
+    source: path.join(repoRoot, file),
   }));
 
 const directoryTools = fs
@@ -22,6 +82,7 @@ const directoryTools = fs
   .map((entry) => ({
     href: `${entry.name}/`,
     name: entry.name,
+    source: path.join(repoRoot, entry.name, "index.html"),
   }));
 
 const toolsByName = new Map();
@@ -34,11 +95,15 @@ const tools = [...toolsByName.values()].sort((a, b) => a.name.localeCompare(b.na
 
 const links = tools
   .map((tool) => {
-    const title = tool.name
-      .replace(/[-_]/g, " ")
-      .replace(/\b\w/g, (c) => c.toUpperCase());
+    const title = readTitle(tool.source, tool.name);
+    const label = formatName(tool.name);
+    const description = describeTool(tool.name);
 
-    return `<li><a href="${tool.href}">${title}</a></li>`;
+    return `      <a class="tool" href="${escapeHtml(tool.href)}">
+        <span class="tool-label">${escapeHtml(label)}</span>
+        <strong>${escapeHtml(title)}</strong>
+        <span>${escapeHtml(description)}</span>
+      </a>`;
   })
   .join("\n");
 
@@ -49,31 +114,97 @@ const html = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tools</title>
   <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080a0d;
+      --panel: #11161c;
+      --panel-hover: #151d25;
+      --line: #28323d;
+      --text: #f4f7fb;
+      --muted: #9aa7b5;
+      --accent: #00e887;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 16px;
-      line-height: 1.5;
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.4;
+    }
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 44px 0;
     }
     h1 {
-      margin-bottom: 16px;
+      margin: 0;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: 0;
     }
-    ul {
-      padding-left: 20px;
+    .lede {
+      max-width: 640px;
+      margin: 18px 0 30px;
+      color: var(--muted);
+      font-size: 1rem;
     }
-    li {
-      margin: 8px 0;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .tool {
+      min-height: 170px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      text-decoration: none;
+    }
+    .tool:hover,
+    .tool:focus-visible {
+      background: var(--panel-hover);
+      border-color: color-mix(in srgb, var(--accent), var(--line) 35%);
+      outline: none;
+    }
+    .tool-label {
+      color: var(--accent);
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .tool strong {
+      display: block;
+      margin: 18px 0 10px;
+      font-size: 1.55rem;
+      line-height: 1.05;
+    }
+    .tool span:last-child {
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
-  <h1>Tools</h1>
-  <ul>
-    ${links}
-  </ul>
+  <main>
+    <h1>Tools</h1>
+    <p class="lede">Small, practical utilities for Ram's recurring workflows.</p>
+    <section class="grid" aria-label="Available tools">
+${links}
+    </section>
+  </main>
 </body>
-</html>`;
+</html>
+`;
 
 fs.writeFileSync(outputFile, html, "utf8");
 console.log(`Generated index.html with ${tools.length} tools.`);
