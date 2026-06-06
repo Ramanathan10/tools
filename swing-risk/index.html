@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swing Risk Calculator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07090c;
+      --panel: #10151b;
+      --panel-2: #151b22;
+      --line: #2b3540;
+      --text: #f2f7fb;
+      --muted: #95a3b3;
+      --green: #00e887;
+      --red: #ff5f6f;
+      --amber: #ffcc66;
+      --blue: #6db7ff;
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #07120f 0%, var(--bg) 45%, #0b1016 100%);
+      color: var(--text);
+      letter-spacing: 0;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 30px 0;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow,
+    label,
+    .stat-label,
+    .chip,
+    button,
+    textarea {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 8px 0 0;
+      font-size: clamp(2.25rem, 7vw, 5.3rem);
+      line-height: 0.95;
+    }
+
+    .timestamp {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: right;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(310px, 410px) minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(16, 21, 27, 0.92);
+    }
+
+    .inputs {
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #090d12;
+      color: var(--text);
+      padding: 11px 12px;
+      font: inherit;
+      font-size: 1rem;
+      letter-spacing: 0;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: color-mix(in srgb, var(--green), var(--line) 35%);
+      box-shadow: 0 0 0 3px rgba(0, 232, 135, 0.1);
+    }
+
+    textarea {
+      min-height: 118px;
+      resize: vertical;
+      line-height: 1.45;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel-2);
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    button.primary {
+      border-color: rgba(0, 232, 135, 0.5);
+      background: #06351f;
+      color: var(--green);
+    }
+
+    button:hover,
+    button:focus-visible {
+      border-color: var(--green);
+      outline: none;
+    }
+
+    .dashboard {
+      display: grid;
+      gap: 14px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat {
+      min-height: 128px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      margin-top: 18px;
+      font-size: clamp(1.55rem, 3.2vw, 2.4rem);
+      line-height: 1;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .green { color: var(--green); }
+    .red { color: var(--red); }
+    .amber { color: var(--amber); }
+    .blue { color: var(--blue); }
+
+    .plan {
+      padding: 17px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      padding: 7px 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    pre {
+      min-height: 250px;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #090d12;
+      color: var(--text);
+      padding: 16px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.55;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      header,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .timestamp {
+        text-align: left;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      main { width: min(100% - 18px, 1180px); padding: 18px 0; }
+      .row,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <div class="eyebrow">Trade Prep</div>
+        <h1>Swing Risk Calculator</h1>
+      </div>
+      <div class="timestamp" id="timestamp"></div>
+    </header>
+
+    <section class="workspace">
+      <form class="panel inputs" id="trade-form">
+        <label>
+          Ticker
+          <input id="ticker" value="AAPL" autocomplete="off" />
+        </label>
+
+        <div class="row">
+          <label>
+            Account $
+            <input id="account" inputmode="decimal" value="50000" />
+          </label>
+          <label>
+            Risk %
+            <input id="riskPct" inputmode="decimal" value="1" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Entry
+            <input id="entry" inputmode="decimal" value="185.50" />
+          </label>
+          <label>
+            Stop
+            <input id="stop" inputmode="decimal" value="179.80" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Target
+            <input id="target" inputmode="decimal" value="198.00" />
+          </label>
+          <label>
+            Max Capital %
+            <input id="maxCapitalPct" inputmode="decimal" value="25" />
+          </label>
+        </div>
+
+        <label>
+          Thesis / Invalidator
+          <textarea id="notes">Breakout pullback. Invalid if daily close loses the prior pivot.</textarea>
+        </label>
+
+        <div class="actions">
+          <button class="primary" type="button" id="copy">Copy Plan</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+
+      <section class="dashboard">
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Position</span>
+            <span class="stat-value green" id="shares">0 sh</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Dollar Risk</span>
+            <span class="stat-value red" id="riskDollars">$0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">R Multiple</span>
+            <span class="stat-value blue" id="rMultiple">0.00R</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Reward</span>
+            <span class="stat-value amber" id="rewardDollars">$0</span>
+          </div>
+        </div>
+
+        <div class="panel plan">
+          <div class="chips">
+            <span class="chip" id="side">Long</span>
+            <span class="chip" id="capitalUsed">$0 capital</span>
+            <span class="chip" id="riskPerShare">$0/share risk</span>
+          </div>
+          <pre id="plan"></pre>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const ids = ["ticker", "account", "riskPct", "entry", "stop", "target", "maxCapitalPct", "notes"];
+    const fields = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
+    const output = {
+      timestamp: document.getElementById("timestamp"),
+      shares: document.getElementById("shares"),
+      riskDollars: document.getElementById("riskDollars"),
+      rMultiple: document.getElementById("rMultiple"),
+      rewardDollars: document.getElementById("rewardDollars"),
+      side: document.getElementById("side"),
+      capitalUsed: document.getElementById("capitalUsed"),
+      riskPerShare: document.getElementById("riskPerShare"),
+      plan: document.getElementById("plan"),
+    };
+
+    function numberValue(field) {
+      return Number.parseFloat(String(field.value).replace(/[$,%\s]/g, ""));
+    }
+
+    function money(value) {
+      if (!Number.isFinite(value)) return "$0";
+      return value.toLocaleString(undefined, {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: Math.abs(value) >= 100 ? 0 : 2,
+      });
+    }
+
+    function clean(value) {
+      return Number.isFinite(value) ? value.toFixed(2).replace(/\.00$/, "") : "0";
+    }
+
+    function calculate() {
+      const ticker = fields.ticker.value.trim().toUpperCase() || "TICKER";
+      const account = numberValue(fields.account);
+      const riskPct = numberValue(fields.riskPct);
+      const entry = numberValue(fields.entry);
+      const stop = numberValue(fields.stop);
+      const target = numberValue(fields.target);
+      const maxCapitalPct = numberValue(fields.maxCapitalPct);
+      const notes = fields.notes.value.trim();
+
+      const side = stop < entry ? "Long" : "Short";
+      const riskPerShare = Math.abs(entry - stop);
+      const rewardPerShare = side === "Long" ? target - entry : entry - target;
+      const plannedRisk = account * (riskPct / 100);
+      const riskShares = Math.floor(plannedRisk / riskPerShare);
+      const capitalCapShares = Math.floor((account * (maxCapitalPct / 100)) / entry);
+      const shares = Math.max(0, Math.min(riskShares, capitalCapShares));
+      const actualRisk = shares * riskPerShare;
+      const reward = shares * rewardPerShare;
+      const rMultiple = riskPerShare > 0 ? rewardPerShare / riskPerShare : 0;
+      const capital = shares * entry;
+      const stopType = side === "Long" ? "below" : "above";
+
+      output.timestamp.textContent = new Date().toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
+      output.shares.textContent = `${shares.toLocaleString()} sh`;
+      output.riskDollars.textContent = money(actualRisk);
+      output.rMultiple.textContent = `${clean(rMultiple)}R`;
+      output.rewardDollars.textContent = money(reward);
+      output.side.textContent = side;
+      output.capitalUsed.textContent = `${money(capital)} capital`;
+      output.riskPerShare.textContent = `${money(riskPerShare)}/share risk`;
+
+      output.plan.textContent = [
+        `${ticker} ${side.toLowerCase()} plan`,
+        `Entry: ${money(entry)}`,
+        `Stop: ${money(stop)} (${stopType} entry, ${money(riskPerShare)} risk/share)`,
+        `Target: ${money(target)} (${clean(rMultiple)}R)`,
+        `Size: ${shares.toLocaleString()} shares`,
+        `Capital used: ${money(capital)} (${clean((capital / account) * 100)}% of account)`,
+        `Risk: ${money(actualRisk)} (${clean((actualRisk / account) * 100)}% of account)`,
+        `Reward: ${money(reward)}`,
+        "",
+        notes ? `Thesis: ${notes}` : "Thesis:",
+      ].join("\n");
+    }
+
+    ids.forEach((id) => fields[id].addEventListener("input", calculate));
+    document.getElementById("trade-form").addEventListener("reset", () => setTimeout(calculate, 0));
+    document.getElementById("copy").addEventListener("click", async () => {
+      await navigator.clipboard.writeText(output.plan.textContent);
+      document.getElementById("copy").textContent = "Copied";
+      setTimeout(() => { document.getElementById("copy").textContent = "Copy Plan"; }, 900);
+    });
+
+    calculate();
+  </script>
+</body>
+</html>
