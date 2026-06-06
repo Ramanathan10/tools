@@ -129,6 +129,28 @@
       box-shadow: 0 0 0 3px rgba(0, 232, 135, 0.1);
     }
 
+    .field-action {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .market-actions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .quote-status {
+      min-height: 18px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.35;
+    }
+
+    .quote-status.good { color: var(--green); }
+    .quote-status.bad { color: var(--red); }
+
     textarea {
       min-height: 118px;
       resize: vertical;
@@ -154,10 +176,21 @@
       cursor: pointer;
     }
 
+    button.mini {
+      min-width: 82px;
+      padding: 11px 10px;
+      white-space: nowrap;
+    }
+
     button.primary {
       border-color: rgba(0, 232, 135, 0.5);
       background: #06351f;
       color: var(--green);
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.62;
     }
 
     button:hover,
@@ -263,8 +296,13 @@
     @media (max-width: 560px) {
       main { width: min(100% - 18px, 1180px); padding: 18px 0; }
       .row,
+      .field-action,
       .stats {
         grid-template-columns: 1fr;
+      }
+
+      button.mini {
+        width: 100%;
       }
     }
   </style>
@@ -281,10 +319,16 @@
 
     <section class="workspace">
       <form class="panel inputs" id="trade-form">
-        <label>
-          Ticker
-          <input id="ticker" value="AAPL" autocomplete="off" />
-        </label>
+        <div class="market-actions">
+          <div class="field-action">
+            <label>
+              Ticker
+              <input id="ticker" value="AAPL" autocomplete="off" />
+            </label>
+            <button class="mini" type="button" id="fillMarket">Fill Quote</button>
+          </div>
+          <div class="quote-status" id="quoteStatus">Delayed market data. Fill Quote updates entry and stop from latest daily low.</div>
+        </div>
 
         <div class="row">
           <label>
@@ -298,14 +342,20 @@
         </div>
 
         <div class="row">
-          <label>
-            Entry
-            <input id="entry" inputmode="decimal" value="185.50" />
-          </label>
-          <label>
-            Stop
-            <input id="stop" inputmode="decimal" value="179.80" />
-          </label>
+          <div class="field-action">
+            <label>
+              Entry
+              <input id="entry" inputmode="decimal" value="185.50" />
+            </label>
+            <button class="mini" type="button" id="fillEntry">Quote</button>
+          </div>
+          <div class="field-action">
+            <label>
+              Stop
+              <input id="stop" inputmode="decimal" value="179.80" />
+            </label>
+            <button class="mini" type="button" id="fillStop">Day Low</button>
+          </div>
         </div>
 
         <div class="row">
@@ -367,6 +417,7 @@
     const fields = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
     const output = {
       timestamp: document.getElementById("timestamp"),
+      quoteStatus: document.getElementById("quoteStatus"),
       shares: document.getElementById("shares"),
       riskDollars: document.getElementById("riskDollars"),
       rMultiple: document.getElementById("rMultiple"),
@@ -376,6 +427,11 @@
       riskPerShare: document.getElementById("riskPerShare"),
       plan: document.getElementById("plan"),
     };
+    const marketButtons = [
+      document.getElementById("fillMarket"),
+      document.getElementById("fillEntry"),
+      document.getElementById("fillStop"),
+    ];
 
     function numberValue(field) {
       return Number.parseFloat(String(field.value).replace(/[$,%\s]/g, ""));
@@ -392,6 +448,115 @@
 
     function clean(value) {
       return Number.isFinite(value) ? value.toFixed(2).replace(/\.00$/, "") : "0";
+    }
+
+    function price(value) {
+      return Number.isFinite(value) ? value.toFixed(2) : "";
+    }
+
+    function isoDate(date) {
+      return date.toISOString().slice(0, 10);
+    }
+
+    function setQuoteStatus(message, state = "") {
+      output.quoteStatus.textContent = message;
+      output.quoteStatus.className = `quote-status ${state}`.trim();
+    }
+
+    function setMarketLoading(isLoading) {
+      marketButtons.forEach((button) => { button.disabled = isLoading; });
+    }
+
+    function getTicker() {
+      return fields.ticker.value.trim().toUpperCase().replace(/\s+/g, "");
+    }
+
+    function firstFinite(values) {
+      return values.find((value) => Number.isFinite(value));
+    }
+
+    async function fetchJson(url) {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      return response.json();
+    }
+
+    async function fetchMarketSnapshot(symbol) {
+      const encoded = encodeURIComponent(symbol);
+      const quote = await fetchJson(`https://api.marketdata.app/v1/stocks/quotes/${encoded}/`);
+      if (quote.s !== "ok") {
+        throw new Error(quote.errmsg || "Quote unavailable");
+      }
+
+      const current = firstFinite([
+        Number(quote.last?.[0]),
+        Number(quote.mid?.[0]),
+        Number(quote.bid?.[0]),
+        Number(quote.ask?.[0]),
+      ]);
+
+      const to = new Date();
+      const from = new Date(to);
+      from.setDate(from.getDate() - 10);
+      const candles = await fetchJson(
+        `https://api.marketdata.app/v1/stocks/candles/D/${encoded}/?from=${isoDate(from)}&to=${isoDate(to)}`
+      );
+      if (candles.s !== "ok" || !Array.isArray(candles.l) || candles.l.length === 0) {
+        throw new Error(candles.errmsg || "Day low unavailable");
+      }
+
+      const lastIndex = candles.l.length - 1;
+      const dayLow = Number(candles.l[lastIndex]);
+      const candleTime = Number(candles.t?.[lastIndex]);
+      const quoteTime = Number(quote.updated?.[0]);
+      const updated = Number.isFinite(quoteTime) ? quoteTime : candleTime;
+
+      if (!Number.isFinite(current) && !Number.isFinite(dayLow)) {
+        throw new Error("No usable market values");
+      }
+
+      return {
+        current,
+        dayLow,
+        updated,
+      };
+    }
+
+    async function fillMarketValues(mode) {
+      const symbol = getTicker();
+      if (!symbol) {
+        setQuoteStatus("Enter a ticker first.", "bad");
+        fields.ticker.focus();
+        return;
+      }
+
+      setMarketLoading(true);
+      setQuoteStatus(`Fetching delayed market data for ${symbol}...`);
+      try {
+        const snapshot = await fetchMarketSnapshot(symbol);
+
+        if ((mode === "entry" || mode === "both") && Number.isFinite(snapshot.current)) {
+          fields.entry.value = price(snapshot.current);
+        }
+        if ((mode === "stop" || mode === "both") && Number.isFinite(snapshot.dayLow)) {
+          fields.stop.value = price(snapshot.dayLow);
+        }
+
+        const updatedText = Number.isFinite(snapshot.updated)
+          ? new Date(snapshot.updated * 1000).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })
+          : "latest available";
+        setQuoteStatus(
+          `${symbol}: quote ${money(snapshot.current)}, day low ${money(snapshot.dayLow)}. Updated ${updatedText}.`,
+          "good"
+        );
+        calculate();
+      } catch (error) {
+        setQuoteStatus(`Could not fetch ${symbol}: ${error.message}.`, "bad");
+      } finally {
+        setMarketLoading(false);
+      }
     }
 
     function calculate() {
@@ -442,6 +607,9 @@
 
     ids.forEach((id) => fields[id].addEventListener("input", calculate));
     document.getElementById("trade-form").addEventListener("reset", () => setTimeout(calculate, 0));
+    document.getElementById("fillMarket").addEventListener("click", () => fillMarketValues("both"));
+    document.getElementById("fillEntry").addEventListener("click", () => fillMarketValues("entry"));
+    document.getElementById("fillStop").addEventListener("click", () => fillMarketValues("stop"));
     document.getElementById("copy").addEventListener("click", async () => {
       await navigator.clipboard.writeText(output.plan.textContent);
       document.getElementById("copy").textContent = "Copied";
