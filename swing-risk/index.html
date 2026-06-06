@@ -436,9 +436,8 @@
     </section>
   </main>
 
-  <script src="./config.local.js"></script>
   <script>
-    const API_KEY_STORAGE = "swingRisk.alphaVantageApiKey";
+    const ALPHA_VANTAGE_API_KEY = "E9EC2NZ5JYED10VK";
     const ids = ["ticker", "account", "maxLoss", "entry", "stop", "target", "stopBufferPct", "notes"];
     const fields = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
     const output = {
@@ -491,18 +490,7 @@
     }
 
     function getAlphaVantageKey() {
-      const configured = window.SWING_RISK_CONFIG?.alphaVantageApiKey?.trim();
-      if (configured) return configured;
-
-      const saved = localStorage.getItem(API_KEY_STORAGE);
-      if (saved) return saved;
-
-      const entered = window.prompt("Alpha Vantage API key");
-      const key = entered?.trim();
-      if (key) {
-        localStorage.setItem(API_KEY_STORAGE, key);
-      }
-      return key;
+      return ALPHA_VANTAGE_API_KEY;
     }
 
     async function fetchJson(url) {
