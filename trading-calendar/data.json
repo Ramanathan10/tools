@@ -1,13 +1,13 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-05T13:00:39",
+  "generatedAt": "2026-06-05T17:00:47",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -312.66,
+    "totalPnl": -335.66,
     "totalReturnPct": -0.45,
-    "tradeCount": 64,
-    "closedTradeCount": 36,
+    "tradeCount": 65,
+    "closedTradeCount": 37,
     "winDays": 2,
     "lossDays": 2,
     "bestDay": {
@@ -1195,14 +1195,14 @@
     {
       "date": "2026-06-05",
       "day": 5,
-      "pnl": -1719.25,
-      "returnPct": -4.97,
-      "rawPnl": -1719.25,
+      "pnl": -1742.25,
+      "returnPct": -4.52,
+      "rawPnl": -1742.25,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 10,
-      "executions": 18,
-      "trades": 18,
+      "closedTrades": 11,
+      "executions": 19,
+      "trades": 19,
       "closedTradeDetails": [
         {
           "symbol": "FIG",
@@ -1343,6 +1343,20 @@
           "executionCount": 1,
           "basis": 3048.3999999999996,
           "time": "2026-06-05T12:42:00-07:00"
+        },
+        {
+          "symbol": "OUST",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-05",
+          "quantity": 100.0,
+          "avgEntry": 39.83,
+          "avgExit": 39.6,
+          "pnl": -23.0,
+          "returnPct": -0.58,
+          "executionCount": 1,
+          "basis": 3983.0,
+          "time": "2026-06-05T12:59:00-07:00"
         }
       ],
       "executionDetails": [
@@ -1489,6 +1503,14 @@
           "shares": 40.0,
           "price": 74.2,
           "notional": 2968.0
+        },
+        {
+          "time": "2026-06-05T12:59:00-07:00",
+          "ticker": "OUST",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 39.6,
+          "notional": 3960.0
         }
       ]
     }
@@ -1497,10 +1519,10 @@
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": -312.66,
+      "pnl": -335.66,
       "returnPct": -0.45,
-      "trades": 64,
-      "closedTrades": 36,
+      "trades": 65,
+      "closedTrades": 37,
       "winDays": 2,
       "lossDays": 2
     },
