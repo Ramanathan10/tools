@@ -14,9 +14,6 @@
       --text: #f2f7fb;
       --muted: #95a3b3;
       --green: #00e887;
-      --red: #ff5f6f;
-      --amber: #ffcc66;
-      --blue: #6db7ff;
       --radius: 8px;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
@@ -32,25 +29,19 @@
     }
 
     main {
-      width: min(1180px, calc(100% - 28px));
+      width: min(560px, calc(100% - 28px));
       margin: 0 auto;
       padding: 30px 0;
     }
 
     header {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 18px;
-      align-items: end;
       margin-bottom: 18px;
     }
 
     .eyebrow,
     label,
     .stat-label,
-    .chip,
-    button,
-    textarea {
+    button {
       font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
     }
 
@@ -68,17 +59,9 @@
       line-height: 0.95;
     }
 
-    .timestamp {
-      color: var(--muted);
-      font-size: 0.85rem;
-      text-align: right;
-    }
-
     .workspace {
       display: grid;
-      grid-template-columns: minmax(310px, 410px) minmax(0, 1fr);
       gap: 14px;
-      align-items: start;
     }
 
     .panel {
@@ -109,8 +92,7 @@
       text-transform: uppercase;
     }
 
-    input,
-    textarea {
+    input {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 6px;
@@ -123,8 +105,7 @@
       outline: none;
     }
 
-    input:focus,
-    textarea:focus {
+    input:focus {
       border-color: color-mix(in srgb, var(--green), var(--line) 35%);
       box-shadow: 0 0 0 3px rgba(0, 232, 135, 0.1);
     }
@@ -140,16 +121,6 @@
       display: grid;
       gap: 8px;
     }
-
-    .quote-status {
-      min-height: 18px;
-      color: var(--muted);
-      font-size: 0.76rem;
-      line-height: 1.35;
-    }
-
-    .quote-status.good { color: var(--green); }
-    .quote-status.bad { color: var(--red); }
 
     .range-field {
       display: grid;
@@ -178,18 +149,6 @@
       accent-color: var(--green);
     }
 
-    textarea {
-      min-height: 118px;
-      resize: vertical;
-      line-height: 1.45;
-    }
-
-    .actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
     button {
       border: 1px solid var(--line);
       border-radius: 6px;
@@ -209,12 +168,6 @@
       white-space: nowrap;
     }
 
-    button.primary {
-      border-color: rgba(0, 232, 135, 0.5);
-      background: #06351f;
-      color: var(--green);
-    }
-
     button:disabled {
       cursor: wait;
       opacity: 0.62;
@@ -224,17 +177,6 @@
     button:focus-visible {
       border-color: var(--green);
       outline: none;
-    }
-
-    .dashboard {
-      display: grid;
-      gap: 14px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
     }
 
     .stat {
@@ -265,66 +207,16 @@
     }
 
     .green { color: var(--green); }
-    .red { color: var(--red); }
-    .amber { color: var(--amber); }
-    .blue { color: var(--blue); }
-
-    .plan {
-      padding: 17px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .chip {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      padding: 7px 10px;
-      font-size: 0.72rem;
-      font-weight: 800;
-    }
-
-    pre {
-      min-height: 250px;
-      margin: 0;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #090d12;
-      color: var(--text);
-      padding: 16px;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      line-height: 1.55;
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-      font-size: 0.9rem;
-    }
-
     @media (max-width: 900px) {
-      header,
       .workspace {
         grid-template-columns: 1fr;
-      }
-
-      .timestamp {
-        text-align: left;
-      }
-
-      .stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 560px) {
-      main { width: min(100% - 18px, 1180px); padding: 18px 0; }
+      main { width: min(100% - 18px, 560px); padding: 18px 0; }
       .row,
-      .field-action,
-      .stats {
+      .field-action {
         grid-template-columns: 1fr;
       }
 
@@ -341,7 +233,6 @@
         <div class="eyebrow">Trade Prep</div>
         <h1>Swing Risk Calculator</h1>
       </div>
-      <div class="timestamp" id="timestamp"></div>
     </header>
 
     <section class="workspace">
@@ -354,21 +245,14 @@
             </label>
             <button class="mini" type="button" id="refreshMarket">Refresh</button>
           </div>
-          <div class="quote-status" id="quoteStatus">Refresh fills entry, stop from day low minus offset, and target at 3R.</div>
         </div>
 
-        <div class="row">
-          <label>
-            Account $
-            <input id="account" inputmode="decimal" value="40000" />
-          </label>
-          <div class="range-field">
-            <div class="range-head">
-              <span>Max Loss</span>
-              <span class="range-value" id="maxLossValue">$400</span>
-            </div>
-            <input id="maxLoss" type="range" min="50" max="2000" step="25" value="400" />
+        <div class="range-field">
+          <div class="range-head">
+            <span>Max Loss</span>
+            <span class="range-value" id="maxLossValue">$400</span>
           </div>
+          <input id="maxLoss" type="range" min="50" max="2000" step="25" value="400" />
         </div>
 
         <div class="row">
@@ -382,55 +266,16 @@
           </label>
         </div>
 
-        <div class="row">
-          <label>
-            Target
-            <input id="target" inputmode="decimal" value="202.60" readonly />
-          </label>
-          <label>
-            Target R
-            <input id="targetR" inputmode="decimal" value="3" />
-          </label>
-        </div>
-
         <label>
-          Thesis / Invalidator
-          <textarea id="notes">Breakout pullback. Invalid if daily close loses the prior pivot.</textarea>
+          Target
+          <input id="target" inputmode="decimal" value="202.60" readonly />
         </label>
-
-        <div class="actions">
-          <button class="primary" type="button" id="copy">Copy Plan</button>
-          <button type="reset">Reset</button>
-        </div>
       </form>
 
-      <section class="dashboard">
-        <div class="stats">
-          <div class="stat">
-            <span class="stat-label">Position</span>
-            <span class="stat-value green" id="shares">0 sh</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Dollar Risk</span>
-            <span class="stat-value red" id="riskDollars">$0</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">R Multiple</span>
-            <span class="stat-value blue" id="rMultiple">0.00R</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Reward</span>
-            <span class="stat-value amber" id="rewardDollars">$0</span>
-          </div>
-        </div>
-
-        <div class="panel plan">
-          <div class="chips">
-            <span class="chip" id="side">Long</span>
-            <span class="chip" id="capitalUsed">$0 capital</span>
-            <span class="chip" id="riskPerShare">$0/share risk</span>
-          </div>
-          <pre id="plan"></pre>
+      <section class="panel">
+        <div class="stat">
+          <span class="stat-label">Position</span>
+          <span class="stat-value green" id="shares">0 sh</span>
         </div>
       </section>
     </section>
@@ -438,20 +283,12 @@
 
   <script>
     const ALPHA_VANTAGE_API_KEY = "E9EC2NZ5JYED10VK";
-    const ids = ["ticker", "account", "maxLoss", "entry", "stop", "target", "targetR", "notes"];
+    const TARGET_R = 3;
+    const ids = ["ticker", "maxLoss", "entry", "stop", "target"];
     const fields = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
     const output = {
-      timestamp: document.getElementById("timestamp"),
-      quoteStatus: document.getElementById("quoteStatus"),
       maxLossValue: document.getElementById("maxLossValue"),
       shares: document.getElementById("shares"),
-      riskDollars: document.getElementById("riskDollars"),
-      rMultiple: document.getElementById("rMultiple"),
-      rewardDollars: document.getElementById("rewardDollars"),
-      side: document.getElementById("side"),
-      capitalUsed: document.getElementById("capitalUsed"),
-      riskPerShare: document.getElementById("riskPerShare"),
-      plan: document.getElementById("plan"),
     };
     const refreshMarket = document.getElementById("refreshMarket");
 
@@ -468,21 +305,25 @@
       });
     }
 
-    function clean(value) {
-      return Number.isFinite(value) ? value.toFixed(2).replace(/\.00$/, "") : "0";
-    }
-
     function price(value) {
       return Number.isFinite(value) ? value.toFixed(2) : "";
     }
 
-    function setQuoteStatus(message, state = "") {
-      output.quoteStatus.textContent = message;
-      output.quoteStatus.className = `quote-status ${state}`.trim();
+    function setRefreshStatus(message, state = "") {
+      refreshMarket.title = message;
+      if (state === "bad") {
+        refreshMarket.textContent = "Error";
+        setTimeout(() => { refreshMarket.textContent = "Refresh"; }, 1200);
+      }
     }
 
     function setMarketLoading(isLoading) {
       refreshMarket.disabled = isLoading;
+      if (isLoading) {
+        refreshMarket.textContent = "Loading";
+      } else if (refreshMarket.textContent === "Loading") {
+        refreshMarket.textContent = "Refresh";
+      }
     }
 
     function getTicker() {
@@ -540,19 +381,18 @@
     async function refreshMarketValues() {
       const symbol = getTicker();
       if (!symbol) {
-        setQuoteStatus("Enter a ticker first.", "bad");
+        setRefreshStatus("Enter a ticker first.", "bad");
         fields.ticker.focus();
         return;
       }
 
       setMarketLoading(true);
-      setQuoteStatus(`Refreshing ${symbol} from Alpha Vantage...`);
+      setRefreshStatus(`Refreshing ${symbol} from Alpha Vantage...`);
       try {
         const snapshot = await fetchMarketSnapshot(symbol);
         const stopOffset = snapshot.current < 100 ? 0.5 : 1;
         const stop = snapshot.dayLow - stopOffset;
-        const targetR = numberValue(fields.targetR);
-        const target = snapshot.current + (targetR * (snapshot.current - stop));
+        const target = snapshot.current + (TARGET_R * (snapshot.current - stop));
 
         fields.entry.value = price(snapshot.current);
         fields.stop.value = price(stop);
@@ -562,76 +402,37 @@
         const stopWarning = stop >= snapshot.current
           ? " Stop is above entry; adjust stop for long sizing."
           : "";
-        setQuoteStatus(
+        setRefreshStatus(
           `${symbol}: current ${money(snapshot.current)}, day low ${money(snapshot.dayLow)}, stop ${money(stop)} (${money(stopOffset)} below low), target ${money(target)}. ${snapshot.latestDate}.${stopWarning}`,
           stop >= snapshot.current ? "bad" : "good"
         );
       } catch (error) {
-        setQuoteStatus(`Could not fetch ${symbol}: ${error.message}.`, "bad");
+        setRefreshStatus(`Could not fetch ${symbol}: ${error.message}.`, "bad");
       } finally {
         setMarketLoading(false);
       }
     }
 
     function calculate() {
-      const ticker = fields.ticker.value.trim().toUpperCase() || "TICKER";
-      const account = numberValue(fields.account);
       const maxLoss = numberValue(fields.maxLoss);
       const entry = numberValue(fields.entry);
       const stop = numberValue(fields.stop);
-      const targetR = numberValue(fields.targetR);
-      const notes = fields.notes.value.trim();
 
-      const side = "Long";
       const riskPerShare = entry - stop;
-      const target = riskPerShare > 0 ? entry + (targetR * riskPerShare) : entry;
-      const rewardPerShare = target - entry;
+      const target = riskPerShare > 0 ? entry + (TARGET_R * riskPerShare) : entry;
       const shares = Number.isFinite(riskPerShare) && riskPerShare > 0
         ? Math.max(0, Math.floor(maxLoss / riskPerShare))
         : 0;
-      const displayRiskPerShare = riskPerShare > 0 ? riskPerShare : 0;
-      const actualRisk = shares > 0 ? shares * riskPerShare : 0;
-      const reward = shares > 0 ? shares * rewardPerShare : 0;
-      const rMultiple = riskPerShare > 0 ? rewardPerShare / riskPerShare : 0;
-      const capital = shares * entry;
-      const stopType = riskPerShare > 0 ? "below" : "not below";
 
       if (Number.isFinite(target) && fields.target.value !== price(target)) {
         fields.target.value = price(target);
       }
-      output.timestamp.textContent = new Date().toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
       output.maxLossValue.textContent = money(maxLoss);
       output.shares.textContent = `${shares.toLocaleString()} sh`;
-      output.riskDollars.textContent = money(actualRisk);
-      output.rMultiple.textContent = `${clean(rMultiple)}R`;
-      output.rewardDollars.textContent = money(reward);
-      output.side.textContent = side;
-      output.capitalUsed.textContent = `${money(capital)} capital`;
-      output.riskPerShare.textContent = `${money(displayRiskPerShare)}/share risk`;
-
-      output.plan.textContent = [
-        `${ticker} ${side.toLowerCase()} plan`,
-        `Entry: ${money(entry)}`,
-        `Stop: ${money(stop)} (${stopType} entry, ${money(displayRiskPerShare)} risk/share)`,
-        `Target: ${money(target)} (${clean(rMultiple)}R)`,
-        `Size: ${shares.toLocaleString()} shares`,
-        `Capital used: ${money(capital)} (${clean((capital / account) * 100)}% of account)`,
-        `Max loss: ${money(maxLoss)} (${clean((maxLoss / account) * 100)}% of account)`,
-        `Planned risk: ${money(actualRisk)} (${clean((actualRisk / account) * 100)}% of account)`,
-        `Reward: ${money(reward)}`,
-        "",
-        notes ? `Thesis: ${notes}` : "Thesis:",
-      ].join("\n");
     }
 
     ids.forEach((id) => fields[id].addEventListener("input", calculate));
-    document.getElementById("trade-form").addEventListener("reset", () => setTimeout(calculate, 0));
     refreshMarket.addEventListener("click", refreshMarketValues);
-    document.getElementById("copy").addEventListener("click", async () => {
-      await navigator.clipboard.writeText(output.plan.textContent);
-      document.getElementById("copy").textContent = "Copied";
-      setTimeout(() => { document.getElementById("copy").textContent = "Copy Plan"; }, 900);
-    });
 
     calculate();
   </script>
