@@ -179,12 +179,16 @@
       outline: none;
     }
 
+    .summary {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
     .stat {
-      min-height: 128px;
+      min-height: 110px;
       padding: 15px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--panel);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -216,7 +220,8 @@
     @media (max-width: 560px) {
       main { width: min(100% - 18px, 560px); padding: 18px 0; }
       .row,
-      .field-action {
+      .field-action,
+      .summary {
         grid-template-columns: 1fr;
       }
 
@@ -272,10 +277,14 @@
         </label>
       </form>
 
-      <section class="panel">
+      <section class="panel summary">
         <div class="stat">
           <span class="stat-label">Position</span>
           <span class="stat-value green" id="shares">0 sh</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Equity</span>
+          <span class="stat-value green" id="equity">$0</span>
         </div>
       </section>
     </section>
@@ -289,6 +298,7 @@
     const output = {
       maxLossValue: document.getElementById("maxLossValue"),
       shares: document.getElementById("shares"),
+      equity: document.getElementById("equity"),
     };
     const refreshMarket = document.getElementById("refreshMarket");
 
@@ -423,12 +433,14 @@
       const shares = Number.isFinite(riskPerShare) && riskPerShare > 0
         ? Math.max(0, Math.floor(maxLoss / riskPerShare))
         : 0;
+      const equity = shares * entry;
 
       if (Number.isFinite(target) && fields.target.value !== price(target)) {
         fields.target.value = price(target);
       }
       output.maxLossValue.textContent = money(maxLoss);
       output.shares.textContent = `${shares.toLocaleString()} sh`;
+      output.equity.textContent = money(equity);
     }
 
     ids.forEach((id) => fields[id].addEventListener("input", calculate));
