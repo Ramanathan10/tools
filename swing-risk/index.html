@@ -247,7 +247,7 @@
     </header>
 
     <section class="workspace">
-      <form class="panel inputs" id="trade-form">
+      <form class="panel inputs" id="trade-form" autocomplete="off">
         <div class="market-actions">
           <div class="field-action">
             <label>
@@ -263,7 +263,7 @@
             <span>Max Loss</span>
             <span class="range-value" id="maxLossValue">$400</span>
           </div>
-          <input id="maxLoss" type="range" min="50" max="2000" step="25" value="400" />
+          <input id="maxLoss" type="range" min="50" max="2000" step="25" value="400" autocomplete="off" />
         </div>
 
         <div class="row">
@@ -302,6 +302,7 @@
   <script>
     const ALPHA_VANTAGE_API_KEY = "E9EC2NZ5JYED10VK";
     const TARGET_R = 3;
+    const DEFAULT_MAX_LOSS = 400;
     const ids = ["ticker", "maxLoss", "entry", "stop", "target"];
     const fields = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
     const output = {
@@ -314,6 +315,12 @@
 
     function numberValue(field) {
       return Number.parseFloat(String(field.value).replace(/[$,%\s]/g, ""));
+    }
+
+    function getMaxLoss() {
+      return Number.isFinite(fields.maxLoss.valueAsNumber)
+        ? fields.maxLoss.valueAsNumber
+        : DEFAULT_MAX_LOSS;
     }
 
     function money(value) {
@@ -331,7 +338,7 @@
 
     function buildTradePlan() {
       const symbol = getTicker() || "TICKER";
-      const maxLoss = numberValue(fields.maxLoss);
+      const maxLoss = getMaxLoss();
       const entry = numberValue(fields.entry);
       const stop = numberValue(fields.stop);
       const target = numberValue(fields.target);
@@ -462,7 +469,7 @@
     }
 
     function calculate() {
-      const maxLoss = numberValue(fields.maxLoss);
+      const maxLoss = getMaxLoss();
       const entry = numberValue(fields.entry);
       const stop = numberValue(fields.stop);
 
@@ -501,11 +508,20 @@
       setTimeout(() => { copyPlan.textContent = "Copy Trade Note"; }, 1200);
     }
 
-    ids.forEach((id) => fields[id].addEventListener("input", calculate));
+    function resetMaxLossToDefault() {
+      fields.maxLoss.value = String(DEFAULT_MAX_LOSS);
+      calculate();
+    }
+
+    ids.forEach((id) => {
+      fields[id].addEventListener("input", calculate);
+      fields[id].addEventListener("change", calculate);
+    });
     refreshMarket.addEventListener("click", refreshMarketValues);
     copyPlan.addEventListener("click", copyTradePlan);
+    window.addEventListener("pageshow", resetMaxLossToDefault);
 
-    calculate();
+    resetMaxLossToDefault();
   </script>
 </body>
 </html>
