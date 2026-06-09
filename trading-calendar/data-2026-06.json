@@ -1,12 +1,12 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-09T09:06:49",
+  "generatedAt": "2026-06-09T13:00:44",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
     "totalPnl": -1368.1,
     "totalReturnPct": -1.13,
-    "tradeCount": 96,
+    "tradeCount": 100,
     "closedTradeCount": 55,
     "winDays": 2,
     "lossDays": 3,
@@ -1586,8 +1586,8 @@
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 18,
-      "executions": 25,
-      "trades": 25,
+      "executions": 29,
+      "trades": 29,
       "closedTradeDetails": [
         {
           "symbol": "RDW",
@@ -2042,6 +2042,38 @@
           "shares": 200.0,
           "price": 20.2,
           "notional": 4040.0
+        },
+        {
+          "time": "2026-06-09T10:00:00-07:00",
+          "ticker": "DDOG",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 222.06,
+          "notional": 1110.3
+        },
+        {
+          "time": "2026-06-09T10:11:00-07:00",
+          "ticker": "DDOG",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 223.46,
+          "notional": 1117.3
+        },
+        {
+          "time": "2026-06-09T10:34:00-07:00",
+          "ticker": "CRDO",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 227.4,
+          "notional": 4548.0
+        },
+        {
+          "time": "2026-06-09T12:29:00-07:00",
+          "ticker": "DDOG",
+          "side": "Buy",
+          "shares": 3.0,
+          "price": 227.45,
+          "notional": 682.35
         }
       ]
     }
@@ -2062,7 +2094,7 @@
       "end": "2026-06-12",
       "pnl": -1032.44,
       "returnPct": -2.2,
-      "trades": 31,
+      "trades": 35,
       "closedTrades": 18,
       "winDays": 0,
       "lossDays": 1
