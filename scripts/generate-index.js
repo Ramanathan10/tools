@@ -4,6 +4,9 @@ const path = require("path");
 const repoRoot = path.resolve(__dirname, "..");
 const outputFile = path.join(repoRoot, "index.html");
 const excludedDirs = new Set([".git", ".github", "scripts", "tools"]);
+const args = new Set(process.argv.slice(2));
+const jsonMode = args.has("--json");
+const checkMode = args.has("--check");
 const toolDescriptions = new Map([
   ["json-to-yaml", "Paste JSON, get clean YAML. Built for quick config and data handoffs without opening a heavyweight editor."],
   ["swing-risk", "Size a swing trade from entry, stop, target, account risk, and max capital before it hits Ram's trading notes."],
@@ -59,9 +62,12 @@ function getNestedOnlyTools() {
 
 const nestedOnlyTools = getNestedOnlyTools();
 if (nestedOnlyTools.length > 0) {
-  console.error(
-    `Nested-only tools are not listed on the public root index: ${nestedOnlyTools.join(", ")}`
-  );
+  const message = `Nested-only tools are not listed on the public root index: ${nestedOnlyTools.join(", ")}`;
+  if (jsonMode) {
+    console.log(JSON.stringify({ ok: false, error: message, nestedOnlyTools }, null, 2));
+  } else {
+    console.error(message);
+  }
   process.exit(1);
 }
 
@@ -93,17 +99,20 @@ for (const tool of [...fileTools, ...directoryTools]) {
   }
 }
 const tools = [...toolsByName.values()].sort((a, b) => a.name.localeCompare(b.name));
+const catalog = tools.map((tool) => ({
+  name: tool.name,
+  href: tool.href,
+  title: readTitle(tool.source, tool.name),
+  label: formatName(tool.name),
+  description: describeTool(tool.name),
+}));
 
-const links = tools
+const links = catalog
   .map((tool) => {
-    const title = readTitle(tool.source, tool.name);
-    const label = formatName(tool.name);
-    const description = describeTool(tool.name);
-
     return `      <a class="tool" href="${escapeHtml(tool.href)}">
-        <span class="tool-label">${escapeHtml(label)}</span>
-        <strong>${escapeHtml(title)}</strong>
-        <span>${escapeHtml(description)}</span>
+        <span class="tool-label">${escapeHtml(tool.label)}</span>
+        <strong>${escapeHtml(tool.title)}</strong>
+        <span>${escapeHtml(tool.description)}</span>
       </a>`;
   })
   .join("\n");
@@ -207,5 +216,36 @@ ${links}
 </html>
 `;
 
-fs.writeFileSync(outputFile, html, "utf8");
-console.log(`Generated index.html with ${tools.length} tools.`);
+const currentHtml = fs.existsSync(outputFile) ? fs.readFileSync(outputFile, "utf8") : "";
+const isCurrent = currentHtml === html;
+const result = {
+  ok: true,
+  mode: checkMode ? "check" : "generate",
+  indexCurrent: isCurrent,
+  toolCount: catalog.length,
+  tools: catalog.map(({ name, href, title }) => ({ name, href, title })),
+};
+
+if (checkMode && !isCurrent) {
+  result.ok = false;
+  result.error = "index.html is out of date; run node scripts/generate-index.js.";
+}
+
+if (!checkMode) {
+  fs.writeFileSync(outputFile, html, "utf8");
+  result.indexCurrent = true;
+}
+
+if (jsonMode) {
+  console.log(JSON.stringify(result, null, 2));
+} else if (result.ok) {
+  console.log(
+    checkMode
+      ? `Index preflight clean with ${catalog.length} tools.`
+      : `Generated index.html with ${catalog.length} tools.`
+  );
+} else {
+  console.error(result.error);
+}
+
+process.exit(result.ok ? 0 : 1);
