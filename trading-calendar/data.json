@@ -1,12 +1,12 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-09T09:00:38",
+  "generatedAt": "2026-06-09T09:06:49",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -1306.85,
-    "totalReturnPct": -1.09,
-    "tradeCount": 95,
+    "totalPnl": -1368.1,
+    "totalReturnPct": -1.13,
+    "tradeCount": 96,
     "closedTradeCount": 55,
     "winDays": 2,
     "lossDays": 3,
@@ -1523,8 +1523,8 @@
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 0,
-      "executions": 5,
-      "trades": 5,
+      "executions": 6,
+      "trades": 6,
       "closedTradeDetails": [],
       "executionDetails": [
         {
@@ -1534,6 +1534,14 @@
           "shares": 25.0,
           "price": 49.34,
           "notional": 1233.5
+        },
+        {
+          "time": "2026-06-08T07:36:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 49.37,
+          "notional": 1234.25
         },
         {
           "time": "2026-06-08T07:36:00-07:00",
@@ -1572,9 +1580,9 @@
     {
       "date": "2026-06-09",
       "day": 9,
-      "pnl": -971.19,
-      "returnPct": -2.12,
-      "rawPnl": -971.19,
+      "pnl": -1032.44,
+      "returnPct": -2.2,
+      "rawPnl": -1032.44,
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 18,
@@ -1810,13 +1818,13 @@
           "campaignId": "",
           "openDate": "",
           "closeDate": "2026-06-09",
-          "quantity": 70.0,
-          "avgEntry": 49.2971,
+          "quantity": 95.0,
+          "avgEntry": 49.3163,
           "avgExit": 46.92,
-          "pnl": -166.4,
-          "returnPct": -4.82,
+          "pnl": -227.65,
+          "returnPct": -4.86,
           "executionCount": 1,
-          "basis": 3450.8,
+          "basis": 4685.05,
           "time": "2026-06-09T08:31:00-07:00"
         },
         {
@@ -2052,9 +2060,9 @@
     {
       "start": "2026-06-08",
       "end": "2026-06-12",
-      "pnl": -971.19,
-      "returnPct": -2.12,
-      "trades": 30,
+      "pnl": -1032.44,
+      "returnPct": -2.2,
+      "trades": 31,
       "closedTrades": 18,
       "winDays": 0,
       "lossDays": 1
