@@ -1,15 +1,15 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-08T13:01:17",
+  "generatedAt": "2026-06-09T09:00:38",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -335.66,
-    "totalReturnPct": -0.45,
-    "tradeCount": 70,
-    "closedTradeCount": 37,
+    "totalPnl": -1306.85,
+    "totalReturnPct": -1.09,
+    "tradeCount": 95,
+    "closedTradeCount": 55,
     "winDays": 2,
-    "lossDays": 2,
+    "lossDays": 3,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
@@ -1568,6 +1568,474 @@
           "notional": 244.0
         }
       ]
+    },
+    {
+      "date": "2026-06-09",
+      "day": 9,
+      "pnl": -971.19,
+      "returnPct": -2.12,
+      "rawPnl": -971.19,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 18,
+      "executions": 25,
+      "trades": 25,
+      "closedTradeDetails": [
+        {
+          "symbol": "RDW",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 100.0,
+          "avgEntry": 18.17,
+          "avgExit": 16.9,
+          "pnl": -127.0,
+          "returnPct": -6.99,
+          "executionCount": 1,
+          "basis": 1817.0000000000002,
+          "time": "2026-06-09T06:17:00-07:00"
+        },
+        {
+          "symbol": "BEX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 5.0,
+          "avgEntry": 49.4,
+          "avgExit": 53.71,
+          "pnl": 21.55,
+          "returnPct": 8.72,
+          "executionCount": 1,
+          "basis": 247.0,
+          "time": "2026-06-09T06:39:00-07:00"
+        },
+        {
+          "symbol": "CRDO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 3.0,
+          "avgEntry": 235.1,
+          "avgExit": 245.09,
+          "pnl": 29.97,
+          "returnPct": 4.25,
+          "executionCount": 1,
+          "basis": 705.3,
+          "time": "2026-06-09T06:45:00-07:00"
+        },
+        {
+          "symbol": "BEX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 5.0,
+          "avgEntry": 49.4,
+          "avgExit": 56.72,
+          "pnl": 36.6,
+          "returnPct": 14.82,
+          "executionCount": 1,
+          "basis": 247.0,
+          "time": "2026-06-09T06:48:00-07:00"
+        },
+        {
+          "symbol": "CRDO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 2.0,
+          "avgEntry": 235.1,
+          "avgExit": 247.67,
+          "pnl": 25.14,
+          "returnPct": 5.35,
+          "executionCount": 1,
+          "basis": 470.2,
+          "time": "2026-06-09T06:48:00-07:00"
+        },
+        {
+          "symbol": "CRDO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 2.0,
+          "avgEntry": 235.1,
+          "avgExit": 250.44,
+          "pnl": 30.68,
+          "returnPct": 6.52,
+          "executionCount": 1,
+          "basis": 470.2,
+          "time": "2026-06-09T06:52:00-07:00"
+        },
+        {
+          "symbol": "SNOW",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 15.0,
+          "avgEntry": 244.98,
+          "avgExit": 241.35,
+          "pnl": -54.45,
+          "returnPct": -1.48,
+          "executionCount": 1,
+          "basis": 3674.7,
+          "time": "2026-06-09T07:00:00-07:00"
+        },
+        {
+          "symbol": "RDW",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 150.0,
+          "avgEntry": 18.17,
+          "avgExit": 16.76,
+          "pnl": -211.5,
+          "returnPct": -7.76,
+          "executionCount": 1,
+          "basis": 2725.5000000000005,
+          "time": "2026-06-09T07:11:00-07:00"
+        },
+        {
+          "symbol": "CRDO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 8.0,
+          "avgEntry": 235.1,
+          "avgExit": 240.8,
+          "pnl": 45.6,
+          "returnPct": 2.42,
+          "executionCount": 1,
+          "basis": 1880.8,
+          "time": "2026-06-09T07:13:00-07:00"
+        },
+        {
+          "symbol": "NVTS",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 150.0,
+          "avgEntry": 24.54,
+          "avgExit": 23.25,
+          "pnl": -193.5,
+          "returnPct": -5.26,
+          "executionCount": 1,
+          "basis": 3681.0,
+          "time": "2026-06-09T07:15:00-07:00"
+        },
+        {
+          "symbol": "BEX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 65.0,
+          "avgEntry": 49.4,
+          "avgExit": 51.56,
+          "pnl": 140.4,
+          "returnPct": 4.37,
+          "executionCount": 1,
+          "basis": 3211.0,
+          "time": "2026-06-09T07:33:00-07:00"
+        },
+        {
+          "symbol": "AAOI",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 25.0,
+          "avgEntry": 183.21,
+          "avgExit": 177.0,
+          "pnl": -155.25,
+          "returnPct": -3.39,
+          "executionCount": 1,
+          "basis": 4580.25,
+          "time": "2026-06-09T07:46:00-07:00"
+        },
+        {
+          "symbol": "FIVN",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 150.0,
+          "avgEntry": 21.7349,
+          "avgExit": 21.77,
+          "pnl": 5.27,
+          "returnPct": 0.16,
+          "executionCount": 1,
+          "basis": 3260.2285714285713,
+          "time": "2026-06-09T07:46:00-07:00"
+        },
+        {
+          "symbol": "ORCX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 30.0,
+          "avgEntry": 45.2,
+          "avgExit": 48.01,
+          "pnl": 84.3,
+          "returnPct": 6.22,
+          "executionCount": 1,
+          "basis": 1356.0,
+          "time": "2026-06-09T07:49:00-07:00"
+        },
+        {
+          "symbol": "SNOW",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 20.0,
+          "avgEntry": 239.75,
+          "avgExit": 235.8,
+          "pnl": -79.0,
+          "returnPct": -1.65,
+          "executionCount": 1,
+          "basis": 4795.0,
+          "time": "2026-06-09T07:49:00-07:00"
+        },
+        {
+          "symbol": "SNOW",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 20.0,
+          "avgEntry": 237.96,
+          "avgExit": 234.48,
+          "pnl": -69.6,
+          "returnPct": -1.46,
+          "executionCount": 1,
+          "basis": 4759.2,
+          "time": "2026-06-09T08:31:00-07:00"
+        },
+        {
+          "symbol": "VIAV",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 70.0,
+          "avgEntry": 49.2971,
+          "avgExit": 46.92,
+          "pnl": -166.4,
+          "returnPct": -4.82,
+          "executionCount": 1,
+          "basis": 3450.8,
+          "time": "2026-06-09T08:31:00-07:00"
+        },
+        {
+          "symbol": "FIG",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-09",
+          "quantity": 200.0,
+          "avgEntry": 21.87,
+          "avgExit": 20.2,
+          "pnl": -334.0,
+          "returnPct": -7.64,
+          "executionCount": 1,
+          "basis": 4374.0,
+          "time": "2026-06-09T08:37:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-09T06:17:00-07:00",
+          "ticker": "RDW",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 16.9,
+          "notional": 1690.0
+        },
+        {
+          "time": "2026-06-09T06:35:00-07:00",
+          "ticker": "CRDO",
+          "side": "Buy",
+          "shares": 15.0,
+          "price": 235.1,
+          "notional": 3526.5
+        },
+        {
+          "time": "2026-06-09T06:39:00-07:00",
+          "ticker": "BEX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 53.71,
+          "notional": 268.55
+        },
+        {
+          "time": "2026-06-09T06:45:00-07:00",
+          "ticker": "CRDO",
+          "side": "Sell",
+          "shares": 3.0,
+          "price": 245.09,
+          "notional": 735.27
+        },
+        {
+          "time": "2026-06-09T06:47:00-07:00",
+          "ticker": "SNOW",
+          "side": "Buy",
+          "shares": 15.0,
+          "price": 244.98,
+          "notional": 3674.7
+        },
+        {
+          "time": "2026-06-09T06:48:00-07:00",
+          "ticker": "BEX",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 56.72,
+          "notional": 283.6
+        },
+        {
+          "time": "2026-06-09T06:48:00-07:00",
+          "ticker": "CRDO",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 247.67,
+          "notional": 495.34
+        },
+        {
+          "time": "2026-06-09T06:49:00-07:00",
+          "ticker": "NVTS",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 24.54,
+          "notional": 3681.0
+        },
+        {
+          "time": "2026-06-09T06:52:00-07:00",
+          "ticker": "CRDO",
+          "side": "Sell",
+          "shares": 2.0,
+          "price": 250.44,
+          "notional": 500.88
+        },
+        {
+          "time": "2026-06-09T06:56:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 98.99,
+          "notional": 494.95
+        },
+        {
+          "time": "2026-06-09T07:00:00-07:00",
+          "ticker": "SNOW",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 241.35,
+          "notional": 3620.25
+        },
+        {
+          "time": "2026-06-09T07:11:00-07:00",
+          "ticker": "RDW",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 16.76,
+          "notional": 2514.0
+        },
+        {
+          "time": "2026-06-09T07:13:00-07:00",
+          "ticker": "CRDO",
+          "side": "Sell",
+          "shares": 8.0,
+          "price": 240.8,
+          "notional": 1926.4
+        },
+        {
+          "time": "2026-06-09T07:15:00-07:00",
+          "ticker": "NVTS",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 23.25,
+          "notional": 3487.5
+        },
+        {
+          "time": "2026-06-09T07:32:00-07:00",
+          "ticker": "AAOI",
+          "side": "Buy",
+          "shares": 25.0,
+          "price": 183.21,
+          "notional": 4580.25
+        },
+        {
+          "time": "2026-06-09T07:33:00-07:00",
+          "ticker": "BEX",
+          "side": "Sell",
+          "shares": 65.0,
+          "price": 51.56,
+          "notional": 3351.4
+        },
+        {
+          "time": "2026-06-09T07:37:00-07:00",
+          "ticker": "SNOW",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 239.75,
+          "notional": 4795.0
+        },
+        {
+          "time": "2026-06-09T07:46:00-07:00",
+          "ticker": "AAOI",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 177.0,
+          "notional": 4425.0
+        },
+        {
+          "time": "2026-06-09T07:46:00-07:00",
+          "ticker": "FIVN",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 21.77,
+          "notional": 3265.5
+        },
+        {
+          "time": "2026-06-09T07:49:00-07:00",
+          "ticker": "ORCX",
+          "side": "Sell",
+          "shares": 30.0,
+          "price": 48.01,
+          "notional": 1440.3
+        },
+        {
+          "time": "2026-06-09T07:49:00-07:00",
+          "ticker": "SNOW",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 235.8,
+          "notional": 4716.0
+        },
+        {
+          "time": "2026-06-09T07:52:00-07:00",
+          "ticker": "SNOW",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 237.96,
+          "notional": 4759.2
+        },
+        {
+          "time": "2026-06-09T08:31:00-07:00",
+          "ticker": "SNOW",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 234.48,
+          "notional": 4689.6
+        },
+        {
+          "time": "2026-06-09T08:31:00-07:00",
+          "ticker": "VIAV",
+          "side": "Sell",
+          "shares": 95.0,
+          "price": 46.92,
+          "notional": 4457.4
+        },
+        {
+          "time": "2026-06-09T08:37:00-07:00",
+          "ticker": "FIG",
+          "side": "Sell",
+          "shares": 200.0,
+          "price": 20.2,
+          "notional": 4040.0
+        }
+      ]
     }
   ],
   "weeks": [
@@ -1584,12 +2052,12 @@
     {
       "start": "2026-06-08",
       "end": "2026-06-12",
-      "pnl": 0,
-      "returnPct": null,
-      "trades": 5,
-      "closedTrades": 0,
+      "pnl": -971.19,
+      "returnPct": -2.12,
+      "trades": 30,
+      "closedTrades": 18,
       "winDays": 0,
-      "lossDays": 0
+      "lossDays": 1
     },
     {
       "start": "2026-06-15",
