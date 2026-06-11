@@ -1,12 +1,12 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-11T09:00:43",
+  "generatedAt": "2026-06-11T13:00:44",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
     "totalPnl": -1122.86,
     "totalReturnPct": -0.86,
-    "tradeCount": 114,
+    "tradeCount": 115,
     "closedTradeCount": 59,
     "winDays": 4,
     "lossDays": 3,
@@ -2178,8 +2178,8 @@
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 2,
-      "executions": 8,
-      "trades": 8,
+      "executions": 9,
+      "trades": 9,
       "closedTradeDetails": [
         {
           "symbol": "TEAM",
@@ -2274,6 +2274,14 @@
           "shares": 5.0,
           "price": 48.19,
           "notional": 240.95
+        },
+        {
+          "time": "2026-06-11T09:10:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 48.66,
+          "notional": 243.3
         }
       ]
     }
@@ -2294,7 +2302,7 @@
       "end": "2026-06-12",
       "pnl": -787.2,
       "returnPct": -1.4,
-      "trades": 49,
+      "trades": 50,
       "closedTrades": 22,
       "winDays": 2,
       "lossDays": 1
