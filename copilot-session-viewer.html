@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copilot Session Viewer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090b10;
+      --surface: #10141b;
+      --surface-2: #151a22;
+      --surface-3: #1c222d;
+      --ink: #f6f2ea;
+      --muted: #a8afba;
+      --soft: #727b88;
+      --line: #2a3240;
+      --line-strong: #404c5f;
+      --assistant: #45d483;
+      --user: #7cb7ff;
+      --tool: #f3b84b;
+      --error: #ff6f7e;
+      --meta: #c6a7ff;
+      --accent: #4ee6c1;
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(78, 230, 193, 0.12), transparent 30%),
+        radial-gradient(circle at 90% 12%, rgba(255, 111, 126, 0.09), transparent 26%),
+        linear-gradient(135deg, #090b10 0%, #111018 48%, #0c1115 100%);
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+
+    body.report-only .input-panel,
+    body.report-only .app-actions,
+    body.report-only .filter-bar,
+    body.report-only .toast {
+      display: none;
+    }
+
+    main {
+      width: min(1420px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 34px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin-top: 8px;
+      font-size: clamp(2.35rem, 6.4vw, 5.7rem);
+      line-height: 0.92;
+      text-wrap: balance;
+    }
+
+    .kicker,
+    button,
+    .file-button,
+    label,
+    .stat-label,
+    .meta,
+    summary,
+    input,
+    select {
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+    }
+
+    .kicker {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .app-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      max-width: 460px;
+    }
+
+    button,
+    .file-button {
+      min-height: 38px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--surface-2);
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-grid;
+      place-items: center;
+      padding: 0 12px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+    }
+
+    button:hover,
+    button:focus-visible,
+    .file-button:hover,
+    .file-button:focus-visible {
+      border-color: var(--accent);
+      background: var(--surface-3);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    button.primary {
+      border-color: rgba(78, 230, 193, 0.75);
+      background: #12362f;
+    }
+
+    input[type="file"] {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.65fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    body.report-only .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(16, 20, 27, 0.94);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 52px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .panel-title {
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-align: right;
+    }
+
+    .input-toolbar {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: #0b0f15;
+    }
+
+    .drop-zone {
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius);
+      background: #0d1218;
+      color: var(--muted);
+      display: grid;
+      min-height: 94px;
+      place-items: center;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .drop-zone strong {
+      color: var(--ink);
+      display: block;
+      font-size: 0.93rem;
+      margin-bottom: 4px;
+    }
+
+    .drop-zone.dragging {
+      border-color: var(--accent);
+      background: rgba(78, 230, 193, 0.08);
+    }
+
+    .parse-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .parse-card span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 560px;
+      resize: vertical;
+      border: 0;
+      outline: none;
+      background: #070a0f;
+      color: var(--ink);
+      padding: 15px;
+      font: 0.82rem/1.6 "JetBrains Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+    }
+
+    .report-panel {
+      min-height: 740px;
+    }
+
+    .session-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(78, 230, 193, 0.12), transparent 38%),
+        linear-gradient(110deg, #111820 0%, #0d1218 100%);
+    }
+
+    .session-title {
+      font-size: clamp(1.55rem, 4vw, 2.6rem);
+      line-height: 1.04;
+      text-wrap: balance;
+    }
+
+    .session-subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .hero-meta {
+      display: grid;
+      gap: 8px;
+      justify-items: end;
+      align-content: start;
+      min-width: 180px;
+    }
+
+    .pill {
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 30px;
+      padding: 0 10px;
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+
+    .pill strong {
+      color: var(--ink);
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: #0b0f15;
+    }
+
+    .stat {
+      min-height: 88px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+        var(--surface);
+      display: grid;
+      align-content: space-between;
+      padding: 11px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.64rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      line-height: 1;
+    }
+
+    .filter-bar {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) 170px 170px;
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    input[type="search"],
+    select {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #080c12;
+      color: var(--ink);
+      outline: none;
+      padding: 0 11px;
+      font-size: 0.76rem;
+    }
+
+    input[type="search"]:focus,
+    select:focus {
+      border-color: var(--accent);
+    }
+
+    .timeline-shell {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      min-height: 480px;
+    }
+
+    .rail {
+      border-right: 1px solid var(--line);
+      background: #090d13;
+      padding: 14px 12px;
+    }
+
+    .rail-title {
+      color: var(--soft);
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+      font-size: 0.67rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .role-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .role-row {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .role-row strong {
+      color: var(--ink);
+      text-transform: capitalize;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 820px;
+      overflow: auto;
+      padding: 14px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        #0b0f15;
+      background-size: 44px 44px;
+    }
+
+    .empty {
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius);
+      color: var(--muted);
+      display: grid;
+      min-height: 220px;
+      place-items: center;
+      padding: 28px 16px;
+      text-align: center;
+    }
+
+    .item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(16, 20, 27, 0.96);
+      flex: 0 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .item::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: var(--line-strong);
+    }
+
+    .item.assistant::before { background: var(--assistant); }
+    .item.user::before { background: var(--user); }
+    .item.tool::before { background: var(--tool); }
+    .item.error::before { background: var(--error); }
+    .item.metadata::before { background: var(--meta); }
+
+    .item-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      padding: 12px 14px 12px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .role {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 900;
+      text-transform: capitalize;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--line-strong);
+    }
+
+    .assistant .dot { background: var(--assistant); }
+    .user .dot { background: var(--user); }
+    .tool .dot { background: var(--tool); }
+    .error .dot { background: var(--error); }
+    .metadata .dot { background: var(--meta); }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.69rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .content {
+      padding: 14px 16px 16px 18px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .content:empty::after {
+      content: "(no plain-text content)";
+      color: var(--soft);
+      font-style: italic;
+    }
+
+    .tool-grid {
+      display: grid;
+      gap: 8px;
+      padding: 0 14px 14px 18px;
+    }
+
+    .tool-chip {
+      border: 1px solid rgba(243, 184, 75, 0.45);
+      border-radius: var(--radius);
+      background: rgba(243, 184, 75, 0.08);
+      color: #ffe1a4;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+    }
+
+    details {
+      border-top: 1px solid var(--line);
+      background: #080c12;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--muted);
+      padding: 10px 14px 10px 18px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    pre {
+      margin: 0;
+      max-height: 380px;
+      overflow: auto;
+      padding: 12px 14px 14px 18px;
+      color: #e8edf4;
+      font: 0.76rem/1.55 "JetBrains Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .toast {
+      min-height: 24px;
+      color: var(--muted);
+      padding: 9px 2px 0;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 1060px) {
+      header,
+      .layout,
+      .session-hero,
+      .timeline-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .app-actions,
+      .hero-meta {
+        justify-content: flex-start;
+        justify-items: start;
+      }
+
+      .summary {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .rail {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .role-list {
+        grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      main {
+        width: min(100% - 20px, 1420px);
+        padding-top: 18px;
+      }
+
+      h1 {
+        font-size: clamp(2.15rem, 13vw, 3.4rem);
+      }
+
+      .input-toolbar,
+      .filter-bar,
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      textarea {
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <div class="kicker">Local Session Review</div>
+        <h1>Copilot Session Viewer</h1>
+        <p class="subtitle">Drop an exported session JSON and turn the chaos into a polished timeline with role counts, tool payloads, searchable messages, and a shareable standalone report.</p>
+      </div>
+      <div class="app-actions" aria-label="Session actions">
+        <label class="file-button" for="fileInput">Open JSON</label>
+        <input id="fileInput" type="file" accept="application/json,.json" />
+        <button id="sampleButton" type="button">Sample</button>
+        <button id="copyButton" class="primary" type="button">Copy Report</button>
+        <button id="downloadButton" type="button">Download HTML</button>
+      </div>
+    </header>
+
+    <section class="layout">
+      <section class="panel input-panel" aria-label="Session JSON input">
+        <div class="panel-head">
+          <h2 class="panel-title">Input JSON</h2>
+          <span class="status" id="inputStatus">Paste or open a file</span>
+        </div>
+        <div class="input-toolbar">
+          <label class="drop-zone" id="dropZone" for="fileInput">
+            <span><strong>Drop session JSON</strong>or click Open JSON</span>
+          </label>
+          <div class="parse-card">
+            <strong>Auto-render</strong>
+            <span>Parsing runs as you paste. Tool calls and raw payloads stay collapsible so the useful text is not buried alive.</span>
+          </div>
+        </div>
+        <textarea id="jsonInput" spellcheck="false" placeholder="Paste exported Copilot session JSON here..."></textarea>
+      </section>
+
+      <section class="panel report-panel" aria-label="Rendered session">
+        <div class="panel-head">
+          <h2 class="panel-title">Readable Report</h2>
+          <span class="status" id="renderStatus">Waiting for JSON</span>
+        </div>
+        <section class="session-hero" id="sessionHero">
+          <div>
+            <h2 class="session-title">No session loaded yet</h2>
+            <p class="session-subtitle">Paste a session export to generate the report. Sample data is available when you want to sanity-check the layout.</p>
+          </div>
+          <div class="hero-meta">
+            <span class="pill"><strong>0</strong> messages</span>
+            <span class="pill"><strong>0</strong> tool calls</span>
+          </div>
+        </section>
+        <div class="summary" id="summary"></div>
+        <div class="filter-bar" aria-label="Timeline filters">
+          <input id="searchInput" type="search" placeholder="Search messages, tool names, paths..." />
+          <select id="roleFilter" aria-label="Filter by role">
+            <option value="all">All roles</option>
+          </select>
+          <select id="densitySelect" aria-label="Timeline density">
+            <option value="comfortable">Comfortable</option>
+            <option value="compact">Compact</option>
+          </select>
+        </div>
+        <div class="timeline-shell">
+          <aside class="rail" aria-label="Role summary">
+            <div class="rail-title">Conversation Mix</div>
+            <div class="role-list" id="roleList"></div>
+          </aside>
+          <div class="timeline" id="timeline">
+            <div class="empty">Messages, tool calls, and metadata render here.</div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script>
+    const input = document.getElementById("jsonInput");
+    const inputStatus = document.getElementById("inputStatus");
+    const renderStatus = document.getElementById("renderStatus");
+    const summary = document.getElementById("summary");
+    const timeline = document.getElementById("timeline");
+    const toast = document.getElementById("toast");
+    const fileInput = document.getElementById("fileInput");
+    const sampleButton = document.getElementById("sampleButton");
+    const copyButton = document.getElementById("copyButton");
+    const downloadButton = document.getElementById("downloadButton");
+    const dropZone = document.getElementById("dropZone");
+    const sessionHero = document.getElementById("sessionHero");
+    const searchInput = document.getElementById("searchInput");
+    const roleFilter = document.getElementById("roleFilter");
+    const densitySelect = document.getElementById("densitySelect");
+    const roleList = document.getElementById("roleList");
+
+    let lastReport = null;
+
+    const sampleSession = {
+      sessionId: "copilot-session-example",
+      title: "Nightly Tool Builder Review",
+      startedAt: "2026-06-10T18:42:00-07:00",
+      endedAt: "2026-06-10T19:02:00-07:00",
+      model: "gpt-4.1",
+      workspace: "C:/repos/tools.github.io",
+      messages: [
+        { role: "user", content: "Find why the nightly index job is noisy." },
+        {
+          role: "assistant",
+          content: "I found a stale nested tool entry and a generated index mismatch. I am checking the root catalog and the generator now.",
+          toolCalls: [
+            {
+              name: "shell_command",
+              arguments: { command: "node scripts/generate-index.js --check --json" },
+              result: { ok: false, error: "index.html is out of date" }
+            }
+          ]
+        },
+        {
+          role: "tool",
+          name: "shell_command",
+          content: "{ \"ok\": true, \"toolCount\": 4 }"
+        },
+        {
+          role: "assistant",
+          content: "Index generation is clean now. The catalog lists 4 tools and the Copilot Session Viewer is wired into the public index."
+        }
+      ],
+      metadata: { owner: "Ram", generatedBy: "Jarvis" }
+    };
+
+    function debounce(fn, delay) {
+      let timer;
+      return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), delay);
+      };
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function stringify(value) {
+      if (value == null) return "";
+      if (typeof value === "string") return value;
+      return JSON.stringify(value, null, 2);
+    }
+
+    function shortJson(value) {
+      const text = stringify(value);
+      return text.length > 2400 ? `${text.slice(0, 2400)}\n...` : text;
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value);
+      return date.toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
+    }
+
+    function normalizeRole(value) {
+      const raw = String(value || "metadata").toLowerCase();
+      if (raw.includes("tool") || raw.includes("function")) return "tool";
+      if (raw.includes("error") || raw.includes("exception")) return "error";
+      if (raw.includes("assistant") || raw.includes("agent") || raw.includes("model")) return "assistant";
+      if (raw.includes("user") || raw.includes("human")) return "user";
+      if (raw.includes("system")) return "metadata";
+      return raw.replace(/[^a-z0-9_-]/g, "") || "metadata";
+    }
+
+    function extractPartText(part) {
+      if (part == null) return "";
+      if (typeof part === "string") return part;
+      if (typeof part !== "object") return stringify(part);
+      return stringify(part.text ?? part.content ?? part.value ?? part.input ?? part.output ?? part);
+    }
+
+    function extractContent(item) {
+      const candidates = [item.content, item.text, item.message, item.response, item.prompt, item.value, item.output];
+      const found = candidates.find((value) => value != null && value !== "");
+      if (Array.isArray(found)) {
+        return found.map(extractPartText).filter(Boolean).join("\n");
+      }
+      return stringify(found);
+    }
+
+    function looksLikeMessage(value) {
+      if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+      return Boolean(
+        value.role ||
+        value.author ||
+        value.speaker ||
+        value.content ||
+        value.text ||
+        value.message ||
+        value.output ||
+        value.toolCalls ||
+        value.tool_calls ||
+        value.function_call ||
+        (value.name && (value.arguments || value.args || value.input || value.output || value.result || value.tool_call_id))
+      );
+    }
+
+    function collectMessages(root) {
+      const results = [];
+      const seen = new WeakSet();
+
+      function visit(value, path) {
+        if (!value || typeof value !== "object") return;
+        if (seen.has(value)) return;
+        seen.add(value);
+
+        if (Array.isArray(value)) {
+          value.forEach((entry, index) => visit(entry, `${path}[${index}]`));
+          return;
+        }
+
+        if (looksLikeMessage(value)) {
+          const role = normalizeRole(value.role ?? value.author?.role ?? value.author ?? value.speaker ?? value.type ?? value.kind);
+          results.push({
+            path,
+            role,
+            name: value.name ?? value.toolName ?? value.function?.name ?? "",
+            time: value.timestamp ?? value.createdAt ?? value.created_at ?? value.time ?? value.date ?? "",
+            content: extractContent(value),
+            raw: value
+          });
+        }
+
+        for (const [key, child] of Object.entries(value)) {
+          if (key === "raw") continue;
+          if (child && typeof child === "object") visit(child, path ? `${path}.${key}` : key);
+        }
+      }
+
+      visit(root, "root");
+      return results;
+    }
+
+    function isCopilotChatExport(data) {
+      return Boolean(data && Array.isArray(data.requests) && data.requests.some((request) => request.message || request.response));
+    }
+
+    function extractCopilotPrompt(request) {
+      const message = request.message ?? {};
+      if (message.text) return message.text;
+      if (Array.isArray(message.parts)) {
+        return message.parts.map((part) => part.text ?? part.value ?? "").filter(Boolean).join("\n");
+      }
+      return stringify(message);
+    }
+
+    function extractCopilotResponseText(item) {
+      if (!item) return "";
+      if (typeof item === "string") return item;
+      if (item.value) return item.value;
+      if (item.text) return item.text;
+      if (item.message?.text) return item.message.text;
+      if (item.message?.value) return item.message.value;
+      return "";
+    }
+
+    function extractCopilotToolText(item) {
+      const before = item.invocationMessage?.value ?? item.invocationMessage?.text ?? "";
+      const after = item.pastTenseMessage?.value ?? item.pastTenseMessage?.text ?? "";
+      const resultCount = Array.isArray(item.toolSpecificData?.values) ? `${item.toolSpecificData.values.length} result${item.toolSpecificData.values.length === 1 ? "" : "s"}` : "";
+      return [after || before || item.toolId || "Tool invocation", resultCount].filter(Boolean).join("\n");
+    }
+
+    function collectCopilotMessages(data) {
+      const messages = [];
+      for (const [requestIndex, request] of data.requests.entries()) {
+        const turn = requestIndex + 1;
+        const time = request.timestamp ?? request.createdAt ?? "";
+        const prompt = extractCopilotPrompt(request);
+        messages.push({
+          path: `requests[${requestIndex}].message`,
+          role: "user",
+          name: `Prompt ${turn}`,
+          time,
+          content: prompt,
+          raw: request.message ?? request
+        });
+
+        let pendingTools = [];
+        const flushTools = (responseIndex) => {
+          if (pendingTools.length === 0) return;
+          const preview = pendingTools
+            .slice(0, 10)
+            .map((tool, index) => `${index + 1}. ${tool.toolId ?? tool.name ?? "Tool"} - ${extractCopilotToolText(tool).split("\n")[0]}`)
+            .join("\n");
+          const remainder = pendingTools.length > 10 ? `\n... ${pendingTools.length - 10} more tool action${pendingTools.length - 10 === 1 ? "" : "s"}` : "";
+          messages.push({
+            path: `requests[${requestIndex}].response[${responseIndex}]`,
+            role: "tool",
+            name: `${pendingTools.length} Tool Action${pendingTools.length === 1 ? "" : "s"}`,
+            time,
+            content: `${preview}${remainder}`,
+            raw: pendingTools,
+            toolCalls: pendingTools
+          });
+          pendingTools = [];
+        };
+
+        for (const [responseIndex, item] of (request.response ?? []).entries()) {
+          if (item?.kind === "toolInvocationSerialized") {
+            pendingTools.push(item);
+            continue;
+          }
+
+          const content = extractCopilotResponseText(item);
+          if (content) {
+            flushTools(responseIndex);
+            messages.push({
+              path: `requests[${requestIndex}].response[${responseIndex}]`,
+              role: "assistant",
+              name: `Answer ${turn}`,
+              time,
+              content,
+              raw: item
+            });
+          }
+        }
+        flushTools((request.response ?? []).length);
+      }
+      return messages;
+    }
+
+    function collectReportMessages(data) {
+      return isCopilotChatExport(data) ? collectCopilotMessages(data) : collectMessages(data);
+    }
+
+    function collectToolCalls(messages) {
+      const calls = [];
+      for (const message of messages) {
+        const raw = message.raw;
+        if (message.toolCalls) {
+          const entries = Array.isArray(message.toolCalls) ? message.toolCalls : [message.toolCalls];
+          entries.forEach((entry) => calls.push(entry));
+          continue;
+        }
+        const direct = raw.toolCalls ?? raw.tool_calls ?? raw.tools ?? raw.function_call ?? raw.toolCall;
+        if (direct) {
+          const entries = Array.isArray(direct) ? direct : [direct];
+          entries.forEach((entry) => calls.push(entry));
+        }
+        if (message.role === "tool" && (message.name || raw.name || raw.toolId)) {
+          calls.push(raw);
+        }
+      }
+      return calls;
+    }
+
+    function sessionTitle(data) {
+      if (isCopilotChatExport(data)) {
+        return `${data.responderUsername ?? "GitHub Copilot"} Chat Export`;
+      }
+      return data.title ?? data.sessionTitle ?? data.name ?? data.sessionId ?? data.id ?? "Copilot Session Report";
+    }
+
+    function sessionStart(data) {
+      return data.startedAt ?? data.createdAt ?? data.startTime ?? data.timestamp ?? data.requests?.[0]?.timestamp;
+    }
+
+    function sessionEnd(data) {
+      return data.endedAt ?? data.completedAt ?? data.endTime ?? data.requests?.[data.requests.length - 1]?.timestamp;
+    }
+
+    function sessionSubtitle(data, messages) {
+      const started = sessionStart(data);
+      const model = data.model ?? data.modelName ?? data.metadata?.model ?? "";
+      const workspace = data.workspace ?? data.cwd ?? data.metadata?.workspace ?? "";
+      const prompts = isCopilotChatExport(data) ? `${data.requests.length} prompt${data.requests.length === 1 ? "" : "s"}` : "";
+      const parts = [
+        started ? `Started ${formatDate(started)}` : "",
+        prompts,
+        model ? `Model ${model}` : "",
+        workspace ? `Workspace ${workspace}` : "",
+        `${messages.length} rendered message${messages.length === 1 ? "" : "s"}`
+      ].filter(Boolean);
+      return parts.join(" . ");
+    }
+
+    function durationLabel(data) {
+      const start = new Date(sessionStart(data) ?? 0);
+      const end = new Date(sessionEnd(data) ?? 0);
+      if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime()) || !start.getTime() || !end.getTime()) {
+        return "Unknown";
+      }
+      const minutes = Math.max(0, Math.round((end - start) / 60000));
+      if (minutes < 60) return `${minutes}m`;
+      return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+    }
+
+    function renderStat(label, value) {
+      return `<div class="stat"><span class="stat-label">${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
+    }
+
+    function renderDetails(label, value, open = false) {
+      return `<details${open ? " open" : ""}><summary>${escapeHtml(label)}</summary><pre>${escapeHtml(shortJson(value))}</pre></details>`;
+    }
+
+    function searchAttribute(value) {
+      return String(value).replace(/[\u0000-\u001f\u007f-\u009f]+/g, " ").slice(0, 3500);
+    }
+
+    function toolName(call) {
+      return call.name ?? call.toolName ?? call.toolId ?? call.function?.name ?? call.type ?? "tool call";
+    }
+
+    function renderToolChips(toolCalls) {
+      if (!toolCalls || (Array.isArray(toolCalls) && toolCalls.length === 0)) return "";
+      const entries = Array.isArray(toolCalls) ? toolCalls : [toolCalls];
+      return `<div class="tool-grid">${entries.map((call, index) => {
+        const name = toolName(call);
+        const status = call.error ? "error" : call.isComplete ? "done" : call.result || call.output ? "result" : `#${index + 1}`;
+        return `<div class="tool-chip"><strong>${escapeHtml(name)}</strong><span>${escapeHtml(status)}</span></div>`;
+      }).join("")}</div>`;
+    }
+
+    function renderItem(message, index) {
+      const role = message.role || "metadata";
+      const raw = message.raw;
+      const toolCalls = message.toolCalls ?? raw.toolCalls ?? raw.tool_calls ?? raw.tools ?? raw.function_call ?? raw.toolCall;
+      const displayName = message.name ? ` . ${message.name}` : "";
+      const meta = [message.time ? formatDate(message.time) : "", message.path].filter(Boolean).join(" . ");
+      const searchableToolNames = (Array.isArray(toolCalls) ? toolCalls : toolCalls ? [toolCalls] : [])
+        .map((call) => toolName(call))
+        .join(" ");
+      const searchText = searchAttribute(`${role} ${displayName} ${meta} ${message.content} ${searchableToolNames}`.toLowerCase());
+
+      return [
+        `<article class="item ${escapeHtml(role)}" data-role="${escapeHtml(role)}" data-search="${escapeHtml(searchText)}">`,
+        `<div class="item-head"><div><div class="role"><span class="dot"></span>${escapeHtml(role)}${escapeHtml(displayName)}</div><div class="meta">#${index + 1} . ${escapeHtml(meta)}</div></div></div>`,
+        `<div class="content">${escapeHtml(message.content || "")}</div>`,
+        renderToolChips(toolCalls),
+        toolCalls ? renderDetails("Tool payload", toolCalls, true) : "",
+        renderDetails("Raw JSON", raw),
+        "</article>"
+      ].join("");
+    }
+
+    function renderRoleList(roles) {
+      const entries = Object.entries(roles).sort((a, b) => b[1] - a[1]);
+      roleList.innerHTML = entries.length
+        ? entries.map(([role, count]) => `<div class="role-row"><strong>${escapeHtml(role)}</strong><span>${count}</span></div>`).join("")
+        : '<div class="role-row"><strong>None</strong><span>0</span></div>';
+
+      roleFilter.innerHTML = [
+        '<option value="all">All roles</option>',
+        ...entries.map(([role]) => `<option value="${escapeHtml(role)}">${escapeHtml(role)}</option>`)
+      ].join("");
+    }
+
+    function applyFilters() {
+      if (!lastReport) return;
+      const query = searchInput.value.trim().toLowerCase();
+      const role = roleFilter.value;
+      const compact = densitySelect.value === "compact";
+      const items = [...timeline.querySelectorAll(".item")];
+      let visible = 0;
+
+      items.forEach((item) => {
+        const roleMatches = role === "all" || item.dataset.role === role;
+        const queryMatches = !query || item.dataset.search.includes(query);
+        const show = roleMatches && queryMatches;
+        item.hidden = !show;
+        if (show) visible += 1;
+        item.querySelector(".content").style.fontSize = compact ? "0.86rem" : "0.95rem";
+        item.querySelector(".content").style.lineHeight = compact ? "1.42" : "1.55";
+      });
+
+      renderStatus.textContent = `${visible} of ${items.length} messages shown`;
+    }
+
+    function renderHero(data, messages, toolCalls) {
+      sessionHero.innerHTML = [
+        "<div>",
+        `<h2 class="session-title">${escapeHtml(sessionTitle(data))}</h2>`,
+        `<p class="session-subtitle">${escapeHtml(sessionSubtitle(data, messages))}</p>`,
+        "</div>",
+        '<div class="hero-meta">',
+        `<span class="pill"><strong>${messages.length}</strong> messages</span>`,
+        `<span class="pill"><strong>${toolCalls.length}</strong> tool calls</span>`,
+        `<span class="pill"><strong>${durationLabel(data)}</strong> duration</span>`,
+        "</div>"
+      ].join("");
+    }
+
+    function renderReport(data) {
+      const messages = collectReportMessages(data);
+      const toolCalls = collectToolCalls(messages);
+      const roles = messages.reduce((acc, message) => {
+        acc[message.role] = (acc[message.role] || 0) + 1;
+        return acc;
+      }, {});
+
+      lastReport = { data, messages, toolCalls, roles, generatedAt: new Date().toISOString() };
+      renderHero(data, messages, toolCalls);
+      renderRoleList(roles);
+      const baseStats = [
+        renderStat("Messages", messages.length),
+        renderStat("Tool Calls", toolCalls.length),
+        renderStat("Roles", Object.keys(roles).length || 0),
+        renderStat("Duration", durationLabel(data))
+      ];
+      if (isCopilotChatExport(data)) {
+        baseStats.splice(1, 0, renderStat("Prompts", data.requests.length));
+      } else {
+        baseStats.push(renderStat("Bytes", input.value.length.toLocaleString()));
+      }
+      summary.innerHTML = baseStats.join("");
+
+      if (messages.length === 0) {
+        timeline.innerHTML = [
+          '<div class="empty">No message-shaped objects were found. Raw metadata is still available below.</div>',
+          renderDetails("Top-level JSON", data, true)
+        ].join("");
+      } else {
+        timeline.innerHTML = messages.map(renderItem).join("");
+      }
+
+      renderStatus.textContent = `Parsed ${messages.length} messages`;
+      inputStatus.textContent = "JSON parsed";
+      toast.textContent = "";
+      applyFilters();
+    }
+
+    function resetReport() {
+      lastReport = null;
+      summary.innerHTML = "";
+      roleList.innerHTML = "";
+      roleFilter.innerHTML = '<option value="all">All roles</option>';
+      sessionHero.innerHTML = '<div><h2 class="session-title">No session loaded yet</h2><p class="session-subtitle">Paste a session export to generate the report. Sample data is available when you want to sanity-check the layout.</p></div><div class="hero-meta"><span class="pill"><strong>0</strong> messages</span><span class="pill"><strong>0</strong> tool calls</span></div>';
+      timeline.innerHTML = '<div class="empty">Messages, tool calls, and metadata render here.</div>';
+      renderStatus.textContent = "Waiting for JSON";
+      inputStatus.textContent = "Paste or open a file";
+    }
+
+    function parseInput() {
+      const text = input.value.trim();
+      if (!text) {
+        resetReport();
+        return;
+      }
+
+      try {
+        renderReport(JSON.parse(text));
+      } catch (error) {
+        lastReport = null;
+        renderStatus.textContent = "Invalid JSON";
+        inputStatus.textContent = "Fix parse error";
+        toast.textContent = error.message;
+      }
+    }
+
+    function buildStandaloneHtml() {
+      if (!lastReport) return "";
+      const title = sessionTitle(lastReport.data);
+      const stats = [
+        renderStat("Messages", lastReport.messages.length),
+        renderStat("Tool Calls", lastReport.toolCalls.length),
+        renderStat("Roles", Object.keys(lastReport.roles).length || 0),
+        renderStat("Duration", durationLabel(lastReport.data)),
+        renderStat("Generated", new Date(lastReport.generatedAt).toLocaleString())
+      ].join("");
+
+      return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${escapeHtml(title)}</title>
+  <style>${document.querySelector("style").textContent}</style>
+</head>
+<body class="report-only">
+  <main>
+    <header><div><div class="kicker">Exported Review</div><h1>${escapeHtml(title)}</h1><p class="subtitle">${escapeHtml(sessionSubtitle(lastReport.data, lastReport.messages))}</p></div></header>
+    <section class="panel report-panel">
+      <div class="panel-head"><h2 class="panel-title">Session Timeline</h2><span class="status">${escapeHtml(lastReport.generatedAt)}</span></div>
+      ${sessionHero.outerHTML}
+      <div class="summary">${stats}</div>
+      <div class="timeline-shell">
+        <aside class="rail"><div class="rail-title">Conversation Mix</div><div class="role-list">${roleList.innerHTML}</div></aside>
+        <div class="timeline">${lastReport.messages.map(renderItem).join("") || renderDetails("Top-level JSON", lastReport.data, true)}</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>`;
+    }
+
+    async function copyReport() {
+      const html = buildStandaloneHtml();
+      if (!html) {
+        toast.textContent = "Parse a session first.";
+        return;
+      }
+      await navigator.clipboard.writeText(html);
+      toast.textContent = "Standalone report HTML copied.";
+    }
+
+    function downloadReport() {
+      const html = buildStandaloneHtml();
+      if (!html) {
+        toast.textContent = "Parse a session first.";
+        return;
+      }
+      const blob = new Blob([html], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `copilot-session-report-${new Date().toISOString().slice(0, 10)}.html`;
+      link.click();
+      URL.revokeObjectURL(url);
+      toast.textContent = "Standalone report downloaded.";
+    }
+
+    async function loadFile(file) {
+      if (!file) return;
+      input.value = await file.text();
+      inputStatus.textContent = file.name;
+      parseInput();
+    }
+
+    input.addEventListener("input", debounce(parseInput, 160));
+    searchInput.addEventListener("input", applyFilters);
+    roleFilter.addEventListener("change", applyFilters);
+    densitySelect.addEventListener("change", applyFilters);
+    fileInput.addEventListener("change", () => loadFile(fileInput.files[0]));
+    sampleButton.addEventListener("click", () => {
+      input.value = JSON.stringify(sampleSession, null, 2);
+      parseInput();
+    });
+    copyButton.addEventListener("click", () => copyReport().catch((error) => {
+      toast.textContent = error.message;
+    }));
+    downloadButton.addEventListener("click", downloadReport);
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        dropZone.classList.add("dragging");
+      });
+    });
+    ["dragleave", "drop"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        dropZone.classList.remove("dragging");
+      });
+    });
+    dropZone.addEventListener("drop", (event) => loadFile(event.dataTransfer.files[0]));
+  </script>
+</body>
+</html>
