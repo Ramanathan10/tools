@@ -1,14 +1,14 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-09T13:00:44",
+  "generatedAt": "2026-06-10T18:58:16",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -1368.1,
-    "totalReturnPct": -1.13,
-    "tradeCount": 100,
-    "closedTradeCount": 55,
-    "winDays": 2,
+    "totalPnl": -1333.44,
+    "totalReturnPct": -1.05,
+    "tradeCount": 106,
+    "closedTradeCount": 57,
+    "winDays": 3,
     "lossDays": 3,
     "bestDay": {
       "date": "2026-06-01",
@@ -2076,6 +2076,98 @@
           "notional": 682.35
         }
       ]
+    },
+    {
+      "date": "2026-06-10",
+      "day": 10,
+      "pnl": 34.66,
+      "returnPct": 0.6,
+      "rawPnl": 34.66,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 2,
+      "executions": 6,
+      "trades": 6,
+      "closedTradeDetails": [
+        {
+          "symbol": "GM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-10",
+          "quantity": 50.0,
+          "avgEntry": 80.47,
+          "avgExit": 80.01,
+          "pnl": -23.0,
+          "returnPct": -0.57,
+          "executionCount": 1,
+          "basis": 4023.5,
+          "time": "2026-06-10T12:49:00-07:00"
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-10",
+          "quantity": 20.0,
+          "avgEntry": 88.3269,
+          "avgExit": 91.21,
+          "pnl": 57.66,
+          "returnPct": 3.26,
+          "executionCount": 1,
+          "basis": 1766.5377777777776,
+          "time": "2026-06-10T12:50:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-10T05:40:00-07:00",
+          "ticker": "SNOW",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 236.76,
+          "notional": 2367.6
+        },
+        {
+          "time": "2026-06-10T06:32:00-07:00",
+          "ticker": "DDOG",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 225.03,
+          "notional": 1125.15
+        },
+        {
+          "time": "2026-06-10T06:32:00-07:00",
+          "ticker": "SNOW",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 236.74,
+          "notional": 1183.7
+        },
+        {
+          "time": "2026-06-10T10:25:00-07:00",
+          "ticker": "GM",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 80.47,
+          "notional": 4023.5
+        },
+        {
+          "time": "2026-06-10T12:49:00-07:00",
+          "ticker": "GM",
+          "side": "Sell",
+          "shares": 50.0,
+          "price": 80.01,
+          "notional": 4000.5
+        },
+        {
+          "time": "2026-06-10T12:50:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 91.21,
+          "notional": 1824.2
+        }
+      ]
     }
   ],
   "weeks": [
@@ -2092,11 +2184,11 @@
     {
       "start": "2026-06-08",
       "end": "2026-06-12",
-      "pnl": -1032.44,
-      "returnPct": -2.2,
-      "trades": 35,
-      "closedTrades": 18,
-      "winDays": 0,
+      "pnl": -997.78,
+      "returnPct": -1.89,
+      "trades": 41,
+      "closedTrades": 20,
+      "winDays": 1,
       "lossDays": 1
     },
     {
