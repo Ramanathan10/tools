@@ -1,14 +1,14 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-10T18:58:16",
+  "generatedAt": "2026-06-11T09:00:43",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -1333.44,
-    "totalReturnPct": -1.05,
-    "tradeCount": 106,
-    "closedTradeCount": 57,
-    "winDays": 3,
+    "totalPnl": -1122.86,
+    "totalReturnPct": -0.86,
+    "tradeCount": 114,
+    "closedTradeCount": 59,
+    "winDays": 4,
     "lossDays": 3,
     "bestDay": {
       "date": "2026-06-01",
@@ -2168,6 +2168,114 @@
           "notional": 1824.2
         }
       ]
+    },
+    {
+      "date": "2026-06-11",
+      "day": 11,
+      "pnl": 210.58,
+      "returnPct": 6.3,
+      "rawPnl": 210.58,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 2,
+      "executions": 8,
+      "trades": 8,
+      "closedTradeDetails": [
+        {
+          "symbol": "TEAM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-11",
+          "quantity": 25.0,
+          "avgEntry": 88.3269,
+          "avgExit": 88.75,
+          "pnl": 10.58,
+          "returnPct": 0.48,
+          "executionCount": 1,
+          "basis": 2208.172222222222,
+          "time": "2026-06-11T06:41:00-07:00"
+        },
+        {
+          "symbol": "CRDO",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-11",
+          "quantity": 5.0,
+          "avgEntry": 227.4,
+          "avgExit": 267.4,
+          "pnl": 200.0,
+          "returnPct": 17.59,
+          "executionCount": 1,
+          "basis": 1137.0,
+          "time": "2026-06-11T07:36:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-11T06:41:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 88.75,
+          "notional": 2218.75
+        },
+        {
+          "time": "2026-06-11T06:48:00-07:00",
+          "ticker": "SNOW",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 236.86,
+          "notional": 1184.3
+        },
+        {
+          "time": "2026-06-11T06:56:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 48.8,
+          "notional": 2440.0
+        },
+        {
+          "time": "2026-06-11T06:57:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 15.0,
+          "price": 48.88,
+          "notional": 733.2
+        },
+        {
+          "time": "2026-06-11T07:21:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 48.59,
+          "notional": 242.95
+        },
+        {
+          "time": "2026-06-11T07:36:00-07:00",
+          "ticker": "CRDO",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 267.4,
+          "notional": 1337.0
+        },
+        {
+          "time": "2026-06-11T07:40:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 48.68,
+          "notional": 243.4
+        },
+        {
+          "time": "2026-06-11T08:04:00-07:00",
+          "ticker": "VIAV",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 48.19,
+          "notional": 240.95
+        }
+      ]
     }
   ],
   "weeks": [
@@ -2184,11 +2292,11 @@
     {
       "start": "2026-06-08",
       "end": "2026-06-12",
-      "pnl": -997.78,
-      "returnPct": -1.89,
-      "trades": 41,
-      "closedTrades": 20,
-      "winDays": 1,
+      "pnl": -787.2,
+      "returnPct": -1.4,
+      "trades": 49,
+      "closedTrades": 22,
+      "winDays": 2,
       "lossDays": 1
     },
     {
