@@ -630,6 +630,7 @@
         <label class="file-button" for="fileInput">Open JSON</label>
         <input id="fileInput" type="file" accept="application/json,.json" />
         <button id="sampleButton" type="button">Sample</button>
+        <button id="copyMarkdownButton" type="button">Copy Markdown</button>
         <button id="copyButton" class="primary" type="button">Copy Report</button>
         <button id="downloadButton" type="button">Download HTML</button>
       </div>
@@ -702,6 +703,7 @@
     const toast = document.getElementById("toast");
     const fileInput = document.getElementById("fileInput");
     const sampleButton = document.getElementById("sampleButton");
+    const copyMarkdownButton = document.getElementById("copyMarkdownButton");
     const copyButton = document.getElementById("copyButton");
     const downloadButton = document.getElementById("downloadButton");
     const dropZone = document.getElementById("dropZone");
@@ -1213,6 +1215,58 @@
 </html>`;
     }
 
+    function markdownFence(value) {
+      const text = String(value || "").trim();
+      if (!text) return "";
+      const fence = text.includes("```") ? "````" : "```";
+      return `${fence}\n${text}\n${fence}`;
+    }
+
+    function buildMarkdownReport() {
+      if (!lastReport) return "";
+      const title = sessionTitle(lastReport.data);
+      const roleLines = Object.entries(lastReport.roles)
+        .sort((a, b) => b[1] - a[1])
+        .map(([role, count]) => `- ${role}: ${count}`)
+        .join("\n");
+      const summaryLines = [
+        `# ${title}`,
+        "",
+        `Generated: ${new Date(lastReport.generatedAt).toLocaleString()}`,
+        `Source: Copilot Session Viewer`,
+        "",
+        "## Summary",
+        `- Messages: ${lastReport.messages.length}`,
+        `- Tool calls: ${lastReport.toolCalls.length}`,
+        `- Duration: ${durationLabel(lastReport.data)}`,
+        `- Started: ${sessionStart(lastReport.data) ? formatDate(sessionStart(lastReport.data)) : "Unknown"}`,
+        "",
+        "## Roles",
+        roleLines || "- None",
+        "",
+        "## Timeline"
+      ];
+
+      const timelineLines = lastReport.messages.map((message, index) => {
+        const toolCalls = message.toolCalls ?? message.raw.toolCalls ?? message.raw.tool_calls ?? message.raw.tools ?? message.raw.function_call ?? message.raw.toolCall;
+        const toolNames = (Array.isArray(toolCalls) ? toolCalls : toolCalls ? [toolCalls] : [])
+          .map((call) => toolName(call))
+          .filter(Boolean);
+        const parts = [
+          `### ${index + 1}. ${message.role}${message.name ? ` - ${message.name}` : ""}`,
+          "",
+          message.time ? `Time: ${formatDate(message.time)}` : "",
+          `Path: \`${message.path}\``,
+          toolNames.length ? `Tools: ${toolNames.join(", ")}` : "",
+          "",
+          markdownFence(message.content || "(no plain-text content)")
+        ].filter((part) => part !== "");
+        return parts.join("\n");
+      });
+
+      return [...summaryLines, ...timelineLines].join("\n\n");
+    }
+
     async function copyReport() {
       const html = buildStandaloneHtml();
       if (!html) {
@@ -1221,6 +1275,16 @@
       }
       await navigator.clipboard.writeText(html);
       toast.textContent = "Standalone report HTML copied.";
+    }
+
+    async function copyMarkdownReport() {
+      const markdown = buildMarkdownReport();
+      if (!markdown) {
+        toast.textContent = "Parse a session first.";
+        return;
+      }
+      await navigator.clipboard.writeText(markdown);
+      toast.textContent = "Markdown report copied.";
     }
 
     function downloadReport() {
@@ -1255,6 +1319,9 @@
       input.value = JSON.stringify(sampleSession, null, 2);
       parseInput();
     });
+    copyMarkdownButton.addEventListener("click", () => copyMarkdownReport().catch((error) => {
+      toast.textContent = error.message;
+    }));
     copyButton.addEventListener("click", () => copyReport().catch((error) => {
       toast.textContent = error.message;
     }));
