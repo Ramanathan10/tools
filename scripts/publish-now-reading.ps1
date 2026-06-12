@@ -12,6 +12,7 @@ function Invoke-Checked {
 }
 
 Invoke-Checked { node scripts/update-now-reading.js }
+Invoke-Checked { node scripts/update-highlight-graph.js }
 Invoke-Checked { node scripts/generate-index.js }
 
 $changes = git status --short
@@ -20,7 +21,7 @@ if (-not $changes) {
   exit 0
 }
 
-git add index.html now-reading/index.html scripts/generate-index.js scripts/update-now-reading.js scripts/publish-now-reading.ps1
+git add index.html now-reading/index.html now-reading/highlight-graph.html scripts/generate-index.js scripts/update-now-reading.js scripts/update-highlight-graph.js scripts/publish-now-reading.ps1
 
 $staged = git diff --cached --name-only
 if (-not $staged) {
