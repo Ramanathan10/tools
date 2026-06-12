@@ -1,12 +1,12 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-12T13:00:43",
+  "generatedAt": "2026-06-12T13:06:26",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
     "totalPnl": -984.94,
     "totalReturnPct": -0.73,
-    "tradeCount": 126,
+    "tradeCount": 127,
     "closedTradeCount": 62,
     "winDays": 5,
     "lossDays": 3,
@@ -2294,8 +2294,8 @@
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 3,
-      "executions": 11,
-      "trades": 11,
+      "executions": 12,
+      "trades": 12,
       "closedTradeDetails": [
         {
           "symbol": "VIAV",
@@ -2428,6 +2428,14 @@
           "shares": 5.0,
           "price": 38.64,
           "notional": 193.2
+        },
+        {
+          "time": "2026-06-12T09:24:00-07:00",
+          "ticker": "MARA",
+          "side": "Buy",
+          "shares": 35.727045,
+          "price": 14.0,
+          "notional": 500.18
         }
       ]
     }
@@ -2448,7 +2456,7 @@
       "end": "2026-06-12",
       "pnl": -649.28,
       "returnPct": -1.05,
-      "trades": 61,
+      "trades": 62,
       "closedTrades": 25,
       "winDays": 3,
       "lossDays": 1
