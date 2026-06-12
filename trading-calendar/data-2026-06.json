@@ -1,12 +1,12 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-12T09:00:37",
+  "generatedAt": "2026-06-12T13:00:43",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
     "totalPnl": -984.94,
     "totalReturnPct": -0.73,
-    "tradeCount": 123,
+    "tradeCount": 126,
     "closedTradeCount": 62,
     "winDays": 5,
     "lossDays": 3,
@@ -2294,8 +2294,8 @@
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 3,
-      "executions": 8,
-      "trades": 8,
+      "executions": 11,
+      "trades": 11,
       "closedTradeDetails": [
         {
           "symbol": "VIAV",
@@ -2404,6 +2404,30 @@
           "shares": 50.0,
           "price": 93.51,
           "notional": 4675.5
+        },
+        {
+          "time": "2026-06-12T08:57:00-07:00",
+          "ticker": "SPCX",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 164.0,
+          "notional": 820.0
+        },
+        {
+          "time": "2026-06-12T09:02:00-07:00",
+          "ticker": "SPCX",
+          "side": "Buy",
+          "shares": 2.0,
+          "price": 160.0,
+          "notional": 320.0
+        },
+        {
+          "time": "2026-06-12T09:10:00-07:00",
+          "ticker": "OUST",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 38.64,
+          "notional": 193.2
         }
       ]
     }
@@ -2424,7 +2448,7 @@
       "end": "2026-06-12",
       "pnl": -649.28,
       "returnPct": -1.05,
-      "trades": 58,
+      "trades": 61,
       "closedTrades": 25,
       "winDays": 3,
       "lossDays": 1
