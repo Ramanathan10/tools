@@ -1,13 +1,13 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-12T08:24:24",
+  "generatedAt": "2026-06-12T09:00:37",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -985.44,
-    "totalReturnPct": -0.75,
-    "tradeCount": 122,
-    "closedTradeCount": 61,
+    "totalPnl": -984.94,
+    "totalReturnPct": -0.73,
+    "tradeCount": 123,
+    "closedTradeCount": 62,
     "winDays": 5,
     "lossDays": 3,
     "bestDay": {
@@ -2288,14 +2288,14 @@
     {
       "date": "2026-06-12",
       "day": 12,
-      "pnl": 137.42,
-      "returnPct": 14.86,
-      "rawPnl": 137.42,
+      "pnl": 137.92,
+      "returnPct": 2.46,
+      "rawPnl": 137.92,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 2,
-      "executions": 7,
-      "trades": 7,
+      "closedTrades": 3,
+      "executions": 8,
+      "trades": 8,
       "closedTradeDetails": [
         {
           "symbol": "VIAV",
@@ -2324,6 +2324,20 @@
           "executionCount": 1,
           "basis": 680.9818181818183,
           "time": "2026-06-12T07:43:00-07:00"
+        },
+        {
+          "symbol": "HOOD",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-12",
+          "quantity": 50.0,
+          "avgEntry": 93.5,
+          "avgExit": 93.51,
+          "pnl": 0.5,
+          "returnPct": 0.01,
+          "executionCount": 1,
+          "basis": 4675.0,
+          "time": "2026-06-12T08:56:00-07:00"
         }
       ],
       "executionDetails": [
@@ -2382,6 +2396,14 @@
           "shares": 40.0,
           "price": 19.79,
           "notional": 791.6
+        },
+        {
+          "time": "2026-06-12T08:56:00-07:00",
+          "ticker": "HOOD",
+          "side": "Sell",
+          "shares": 50.0,
+          "price": 93.51,
+          "notional": 4675.5
         }
       ]
     }
@@ -2400,10 +2422,10 @@
     {
       "start": "2026-06-08",
       "end": "2026-06-12",
-      "pnl": -649.78,
-      "returnPct": -1.14,
-      "trades": 57,
-      "closedTrades": 24,
+      "pnl": -649.28,
+      "returnPct": -1.05,
+      "trades": 58,
+      "closedTrades": 25,
       "winDays": 3,
       "lossDays": 1
     },
