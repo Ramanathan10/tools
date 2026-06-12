@@ -631,6 +631,7 @@
         <input id="fileInput" type="file" accept="application/json,.json" />
         <button id="sampleButton" type="button">Sample</button>
         <button id="copyMarkdownButton" type="button">Copy Markdown</button>
+        <button id="downloadMarkdownButton" type="button">Download MD</button>
         <button id="copyButton" class="primary" type="button">Copy Report</button>
         <button id="downloadButton" type="button">Download HTML</button>
       </div>
@@ -704,6 +705,7 @@
     const fileInput = document.getElementById("fileInput");
     const sampleButton = document.getElementById("sampleButton");
     const copyMarkdownButton = document.getElementById("copyMarkdownButton");
+    const downloadMarkdownButton = document.getElementById("downloadMarkdownButton");
     const copyButton = document.getElementById("copyButton");
     const downloadButton = document.getElementById("downloadButton");
     const dropZone = document.getElementById("dropZone");
@@ -1222,6 +1224,17 @@
       return `${fence}\n${text}\n${fence}`;
     }
 
+    function reportSlug() {
+      const title = lastReport ? sessionTitle(lastReport.data) : "copilot-session";
+      const date = lastReport?.generatedAt || new Date().toISOString();
+      const safeTitle = title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 64) || "copilot-session";
+      return `${safeTitle}-${date.slice(0, 10)}`;
+    }
+
     function buildMarkdownReport() {
       if (!lastReport) return "";
       const title = sessionTitle(lastReport.data);
@@ -1287,19 +1300,33 @@
       toast.textContent = "Markdown report copied.";
     }
 
+    function downloadText(contents, filename, type) {
+      const blob = new Blob([contents], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadMarkdownReport() {
+      const markdown = buildMarkdownReport();
+      if (!markdown) {
+        toast.textContent = "Parse a session first.";
+        return;
+      }
+      downloadText(markdown, `${reportSlug()}.md`, "text/markdown");
+      toast.textContent = "Markdown report downloaded.";
+    }
+
     function downloadReport() {
       const html = buildStandaloneHtml();
       if (!html) {
         toast.textContent = "Parse a session first.";
         return;
       }
-      const blob = new Blob([html], { type: "text/html" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `copilot-session-report-${new Date().toISOString().slice(0, 10)}.html`;
-      link.click();
-      URL.revokeObjectURL(url);
+      downloadText(html, `${reportSlug()}.html`, "text/html");
       toast.textContent = "Standalone report downloaded.";
     }
 
@@ -1322,6 +1349,7 @@
     copyMarkdownButton.addEventListener("click", () => copyMarkdownReport().catch((error) => {
       toast.textContent = error.message;
     }));
+    downloadMarkdownButton.addEventListener("click", downloadMarkdownReport);
     copyButton.addEventListener("click", () => copyReport().catch((error) => {
       toast.textContent = error.message;
     }));
