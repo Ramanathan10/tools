@@ -10,6 +10,7 @@ const checkMode = args.has("--check");
 const toolDescriptions = new Map([
   ["copilot-session-viewer", "Turn exported Copilot session JSON into a readable local timeline with collapsible tool payloads and standalone HTML export."],
   ["json-to-yaml", "Paste JSON, get clean YAML. Built for quick config and data handoffs without opening a heavyweight editor."],
+  ["now-reading", "A warm Readwise Reader page showing current reads, finished reading history, and a six-month activity heatmap."],
   ["swing-risk", "Size a swing trade from entry, stop, target, account risk, and max capital before it hits Ram's trading notes."],
   ["trading-calendar", "Monthly trading archive with executions, P&L, and session context for Ram's swing-trading review loop."],
 ]);
