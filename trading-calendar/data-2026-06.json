@@ -1,14 +1,14 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-11T13:00:44",
+  "generatedAt": "2026-06-12T08:24:24",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -1122.86,
-    "totalReturnPct": -0.86,
-    "tradeCount": 115,
-    "closedTradeCount": 59,
-    "winDays": 4,
+    "totalPnl": -985.44,
+    "totalReturnPct": -0.75,
+    "tradeCount": 122,
+    "closedTradeCount": 61,
+    "winDays": 5,
     "lossDays": 3,
     "bestDay": {
       "date": "2026-06-01",
@@ -2284,6 +2284,106 @@
           "notional": 243.3
         }
       ]
+    },
+    {
+      "date": "2026-06-12",
+      "day": 12,
+      "pnl": 137.42,
+      "returnPct": 14.86,
+      "rawPnl": 137.42,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 2,
+      "executions": 7,
+      "trades": 7,
+      "closedTradeDetails": [
+        {
+          "symbol": "VIAV",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-12",
+          "quantity": 5.0,
+          "avgEntry": 48.7506,
+          "avgExit": 54.11,
+          "pnl": 26.8,
+          "returnPct": 10.99,
+          "executionCount": 1,
+          "basis": 243.75294117647056,
+          "time": "2026-06-12T07:42:00-07:00"
+        },
+        {
+          "symbol": "NAVN",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-12",
+          "quantity": 40.0,
+          "avgEntry": 17.0245,
+          "avgExit": 19.79,
+          "pnl": 110.62,
+          "returnPct": 16.24,
+          "executionCount": 1,
+          "basis": 680.9818181818183,
+          "time": "2026-06-12T07:43:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-12T07:20:00-07:00",
+          "ticker": "AMKR",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 79.63,
+          "notional": 3981.5
+        },
+        {
+          "time": "2026-06-12T07:29:00-07:00",
+          "ticker": "OUST",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 38.8,
+          "notional": 3880.0
+        },
+        {
+          "time": "2026-06-12T07:30:00-07:00",
+          "ticker": "AMKR",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 79.03,
+          "notional": 395.15
+        },
+        {
+          "time": "2026-06-12T07:36:00-07:00",
+          "ticker": "HOOD",
+          "side": "Buy",
+          "shares": 50.0,
+          "price": 93.5,
+          "notional": 4675.0
+        },
+        {
+          "time": "2026-06-12T07:38:00-07:00",
+          "ticker": "MARA",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 14.28,
+          "notional": 1428.0
+        },
+        {
+          "time": "2026-06-12T07:42:00-07:00",
+          "ticker": "VIAV",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 54.11,
+          "notional": 270.55
+        },
+        {
+          "time": "2026-06-12T07:43:00-07:00",
+          "ticker": "NAVN",
+          "side": "Sell",
+          "shares": 40.0,
+          "price": 19.79,
+          "notional": 791.6
+        }
+      ]
     }
   ],
   "weeks": [
@@ -2300,11 +2400,11 @@
     {
       "start": "2026-06-08",
       "end": "2026-06-12",
-      "pnl": -787.2,
-      "returnPct": -1.4,
-      "trades": 50,
-      "closedTrades": 22,
-      "winDays": 2,
+      "pnl": -649.78,
+      "returnPct": -1.14,
+      "trades": 57,
+      "closedTrades": 24,
+      "winDays": 3,
       "lossDays": 1
     },
     {
