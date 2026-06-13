@@ -48,6 +48,7 @@
     body.report-only .input-panel,
     body.report-only .app-actions,
     body.report-only .filter-bar,
+    body.report-only .review-panel,
     body.report-only .toast {
       display: none;
     }
@@ -322,6 +323,93 @@
       background: #0b0f15;
     }
 
+    .review-panel {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+      gap: 12px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: #0d1218;
+    }
+
+    .review-scoreboard {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .review-score {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 38px;
+      padding: 9px 10px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .review-score strong {
+      color: var(--ink);
+    }
+
+    .review-list {
+      display: grid;
+      gap: 8px;
+      max-height: 320px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .review-finding {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(16, 20, 27, 0.96);
+      display: grid;
+      gap: 7px;
+      padding: 10px;
+    }
+
+    .finding-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .finding-type {
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--accent);
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+      font-size: 0.64rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      padding: 3px 7px;
+      text-transform: uppercase;
+    }
+
+    .finding-source {
+      color: var(--muted);
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+      font-size: 0.68rem;
+      text-decoration: none;
+    }
+
+    .finding-source:hover,
+    .finding-source:focus-visible {
+      color: var(--ink);
+      outline: none;
+    }
+
+    .finding-text {
+      color: var(--ink);
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
     .stat {
       min-height: 88px;
       border: 1px solid var(--line);
@@ -582,8 +670,12 @@
         justify-items: start;
       }
 
-      .summary {
+        .summary {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .review-panel {
+        grid-template-columns: 1fr;
       }
 
       .rail {
@@ -608,7 +700,8 @@
 
       .input-toolbar,
       .filter-bar,
-      .summary {
+      .summary,
+      .review-panel {
         grid-template-columns: 1fr;
       }
 
@@ -624,14 +717,12 @@
       <div>
         <div class="kicker">Local Session Review</div>
         <h1>Copilot Session Viewer</h1>
-        <p class="subtitle">Drop an exported session JSON and turn the chaos into a polished timeline with role counts, tool payloads, searchable messages, and a shareable standalone report.</p>
+        <p class="subtitle">Drop an exported session JSON and turn the chaos into a review cockpit with source-linked decisions, actions, errors, questions, workflow lessons, and searchable tool payloads.</p>
       </div>
       <div class="app-actions" aria-label="Session actions">
         <label class="file-button" for="fileInput">Open JSON</label>
         <input id="fileInput" type="file" accept="application/json,.json" />
         <button id="sampleButton" type="button">Sample</button>
-        <button id="copyMarkdownButton" type="button">Copy Markdown</button>
-        <button id="downloadMarkdownButton" type="button">Download MD</button>
         <button id="copyButton" class="primary" type="button">Copy Report</button>
         <button id="downloadButton" type="button">Download HTML</button>
       </div>
@@ -649,7 +740,7 @@
           </label>
           <div class="parse-card">
             <strong>Auto-render</strong>
-            <span>Parsing runs as you paste. Tool calls and raw payloads stay collapsible so the useful text is not buried alive.</span>
+            <span>Parsing runs as you paste. The review panel extracts likely decisions, actions, errors, open questions, and reusable lessons without creating extra files.</span>
           </div>
         </div>
         <textarea id="jsonInput" spellcheck="false" placeholder="Paste exported Copilot session JSON here..."></textarea>
@@ -671,6 +762,19 @@
           </div>
         </section>
         <div class="summary" id="summary"></div>
+        <section class="review-panel" id="reviewPanel" aria-label="Review cockpit">
+          <div class="review-scoreboard">
+            <div class="rail-title">Review Cockpit</div>
+            <div class="review-score"><strong>Decisions</strong><span>0</span></div>
+            <div class="review-score"><strong>Actions</strong><span>0</span></div>
+            <div class="review-score"><strong>Errors</strong><span>0</span></div>
+            <div class="review-score"><strong>Questions</strong><span>0</span></div>
+            <div class="review-score"><strong>Lessons</strong><span>0</span></div>
+          </div>
+          <div class="review-list">
+            <div class="empty">Review findings appear here with source-message jump links.</div>
+          </div>
+        </section>
         <div class="filter-bar" aria-label="Timeline filters">
           <input id="searchInput" type="search" placeholder="Search messages, tool names, paths..." />
           <select id="roleFilter" aria-label="Filter by role">
@@ -704,8 +808,6 @@
     const toast = document.getElementById("toast");
     const fileInput = document.getElementById("fileInput");
     const sampleButton = document.getElementById("sampleButton");
-    const copyMarkdownButton = document.getElementById("copyMarkdownButton");
-    const downloadMarkdownButton = document.getElementById("downloadMarkdownButton");
     const copyButton = document.getElementById("copyButton");
     const downloadButton = document.getElementById("downloadButton");
     const dropZone = document.getElementById("dropZone");
@@ -714,6 +816,7 @@
     const roleFilter = document.getElementById("roleFilter");
     const densitySelect = document.getElementById("densitySelect");
     const roleList = document.getElementById("roleList");
+    const reviewPanel = document.getElementById("reviewPanel");
 
     let lastReport = null;
 
@@ -728,7 +831,7 @@
         { role: "user", content: "Find why the nightly index job is noisy." },
         {
           role: "assistant",
-          content: "I found a stale nested tool entry and a generated index mismatch. I am checking the root catalog and the generator now.",
+          content: "Decision: keep the viewer as the review surface instead of exporting Markdown. Action: check the root catalog and generator. I found a stale nested tool entry and a generated index mismatch.",
           toolCalls: [
             {
               name: "shell_command",
@@ -744,7 +847,7 @@
         },
         {
           role: "assistant",
-          content: "Index generation is clean now. The catalog lists 4 tools and the Copilot Session Viewer is wired into the public index."
+          content: "Index generation is clean now. Lesson: keep review affordances inside the page when file churn is not the workflow bottleneck. Open question: should this run from the nightly tool builder preflight?"
         }
       ],
       metadata: { owner: "Ram", generatedBy: "Jarvis" }
@@ -1023,6 +1126,95 @@
       return `<div class="stat"><span class="stat-label">${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
     }
 
+    function splitReviewSentences(text) {
+      return String(text || "")
+        .replace(/\s+/g, " ")
+        .split(/(?<=[.!?])\s+|\n+|(?:^|\s)(?=(?:Decision|Action|Error|Question|Lesson|TODO|Follow-up)\s*:)/i)
+        .map((part) => part.trim())
+        .filter(Boolean);
+    }
+
+    function classifyReviewSentence(sentence) {
+      const text = sentence.toLowerCase();
+      if (/\b(decision|decided|choose|chosen|keep|use|ship|scope)\b/.test(text)) return "decision";
+      if (/\b(action|todo|follow-up|next step|need to|must|should|checking|verify|wire|add|fix)\b/.test(text)) return "action";
+      if (/\b(error|exception|failed|failure|invalid|mismatch|out of date|blocked|timeout|parse error)\b/.test(text)) return "error";
+      if (sentence.includes("?") || /\b(open question|question|unclear|unknown|whether)\b/.test(text)) return "question";
+      if (/\b(lesson|learned|remember|workflow|pattern|future|reusable)\b/.test(text)) return "lesson";
+      return "";
+    }
+
+    function sentencePreview(sentence) {
+      const cleaned = sentence.replace(/^(Decision|Action|Error|Question|Lesson|TODO|Follow-up)\s*:\s*/i, "").trim();
+      return cleaned.length > 260 ? `${cleaned.slice(0, 257)}...` : cleaned;
+    }
+
+    function analyzeReviewFindings(messages) {
+      const findings = [];
+      const seen = new Set();
+      messages.forEach((message, index) => {
+        const source = `#message-${index + 1}`;
+        const candidates = [
+          ...splitReviewSentences(message.content),
+          message.role === "error" ? "Error message found in timeline." : "",
+          ...(Array.isArray(message.toolCalls) ? message.toolCalls : message.toolCalls ? [message.toolCalls] : []).flatMap((call) => {
+            const text = stringify(call.error ?? call.result?.error ?? call.output ?? call.result ?? "");
+            return splitReviewSentences(text);
+          })
+        ].filter(Boolean);
+
+        candidates.forEach((sentence) => {
+          const type = classifyReviewSentence(sentence);
+          if (!type) return;
+          const text = sentencePreview(sentence);
+          if (!text || text.length < 12) return;
+          const key = `${type}:${text.toLowerCase()}`;
+          if (seen.has(key)) return;
+          seen.add(key);
+          findings.push({
+            type,
+            text,
+            source,
+            label: `${message.role}${message.name ? ` - ${message.name}` : ""}`,
+            messageIndex: index + 1
+          });
+        });
+      });
+      return findings.slice(0, 60);
+    }
+
+    function renderReviewPanel(findings) {
+      const categories = ["decision", "action", "error", "question", "lesson"];
+      const counts = categories.reduce((acc, category) => {
+        acc[category] = findings.filter((finding) => finding.type === category).length;
+        return acc;
+      }, {});
+      const scoreRows = categories.map((category) => {
+        const label = category === "action" ? "Actions" : `${category.charAt(0).toUpperCase()}${category.slice(1)}s`;
+        return `<div class="review-score"><strong>${escapeHtml(label)}</strong><span>${counts[category]}</span></div>`;
+      }).join("");
+
+      const findingRows = findings.length
+        ? findings.map((finding) => [
+          '<article class="review-finding">',
+          '<div class="finding-head">',
+          `<span class="finding-type">${escapeHtml(finding.type)}</span>`,
+          `<a class="finding-source" href="${escapeHtml(finding.source)}">Message ${finding.messageIndex}</a>`,
+          "</div>",
+          `<div class="finding-text">${escapeHtml(finding.text)}</div>`,
+          `<div class="meta">${escapeHtml(finding.label)}</div>`,
+          "</article>"
+        ].join("")).join("")
+        : '<div class="empty">No likely review findings found. The timeline is still searchable below.</div>';
+
+      reviewPanel.innerHTML = [
+        '<div class="review-scoreboard"><div class="rail-title">Review Cockpit</div>',
+        scoreRows,
+        "</div>",
+        `<div class="review-list">${findingRows}</div>`
+      ].join("");
+    }
+
     function renderDetails(label, value, open = false) {
       return `<details${open ? " open" : ""}><summary>${escapeHtml(label)}</summary><pre>${escapeHtml(shortJson(value))}</pre></details>`;
     }
@@ -1057,7 +1249,7 @@
       const searchText = searchAttribute(`${role} ${displayName} ${meta} ${message.content} ${searchableToolNames}`.toLowerCase());
 
       return [
-        `<article class="item ${escapeHtml(role)}" data-role="${escapeHtml(role)}" data-search="${escapeHtml(searchText)}">`,
+        `<article class="item ${escapeHtml(role)}" id="message-${index + 1}" data-role="${escapeHtml(role)}" data-search="${escapeHtml(searchText)}">`,
         `<div class="item-head"><div><div class="role"><span class="dot"></span>${escapeHtml(role)}${escapeHtml(displayName)}</div><div class="meta">#${index + 1} . ${escapeHtml(meta)}</div></div></div>`,
         `<div class="content">${escapeHtml(message.content || "")}</div>`,
         renderToolChips(toolCalls),
@@ -1121,10 +1313,12 @@
         acc[message.role] = (acc[message.role] || 0) + 1;
         return acc;
       }, {});
+      const findings = analyzeReviewFindings(messages);
 
-      lastReport = { data, messages, toolCalls, roles, generatedAt: new Date().toISOString() };
+      lastReport = { data, messages, toolCalls, roles, findings, generatedAt: new Date().toISOString() };
       renderHero(data, messages, toolCalls);
       renderRoleList(roles);
+      renderReviewPanel(findings);
       const baseStats = [
         renderStat("Messages", messages.length),
         renderStat("Tool Calls", toolCalls.length),
@@ -1156,6 +1350,7 @@
     function resetReport() {
       lastReport = null;
       summary.innerHTML = "";
+      renderReviewPanel([]);
       roleList.innerHTML = "";
       roleFilter.innerHTML = '<option value="all">All roles</option>';
       sessionHero.innerHTML = '<div><h2 class="session-title">No session loaded yet</h2><p class="session-subtitle">Paste a session export to generate the report. Sample data is available when you want to sanity-check the layout.</p></div><div class="hero-meta"><span class="pill"><strong>0</strong> messages</span><span class="pill"><strong>0</strong> tool calls</span></div>';
@@ -1217,13 +1412,6 @@
 </html>`;
     }
 
-    function markdownFence(value) {
-      const text = String(value || "").trim();
-      if (!text) return "";
-      const fence = text.includes("```") ? "````" : "```";
-      return `${fence}\n${text}\n${fence}`;
-    }
-
     function reportSlug() {
       const title = lastReport ? sessionTitle(lastReport.data) : "copilot-session";
       const date = lastReport?.generatedAt || new Date().toISOString();
@@ -1233,51 +1421,6 @@
         .replace(/^-+|-+$/g, "")
         .slice(0, 64) || "copilot-session";
       return `${safeTitle}-${date.slice(0, 10)}`;
-    }
-
-    function buildMarkdownReport() {
-      if (!lastReport) return "";
-      const title = sessionTitle(lastReport.data);
-      const roleLines = Object.entries(lastReport.roles)
-        .sort((a, b) => b[1] - a[1])
-        .map(([role, count]) => `- ${role}: ${count}`)
-        .join("\n");
-      const summaryLines = [
-        `# ${title}`,
-        "",
-        `Generated: ${new Date(lastReport.generatedAt).toLocaleString()}`,
-        `Source: Copilot Session Viewer`,
-        "",
-        "## Summary",
-        `- Messages: ${lastReport.messages.length}`,
-        `- Tool calls: ${lastReport.toolCalls.length}`,
-        `- Duration: ${durationLabel(lastReport.data)}`,
-        `- Started: ${sessionStart(lastReport.data) ? formatDate(sessionStart(lastReport.data)) : "Unknown"}`,
-        "",
-        "## Roles",
-        roleLines || "- None",
-        "",
-        "## Timeline"
-      ];
-
-      const timelineLines = lastReport.messages.map((message, index) => {
-        const toolCalls = message.toolCalls ?? message.raw.toolCalls ?? message.raw.tool_calls ?? message.raw.tools ?? message.raw.function_call ?? message.raw.toolCall;
-        const toolNames = (Array.isArray(toolCalls) ? toolCalls : toolCalls ? [toolCalls] : [])
-          .map((call) => toolName(call))
-          .filter(Boolean);
-        const parts = [
-          `### ${index + 1}. ${message.role}${message.name ? ` - ${message.name}` : ""}`,
-          "",
-          message.time ? `Time: ${formatDate(message.time)}` : "",
-          `Path: \`${message.path}\``,
-          toolNames.length ? `Tools: ${toolNames.join(", ")}` : "",
-          "",
-          markdownFence(message.content || "(no plain-text content)")
-        ].filter((part) => part !== "");
-        return parts.join("\n");
-      });
-
-      return [...summaryLines, ...timelineLines].join("\n\n");
     }
 
     async function copyReport() {
@@ -1290,16 +1433,6 @@
       toast.textContent = "Standalone report HTML copied.";
     }
 
-    async function copyMarkdownReport() {
-      const markdown = buildMarkdownReport();
-      if (!markdown) {
-        toast.textContent = "Parse a session first.";
-        return;
-      }
-      await navigator.clipboard.writeText(markdown);
-      toast.textContent = "Markdown report copied.";
-    }
-
     function downloadText(contents, filename, type) {
       const blob = new Blob([contents], { type });
       const url = URL.createObjectURL(blob);
@@ -1308,16 +1441,6 @@
       link.download = filename;
       link.click();
       URL.revokeObjectURL(url);
-    }
-
-    function downloadMarkdownReport() {
-      const markdown = buildMarkdownReport();
-      if (!markdown) {
-        toast.textContent = "Parse a session first.";
-        return;
-      }
-      downloadText(markdown, `${reportSlug()}.md`, "text/markdown");
-      toast.textContent = "Markdown report downloaded.";
     }
 
     function downloadReport() {
@@ -1346,10 +1469,6 @@
       input.value = JSON.stringify(sampleSession, null, 2);
       parseInput();
     });
-    copyMarkdownButton.addEventListener("click", () => copyMarkdownReport().catch((error) => {
-      toast.textContent = error.message;
-    }));
-    downloadMarkdownButton.addEventListener("click", downloadMarkdownReport);
     copyButton.addEventListener("click", () => copyReport().catch((error) => {
       toast.textContent = error.message;
     }));
