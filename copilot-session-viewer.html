@@ -717,13 +717,13 @@
       <div>
         <div class="kicker">Local Session Review</div>
         <h1>Copilot Session Viewer</h1>
-        <p class="subtitle">Drop an exported session JSON and turn the chaos into a review cockpit with source-linked decisions, actions, errors, questions, workflow lessons, and searchable tool payloads.</p>
+        <p class="subtitle">Drop an exported session JSON and turn the chaos into a review cockpit with source-linked decisions, actions, errors, questions, workflow lessons, copyable briefs, and searchable tool payloads.</p>
       </div>
       <div class="app-actions" aria-label="Session actions">
         <label class="file-button" for="fileInput">Open JSON</label>
         <input id="fileInput" type="file" accept="application/json,.json" />
         <button id="sampleButton" type="button">Sample</button>
-        <button id="copyButton" class="primary" type="button">Copy Report</button>
+        <button id="copyButton" class="primary" type="button">Copy Brief</button>
         <button id="downloadButton" type="button">Download HTML</button>
       </div>
     </header>
@@ -1322,6 +1322,7 @@
       const baseStats = [
         renderStat("Messages", messages.length),
         renderStat("Tool Calls", toolCalls.length),
+        renderStat("Findings", findings.length),
         renderStat("Roles", Object.keys(roles).length || 0),
         renderStat("Duration", durationLabel(data))
       ];
@@ -1412,6 +1413,38 @@
 </html>`;
     }
 
+    function buildReviewBrief() {
+      if (!lastReport) return "";
+      const categories = ["decision", "action", "error", "question", "lesson"];
+      const lines = [
+        `# ${sessionTitle(lastReport.data)}`,
+        "",
+        `Generated: ${new Date(lastReport.generatedAt).toLocaleString()}`,
+        `Messages: ${lastReport.messages.length}`,
+        `Tool calls: ${lastReport.toolCalls.length}`,
+        `Review findings: ${lastReport.findings.length}`,
+        ""
+      ];
+
+      categories.forEach((category) => {
+        const findings = lastReport.findings.filter((finding) => finding.type === category);
+        if (!findings.length) return;
+        const label = category === "action" ? "Actions" : `${category.charAt(0).toUpperCase()}${category.slice(1)}s`;
+        lines.push(`## ${label}`);
+        findings.slice(0, 12).forEach((finding) => {
+          lines.push(`- [Message ${finding.messageIndex}] ${finding.text}`);
+        });
+        lines.push("");
+      });
+
+      if (!lastReport.findings.length) {
+        lines.push("No likely review findings were extracted. Use the searchable timeline for manual review.");
+        lines.push("");
+      }
+
+      return lines.join("\n").trimEnd();
+    }
+
     function reportSlug() {
       const title = lastReport ? sessionTitle(lastReport.data) : "copilot-session";
       const date = lastReport?.generatedAt || new Date().toISOString();
@@ -1423,14 +1456,14 @@
       return `${safeTitle}-${date.slice(0, 10)}`;
     }
 
-    async function copyReport() {
-      const html = buildStandaloneHtml();
-      if (!html) {
+    async function copyBrief() {
+      const brief = buildReviewBrief();
+      if (!brief) {
         toast.textContent = "Parse a session first.";
         return;
       }
-      await navigator.clipboard.writeText(html);
-      toast.textContent = "Standalone report HTML copied.";
+      await navigator.clipboard.writeText(brief);
+      toast.textContent = "Review brief copied.";
     }
 
     function downloadText(contents, filename, type) {
@@ -1469,7 +1502,7 @@
       input.value = JSON.stringify(sampleSession, null, 2);
       parseInput();
     });
-    copyButton.addEventListener("click", () => copyReport().catch((error) => {
+    copyButton.addEventListener("click", () => copyBrief().catch((error) => {
       toast.textContent = error.message;
     }));
     downloadButton.addEventListener("click", downloadReport);
