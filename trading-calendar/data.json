@@ -1,13 +1,13 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-15T09:00:48",
+  "generatedAt": "2026-06-15T13:00:39",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -852.97,
+    "totalPnl": -866.87,
     "totalReturnPct": -0.68,
-    "tradeCount": 134,
-    "closedTradeCount": 58,
+    "tradeCount": 135,
+    "closedTradeCount": 59,
     "winDays": 5,
     "lossDays": 4,
     "bestDay": {
@@ -2260,14 +2260,14 @@
     {
       "date": "2026-06-15",
       "day": 15,
-      "pnl": 253.02,
-      "returnPct": 5.59,
-      "rawPnl": 253.02,
+      "pnl": 239.12,
+      "returnPct": 4.39,
+      "rawPnl": 239.12,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 4,
-      "executions": 7,
-      "trades": 7,
+      "closedTrades": 5,
+      "executions": 8,
+      "trades": 8,
       "closedTradeDetails": [
         {
           "symbol": "OUST",
@@ -2324,6 +2324,20 @@
           "executionCount": 1,
           "basis": 397.87727272727267,
           "time": "2026-06-15T07:21:00-07:00"
+        },
+        {
+          "symbol": "TEAM",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-15",
+          "quantity": 10.0,
+          "avgEntry": 92.28,
+          "avgExit": 90.89,
+          "pnl": -13.9,
+          "returnPct": -1.51,
+          "executionCount": 1,
+          "basis": 922.8,
+          "time": "2026-06-15T12:09:00-07:00"
         }
       ],
       "executionDetails": [
@@ -2382,6 +2396,14 @@
           "shares": 10.0,
           "price": 92.28,
           "notional": 922.8
+        },
+        {
+          "time": "2026-06-15T12:09:00-07:00",
+          "ticker": "TEAM",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 90.89,
+          "notional": 908.9
         }
       ]
     }
@@ -2410,10 +2432,10 @@
     {
       "start": "2026-06-15",
       "end": "2026-06-19",
-      "pnl": 253.02,
-      "returnPct": 5.59,
-      "trades": 7,
-      "closedTrades": 4,
+      "pnl": 239.12,
+      "returnPct": 4.39,
+      "trades": 8,
+      "closedTrades": 5,
       "winDays": 1,
       "lossDays": 0
     },
