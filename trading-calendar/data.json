@@ -1,53 +1,39 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-12T13:06:26",
+  "generatedAt": "2026-06-15T09:00:48",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -984.94,
-    "totalReturnPct": -0.73,
-    "tradeCount": 127,
-    "closedTradeCount": 62,
+    "totalPnl": -852.97,
+    "totalReturnPct": -0.68,
+    "tradeCount": 134,
+    "closedTradeCount": 58,
     "winDays": 5,
-    "lossDays": 3,
+    "lossDays": 4,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
-      "pnl": 1063.98,
-      "returnPct": 10.36,
-      "rawPnl": 1063.98,
+      "pnl": 736.27,
+      "returnPct": 11.24,
+      "rawPnl": 736.27,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 16,
+      "closedTrades": 11,
       "executions": 20,
       "trades": 20,
       "closedTradeDetails": [
         {
-          "symbol": "ORCX",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 5.0,
-          "avgEntry": 45.2,
-          "avgExit": 61.41,
-          "pnl": 81.05,
-          "returnPct": 35.86,
-          "executionCount": 1,
-          "basis": 226.0,
-          "time": "2026-06-01T06:17:00-07:00"
-        },
-        {
           "symbol": "TEAM",
           "campaignId": "",
           "openDate": "",
           "closeDate": "2026-06-01",
           "quantity": 5.0,
-          "avgEntry": 86.994,
+          "avgEntry": 89.21,
           "avgExit": 111.36,
-          "pnl": 121.83,
-          "returnPct": 28.01,
+          "pnl": 110.75,
+          "returnPct": 24.83,
           "executionCount": 1,
-          "basis": 434.97,
+          "basis": 446.04999999999995,
           "time": "2026-06-01T06:17:00-07:00"
         },
         {
@@ -56,27 +42,13 @@
           "openDate": "",
           "closeDate": "2026-06-01",
           "quantity": 5.0,
-          "avgEntry": 86.994,
+          "avgEntry": 89.21,
           "avgExit": 115.0,
-          "pnl": 140.03,
-          "returnPct": 32.19,
+          "pnl": 128.95,
+          "returnPct": 28.91,
           "executionCount": 1,
-          "basis": 434.9699999999999,
+          "basis": 446.0499999999999,
           "time": "2026-06-01T06:28:00-07:00"
-        },
-        {
-          "symbol": "INOD",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 2.0,
-          "avgEntry": 102.2,
-          "avgExit": 105.58,
-          "pnl": 6.76,
-          "returnPct": 3.31,
-          "executionCount": 1,
-          "basis": 204.4,
-          "time": "2026-06-01T06:33:00-07:00"
         },
         {
           "symbol": "NAVN",
@@ -84,12 +56,12 @@
           "openDate": "",
           "closeDate": "2026-06-01",
           "quantity": 10.0,
-          "avgEntry": 17.0245,
+          "avgEntry": 16.6971,
           "avgExit": 22.07,
-          "pnl": 50.45,
-          "returnPct": 29.64,
+          "pnl": 53.73,
+          "returnPct": 32.18,
           "executionCount": 1,
-          "basis": 170.2454545454546,
+          "basis": 166.9709677419355,
           "time": "2026-06-01T06:35:00-07:00"
         },
         {
@@ -103,7 +75,7 @@
           "pnl": 115.71,
           "returnPct": 80.19,
           "executionCount": 1,
-          "basis": 144.29000000000002,
+          "basis": 144.29,
           "time": "2026-06-01T06:46:00-07:00"
         },
         {
@@ -121,20 +93,6 @@
           "time": "2026-06-01T06:49:00-07:00"
         },
         {
-          "symbol": "INOD",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 28.0,
-          "avgEntry": 102.2,
-          "avgExit": 102.1,
-          "pnl": -2.8,
-          "returnPct": -0.1,
-          "executionCount": 1,
-          "basis": 2861.6,
-          "time": "2026-06-01T06:54:00-07:00"
-        },
-        {
           "symbol": "DDOG",
           "campaignId": "",
           "openDate": "",
@@ -145,22 +103,8 @@
           "pnl": 125.71,
           "returnPct": 87.12,
           "executionCount": 1,
-          "basis": 144.29000000000002,
+          "basis": 144.29,
           "time": "2026-06-01T07:58:00-07:00"
-        },
-        {
-          "symbol": "ORCX",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 5.0,
-          "avgEntry": 45.2,
-          "avgExit": 65.0,
-          "pnl": 99.0,
-          "returnPct": 43.81,
-          "executionCount": 1,
-          "basis": 226.0,
-          "time": "2026-06-01T08:00:00-07:00"
         },
         {
           "symbol": "AAOI",
@@ -191,20 +135,6 @@
           "time": "2026-06-01T10:18:00-07:00"
         },
         {
-          "symbol": "ORCX",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 5.0,
-          "avgEntry": 45.2,
-          "avgExit": 70.49,
-          "pnl": 126.45,
-          "returnPct": 55.95,
-          "executionCount": 1,
-          "basis": 226.0,
-          "time": "2026-06-01T11:12:00-07:00"
-        },
-        {
           "symbol": "VELO",
           "campaignId": "",
           "openDate": "",
@@ -224,12 +154,12 @@
           "openDate": "",
           "closeDate": "2026-06-01",
           "quantity": 5.0,
-          "avgEntry": 17.0245,
+          "avgEntry": 16.6971,
           "avgExit": 23.0,
-          "pnl": 29.88,
-          "returnPct": 35.1,
+          "pnl": 31.51,
+          "returnPct": 37.75,
           "executionCount": 1,
-          "basis": 85.12272727272729,
+          "basis": 83.48548387096776,
           "time": "2026-06-01T12:36:00-07:00"
         },
         {
@@ -243,7 +173,7 @@
           "pnl": 135.71,
           "returnPct": 94.05,
           "executionCount": 1,
-          "basis": 144.29000000000002,
+          "basis": 144.29,
           "time": "2026-06-01T13:03:00-07:00"
         }
       ],
@@ -415,41 +345,27 @@
     {
       "date": "2026-06-01",
       "day": 1,
-      "pnl": 1063.98,
-      "returnPct": 10.36,
-      "rawPnl": 1063.98,
+      "pnl": 736.27,
+      "returnPct": 11.24,
+      "rawPnl": 736.27,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 16,
+      "closedTrades": 11,
       "executions": 20,
       "trades": 20,
       "closedTradeDetails": [
         {
-          "symbol": "ORCX",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 5.0,
-          "avgEntry": 45.2,
-          "avgExit": 61.41,
-          "pnl": 81.05,
-          "returnPct": 35.86,
-          "executionCount": 1,
-          "basis": 226.0,
-          "time": "2026-06-01T06:17:00-07:00"
-        },
-        {
           "symbol": "TEAM",
           "campaignId": "",
           "openDate": "",
           "closeDate": "2026-06-01",
           "quantity": 5.0,
-          "avgEntry": 86.994,
+          "avgEntry": 89.21,
           "avgExit": 111.36,
-          "pnl": 121.83,
-          "returnPct": 28.01,
+          "pnl": 110.75,
+          "returnPct": 24.83,
           "executionCount": 1,
-          "basis": 434.97,
+          "basis": 446.04999999999995,
           "time": "2026-06-01T06:17:00-07:00"
         },
         {
@@ -458,27 +374,13 @@
           "openDate": "",
           "closeDate": "2026-06-01",
           "quantity": 5.0,
-          "avgEntry": 86.994,
+          "avgEntry": 89.21,
           "avgExit": 115.0,
-          "pnl": 140.03,
-          "returnPct": 32.19,
+          "pnl": 128.95,
+          "returnPct": 28.91,
           "executionCount": 1,
-          "basis": 434.9699999999999,
+          "basis": 446.0499999999999,
           "time": "2026-06-01T06:28:00-07:00"
-        },
-        {
-          "symbol": "INOD",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 2.0,
-          "avgEntry": 102.2,
-          "avgExit": 105.58,
-          "pnl": 6.76,
-          "returnPct": 3.31,
-          "executionCount": 1,
-          "basis": 204.4,
-          "time": "2026-06-01T06:33:00-07:00"
         },
         {
           "symbol": "NAVN",
@@ -486,12 +388,12 @@
           "openDate": "",
           "closeDate": "2026-06-01",
           "quantity": 10.0,
-          "avgEntry": 17.0245,
+          "avgEntry": 16.6971,
           "avgExit": 22.07,
-          "pnl": 50.45,
-          "returnPct": 29.64,
+          "pnl": 53.73,
+          "returnPct": 32.18,
           "executionCount": 1,
-          "basis": 170.2454545454546,
+          "basis": 166.9709677419355,
           "time": "2026-06-01T06:35:00-07:00"
         },
         {
@@ -505,7 +407,7 @@
           "pnl": 115.71,
           "returnPct": 80.19,
           "executionCount": 1,
-          "basis": 144.29000000000002,
+          "basis": 144.29,
           "time": "2026-06-01T06:46:00-07:00"
         },
         {
@@ -523,20 +425,6 @@
           "time": "2026-06-01T06:49:00-07:00"
         },
         {
-          "symbol": "INOD",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 28.0,
-          "avgEntry": 102.2,
-          "avgExit": 102.1,
-          "pnl": -2.8,
-          "returnPct": -0.1,
-          "executionCount": 1,
-          "basis": 2861.6,
-          "time": "2026-06-01T06:54:00-07:00"
-        },
-        {
           "symbol": "DDOG",
           "campaignId": "",
           "openDate": "",
@@ -547,22 +435,8 @@
           "pnl": 125.71,
           "returnPct": 87.12,
           "executionCount": 1,
-          "basis": 144.29000000000002,
+          "basis": 144.29,
           "time": "2026-06-01T07:58:00-07:00"
-        },
-        {
-          "symbol": "ORCX",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 5.0,
-          "avgEntry": 45.2,
-          "avgExit": 65.0,
-          "pnl": 99.0,
-          "returnPct": 43.81,
-          "executionCount": 1,
-          "basis": 226.0,
-          "time": "2026-06-01T08:00:00-07:00"
         },
         {
           "symbol": "AAOI",
@@ -593,20 +467,6 @@
           "time": "2026-06-01T10:18:00-07:00"
         },
         {
-          "symbol": "ORCX",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-01",
-          "quantity": 5.0,
-          "avgEntry": 45.2,
-          "avgExit": 70.49,
-          "pnl": 126.45,
-          "returnPct": 55.95,
-          "executionCount": 1,
-          "basis": 226.0,
-          "time": "2026-06-01T11:12:00-07:00"
-        },
-        {
           "symbol": "VELO",
           "campaignId": "",
           "openDate": "",
@@ -626,12 +486,12 @@
           "openDate": "",
           "closeDate": "2026-06-01",
           "quantity": 5.0,
-          "avgEntry": 17.0245,
+          "avgEntry": 16.6971,
           "avgExit": 23.0,
-          "pnl": 29.88,
-          "returnPct": 35.1,
+          "pnl": 31.51,
+          "returnPct": 37.75,
           "executionCount": 1,
-          "basis": 85.12272727272729,
+          "basis": 83.48548387096776,
           "time": "2026-06-01T12:36:00-07:00"
         },
         {
@@ -645,7 +505,7 @@
           "pnl": 135.71,
           "returnPct": 94.05,
           "executionCount": 1,
-          "basis": 144.29000000000002,
+          "basis": 144.29,
           "time": "2026-06-01T13:03:00-07:00"
         }
       ],
@@ -815,12 +675,12 @@
     {
       "date": "2026-06-03",
       "day": 3,
-      "pnl": -342.71,
-      "returnPct": -1.77,
-      "rawPnl": -342.71,
+      "pnl": -140.16,
+      "returnPct": -0.92,
+      "rawPnl": -140.16,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 7,
+      "closedTrades": 6,
       "executions": 15,
       "trades": 15,
       "closedTradeDetails": [
@@ -893,20 +753,6 @@
           "executionCount": 1,
           "basis": 4415.25,
           "time": "2026-06-03T08:21:00-07:00"
-        },
-        {
-          "symbol": "RGTI",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-03",
-          "quantity": 165.0,
-          "avgEntry": 25.2676,
-          "avgExit": 24.04,
-          "pnl": -202.55,
-          "returnPct": -4.86,
-          "executionCount": 1,
-          "basis": 4169.15,
-          "time": "2026-06-03T09:51:00-07:00"
         },
         {
           "symbol": "IREN",
@@ -1195,12 +1041,12 @@
     {
       "date": "2026-06-05",
       "day": 5,
-      "pnl": -1742.25,
-      "returnPct": -4.52,
-      "rawPnl": -1742.25,
+      "pnl": -1588.6,
+      "returnPct": -4.62,
+      "rawPnl": -1588.6,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 11,
+      "closedTrades": 10,
       "executions": 19,
       "trades": 19,
       "closedTradeDetails": [
@@ -1223,13 +1069,13 @@
           "campaignId": "",
           "openDate": "",
           "closeDate": "2026-06-05",
-          "quantity": 315.0,
-          "avgEntry": 14.0292,
+          "quantity": 65.0,
+          "avgEntry": 14.1415,
           "avgExit": 12.9,
-          "pnl": -355.7,
-          "returnPct": -8.05,
+          "pnl": -80.7,
+          "returnPct": -8.78,
           "executionCount": 1,
-          "basis": 4419.2,
+          "basis": 919.1999999999998,
           "time": "2026-06-05T06:41:00-07:00"
         },
         {
@@ -1287,20 +1133,6 @@
           "executionCount": 1,
           "basis": 2700.0,
           "time": "2026-06-05T08:42:00-07:00"
-        },
-        {
-          "symbol": "ORCX",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-05",
-          "quantity": 15.0,
-          "avgEntry": 45.2,
-          "avgExit": 53.29,
-          "pnl": 121.35,
-          "returnPct": 17.9,
-          "executionCount": 1,
-          "basis": 678.0,
-          "time": "2026-06-05T08:56:00-07:00"
         },
         {
           "symbol": "KLIC",
@@ -1580,12 +1412,12 @@
     {
       "date": "2026-06-09",
       "day": 9,
-      "pnl": -1032.44,
-      "returnPct": -2.2,
-      "rawPnl": -1032.44,
+      "pnl": -1111.04,
+      "returnPct": -2.44,
+      "rawPnl": -1111.04,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 18,
+      "closedTrades": 17,
       "executions": 29,
       "trades": 29,
       "closedTradeDetails": [
@@ -1763,27 +1595,13 @@
           "openDate": "",
           "closeDate": "2026-06-09",
           "quantity": 150.0,
-          "avgEntry": 21.7349,
+          "avgEntry": 21.6969,
           "avgExit": 21.77,
-          "pnl": 5.27,
-          "returnPct": 0.16,
+          "pnl": 10.97,
+          "returnPct": 0.34,
           "executionCount": 1,
-          "basis": 3260.2285714285713,
+          "basis": 3254.53125,
           "time": "2026-06-09T07:46:00-07:00"
-        },
-        {
-          "symbol": "ORCX",
-          "campaignId": "",
-          "openDate": "",
-          "closeDate": "2026-06-09",
-          "quantity": 30.0,
-          "avgEntry": 45.2,
-          "avgExit": 48.01,
-          "pnl": 84.3,
-          "returnPct": 6.22,
-          "executionCount": 1,
-          "basis": 1356.0,
-          "time": "2026-06-09T07:49:00-07:00"
         },
         {
           "symbol": "SNOW",
@@ -2080,9 +1898,9 @@
     {
       "date": "2026-06-10",
       "day": 10,
-      "pnl": 34.66,
-      "returnPct": 0.6,
-      "rawPnl": 34.66,
+      "pnl": -10.94,
+      "returnPct": -0.19,
+      "rawPnl": -10.94,
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 2,
@@ -2109,12 +1927,12 @@
           "openDate": "",
           "closeDate": "2026-06-10",
           "quantity": 20.0,
-          "avgEntry": 88.3269,
+          "avgEntry": 90.6071,
           "avgExit": 91.21,
-          "pnl": 57.66,
-          "returnPct": 3.26,
+          "pnl": 12.06,
+          "returnPct": 0.67,
           "executionCount": 1,
-          "basis": 1766.5377777777776,
+          "basis": 1812.1428571428569,
           "time": "2026-06-10T12:50:00-07:00"
         }
       ],
@@ -2172,9 +1990,9 @@
     {
       "date": "2026-06-11",
       "day": 11,
-      "pnl": 210.58,
-      "returnPct": 6.3,
-      "rawPnl": 210.58,
+      "pnl": 172.14,
+      "returnPct": 6.9,
+      "rawPnl": 172.14,
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 2,
@@ -2186,13 +2004,13 @@
           "campaignId": "",
           "openDate": "",
           "closeDate": "2026-06-11",
-          "quantity": 25.0,
-          "avgEntry": 88.3269,
+          "quantity": 15.0,
+          "avgEntry": 90.6071,
           "avgExit": 88.75,
-          "pnl": 10.58,
-          "returnPct": 0.48,
+          "pnl": -27.86,
+          "returnPct": -2.05,
           "executionCount": 1,
-          "basis": 2208.172222222222,
+          "basis": 1359.1071428571427,
           "time": "2026-06-11T06:41:00-07:00"
         },
         {
@@ -2288,9 +2106,9 @@
     {
       "date": "2026-06-12",
       "day": 12,
-      "pnl": 137.92,
-      "returnPct": 2.46,
-      "rawPnl": 137.92,
+      "pnl": 151.02,
+      "returnPct": 2.7,
+      "rawPnl": 151.02,
       "brokerPnl": null,
       "brokerAdjustment": 0,
       "closedTrades": 3,
@@ -2317,12 +2135,12 @@
           "openDate": "",
           "closeDate": "2026-06-12",
           "quantity": 40.0,
-          "avgEntry": 17.0245,
+          "avgEntry": 16.6971,
           "avgExit": 19.79,
-          "pnl": 110.62,
-          "returnPct": 16.24,
+          "pnl": 123.72,
+          "returnPct": 18.52,
           "executionCount": 1,
-          "basis": 680.9818181818183,
+          "basis": 667.883870967742,
           "time": "2026-06-12T07:43:00-07:00"
         },
         {
@@ -2438,37 +2256,165 @@
           "notional": 500.18
         }
       ]
+    },
+    {
+      "date": "2026-06-15",
+      "day": 15,
+      "pnl": 253.02,
+      "returnPct": 5.59,
+      "rawPnl": 253.02,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 4,
+      "executions": 7,
+      "trades": 7,
+      "closedTradeDetails": [
+        {
+          "symbol": "OUST",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-15",
+          "quantity": 25.0,
+          "avgEntry": 38.7924,
+          "avgExit": 45.7,
+          "pnl": 172.69,
+          "returnPct": 17.81,
+          "executionCount": 1,
+          "basis": 969.8095238095236,
+          "time": "2026-06-15T06:31:00-07:00"
+        },
+        {
+          "symbol": "OUST",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-15",
+          "quantity": 15.0,
+          "avgEntry": 38.7924,
+          "avgExit": 46.83,
+          "pnl": 120.56,
+          "returnPct": 20.72,
+          "executionCount": 1,
+          "basis": 581.8857142857142,
+          "time": "2026-06-15T06:32:00-07:00"
+        },
+        {
+          "symbol": "HPQ",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-15",
+          "quantity": 100.0,
+          "avgEntry": 25.75,
+          "avgExit": 25.17,
+          "pnl": -58.0,
+          "returnPct": -2.25,
+          "executionCount": 1,
+          "basis": 2575.0,
+          "time": "2026-06-15T07:14:00-07:00"
+        },
+        {
+          "symbol": "AMKR",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-15",
+          "quantity": 5.0,
+          "avgEntry": 79.5755,
+          "avgExit": 83.13,
+          "pnl": 17.77,
+          "returnPct": 4.47,
+          "executionCount": 1,
+          "basis": 397.87727272727267,
+          "time": "2026-06-15T07:21:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-15T06:31:00-07:00",
+          "ticker": "OUST",
+          "side": "Sell",
+          "shares": 25.0,
+          "price": 45.7,
+          "notional": 1142.5
+        },
+        {
+          "time": "2026-06-15T06:32:00-07:00",
+          "ticker": "OUST",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 46.83,
+          "notional": 702.45
+        },
+        {
+          "time": "2026-06-15T06:40:00-07:00",
+          "ticker": "UMAC",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 25.77,
+          "notional": 3865.5
+        },
+        {
+          "time": "2026-06-15T06:48:00-07:00",
+          "ticker": "HPQ",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 25.75,
+          "notional": 2575.0
+        },
+        {
+          "time": "2026-06-15T07:14:00-07:00",
+          "ticker": "HPQ",
+          "side": "Sell",
+          "shares": 100.0,
+          "price": 25.17,
+          "notional": 2517.0
+        },
+        {
+          "time": "2026-06-15T07:21:00-07:00",
+          "ticker": "AMKR",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 83.13,
+          "notional": 415.65
+        },
+        {
+          "time": "2026-06-15T07:41:00-07:00",
+          "ticker": "TEAM",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 92.28,
+          "notional": 922.8
+        }
+      ]
     }
   ],
   "weeks": [
     {
       "start": "2026-06-01",
       "end": "2026-06-05",
-      "pnl": -335.66,
-      "returnPct": -0.45,
+      "pnl": -307.17,
+      "returnPct": -0.49,
       "trades": 65,
-      "closedTrades": 37,
+      "closedTrades": 30,
       "winDays": 2,
       "lossDays": 2
     },
     {
       "start": "2026-06-08",
       "end": "2026-06-12",
-      "pnl": -649.28,
-      "returnPct": -1.05,
+      "pnl": -798.82,
+      "returnPct": -1.34,
       "trades": 62,
-      "closedTrades": 25,
-      "winDays": 3,
-      "lossDays": 1
+      "closedTrades": 24,
+      "winDays": 2,
+      "lossDays": 2
     },
     {
       "start": "2026-06-15",
       "end": "2026-06-19",
-      "pnl": 0,
-      "returnPct": null,
-      "trades": 0,
-      "closedTrades": 0,
-      "winDays": 0,
+      "pnl": 253.02,
+      "returnPct": 5.59,
+      "trades": 7,
+      "closedTrades": 4,
+      "winDays": 1,
       "lossDays": 0
     },
     {
