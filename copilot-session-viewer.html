@@ -338,6 +338,19 @@
       align-content: start;
     }
 
+    .review-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .review-filter {
+      min-width: 138px;
+      min-height: 32px;
+      font-size: 0.68rem;
+    }
+
     .review-score {
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -819,6 +832,7 @@
     const reviewPanel = document.getElementById("reviewPanel");
 
     let lastReport = null;
+    let reviewTypeFilter = "all";
 
     const sampleSession = {
       sessionId: "copilot-session-example",
@@ -1183,19 +1197,32 @@
       return findings.slice(0, 60);
     }
 
+    function reviewCategoryLabel(category) {
+      if (category === "action") return "Actions";
+      return `${category.charAt(0).toUpperCase()}${category.slice(1)}s`;
+    }
+
     function renderReviewPanel(findings) {
       const categories = ["decision", "action", "error", "question", "lesson"];
+      const activeFilter = categories.includes(reviewTypeFilter) ? reviewTypeFilter : "all";
+      const visibleFindings = activeFilter === "all"
+        ? findings
+        : findings.filter((finding) => finding.type === activeFilter);
       const counts = categories.reduce((acc, category) => {
         acc[category] = findings.filter((finding) => finding.type === category).length;
         return acc;
       }, {});
       const scoreRows = categories.map((category) => {
-        const label = category === "action" ? "Actions" : `${category.charAt(0).toUpperCase()}${category.slice(1)}s`;
+        const label = reviewCategoryLabel(category);
         return `<div class="review-score"><strong>${escapeHtml(label)}</strong><span>${counts[category]}</span></div>`;
       }).join("");
+      const filterOptions = [
+        ["all", `All findings (${findings.length})`],
+        ...categories.map((category) => [category, `${reviewCategoryLabel(category)} (${counts[category]})`])
+      ].map(([value, label]) => `<option value="${escapeHtml(value)}"${value === activeFilter ? " selected" : ""}>${escapeHtml(label)}</option>`).join("");
 
-      const findingRows = findings.length
-        ? findings.map((finding) => [
+      const findingRows = visibleFindings.length
+        ? visibleFindings.map((finding) => [
           '<article class="review-finding">',
           '<div class="finding-head">',
           `<span class="finding-type">${escapeHtml(finding.type)}</span>`,
@@ -1205,10 +1232,13 @@
           `<div class="meta">${escapeHtml(finding.label)}</div>`,
           "</article>"
         ].join("")).join("")
-        : '<div class="empty">No likely review findings found. The timeline is still searchable below.</div>';
+        : activeFilter === "all"
+          ? '<div class="empty">No likely review findings found. The timeline is still searchable below.</div>'
+          : `<div class="empty">No ${escapeHtml(reviewCategoryLabel(activeFilter).toLowerCase())} found. Switch the cockpit filter or use the timeline search.</div>`;
 
       reviewPanel.innerHTML = [
-        '<div class="review-scoreboard"><div class="rail-title">Review Cockpit</div>',
+        '<div class="review-scoreboard"><div class="review-heading"><div class="rail-title">Review Cockpit</div>',
+        `<select class="review-filter" id="reviewTypeFilter" aria-label="Filter review findings by type">${filterOptions}</select></div>`,
         scoreRows,
         "</div>",
         `<div class="review-list">${findingRows}</div>`
@@ -1416,20 +1446,25 @@
     function buildReviewBrief() {
       if (!lastReport) return "";
       const categories = ["decision", "action", "error", "question", "lesson"];
+      const activeFilter = categories.includes(reviewTypeFilter) ? reviewTypeFilter : "all";
+      const briefCategories = activeFilter === "all" ? categories : [activeFilter];
+      const visibleFindings = activeFilter === "all"
+        ? lastReport.findings
+        : lastReport.findings.filter((finding) => finding.type === activeFilter);
       const lines = [
         `# ${sessionTitle(lastReport.data)}`,
         "",
         `Generated: ${new Date(lastReport.generatedAt).toLocaleString()}`,
         `Messages: ${lastReport.messages.length}`,
         `Tool calls: ${lastReport.toolCalls.length}`,
-        `Review findings: ${lastReport.findings.length}`,
+        `Review findings: ${visibleFindings.length}${activeFilter === "all" ? "" : ` ${activeFilter}`}`,
         ""
       ];
 
-      categories.forEach((category) => {
+      briefCategories.forEach((category) => {
         const findings = lastReport.findings.filter((finding) => finding.type === category);
         if (!findings.length) return;
-        const label = category === "action" ? "Actions" : `${category.charAt(0).toUpperCase()}${category.slice(1)}s`;
+        const label = reviewCategoryLabel(category);
         lines.push(`## ${label}`);
         findings.slice(0, 12).forEach((finding) => {
           lines.push(`- [Message ${finding.messageIndex}] ${finding.text}`);
@@ -1437,7 +1472,7 @@
         lines.push("");
       });
 
-      if (!lastReport.findings.length) {
+      if (!visibleFindings.length) {
         lines.push("No likely review findings were extracted. Use the searchable timeline for manual review.");
         lines.push("");
       }
@@ -1497,6 +1532,11 @@
     searchInput.addEventListener("input", applyFilters);
     roleFilter.addEventListener("change", applyFilters);
     densitySelect.addEventListener("change", applyFilters);
+    reviewPanel.addEventListener("change", (event) => {
+      if (event.target.id !== "reviewTypeFilter") return;
+      reviewTypeFilter = event.target.value;
+      if (lastReport) renderReviewPanel(lastReport.findings);
+    });
     fileInput.addEventListener("change", () => loadFile(fileInput.files[0]));
     sampleButton.addEventListener("click", () => {
       input.value = JSON.stringify(sampleSession, null, 2);
