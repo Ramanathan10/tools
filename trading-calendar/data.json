@@ -1,15 +1,15 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-15T13:00:39",
+  "generatedAt": "2026-06-16T09:09:06",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -866.87,
-    "totalReturnPct": -0.68,
-    "tradeCount": 135,
-    "closedTradeCount": 59,
+    "totalPnl": -897.77,
+    "totalReturnPct": -0.66,
+    "tradeCount": 151,
+    "closedTradeCount": 70,
     "winDays": 5,
-    "lossDays": 4,
+    "lossDays": 5,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
@@ -2406,6 +2406,304 @@
           "notional": 908.9
         }
       ]
+    },
+    {
+      "date": "2026-06-16",
+      "day": 16,
+      "pnl": -30.9,
+      "returnPct": -0.36,
+      "rawPnl": -30.9,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 11,
+      "executions": 16,
+      "trades": 16,
+      "closedTradeDetails": [
+        {
+          "symbol": "AMKR",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 10.0,
+          "avgEntry": 79.5755,
+          "avgExit": 92.7,
+          "pnl": 131.25,
+          "returnPct": 16.49,
+          "executionCount": 1,
+          "basis": 795.7545454545453,
+          "time": "2026-06-16T06:37:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 15.0,
+          "avgEntry": 13.55,
+          "avgExit": 15.01,
+          "pnl": 21.9,
+          "returnPct": 10.77,
+          "executionCount": 1,
+          "basis": 203.25,
+          "time": "2026-06-16T06:45:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 15.0,
+          "avgEntry": 13.55,
+          "avgExit": 15.3,
+          "pnl": 26.25,
+          "returnPct": 12.92,
+          "executionCount": 1,
+          "basis": 203.25,
+          "time": "2026-06-16T06:45:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 5.0,
+          "avgEntry": 13.55,
+          "avgExit": 15.43,
+          "pnl": 9.4,
+          "returnPct": 13.87,
+          "executionCount": 1,
+          "basis": 67.75,
+          "time": "2026-06-16T06:46:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 5.0,
+          "avgEntry": 13.55,
+          "avgExit": 15.7,
+          "pnl": 10.75,
+          "returnPct": 15.87,
+          "executionCount": 1,
+          "basis": 67.75,
+          "time": "2026-06-16T06:48:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 5.0,
+          "avgEntry": 13.55,
+          "avgExit": 15.69,
+          "pnl": 10.7,
+          "returnPct": 15.79,
+          "executionCount": 1,
+          "basis": 67.75,
+          "time": "2026-06-16T06:54:00-07:00"
+        },
+        {
+          "symbol": "NOK",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 200.0,
+          "avgEntry": 14.67,
+          "avgExit": 14.63,
+          "pnl": -8.0,
+          "returnPct": -0.27,
+          "executionCount": 1,
+          "basis": 2934.0,
+          "time": "2026-06-16T06:57:00-07:00"
+        },
+        {
+          "symbol": "UMAC",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 150.0,
+          "avgEntry": 25.77,
+          "avgExit": 23.86,
+          "pnl": -286.5,
+          "returnPct": -7.41,
+          "executionCount": 1,
+          "basis": 3865.5,
+          "time": "2026-06-16T07:25:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 10.0,
+          "avgEntry": 13.55,
+          "avgExit": 16.0,
+          "pnl": 24.5,
+          "returnPct": 18.08,
+          "executionCount": 1,
+          "basis": 135.5,
+          "time": "2026-06-16T07:46:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 5.0,
+          "avgEntry": 13.55,
+          "avgExit": 16.33,
+          "pnl": 13.9,
+          "returnPct": 20.52,
+          "executionCount": 1,
+          "basis": 67.75,
+          "time": "2026-06-16T07:51:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 5.0,
+          "avgEntry": 13.55,
+          "avgExit": 16.54,
+          "pnl": 14.95,
+          "returnPct": 22.07,
+          "executionCount": 1,
+          "basis": 67.75,
+          "time": "2026-06-16T07:55:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-16T06:37:00-07:00",
+          "ticker": "AMKR",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 92.7,
+          "notional": 927.0
+        },
+        {
+          "time": "2026-06-16T06:45:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 15.01,
+          "notional": 225.15
+        },
+        {
+          "time": "2026-06-16T06:45:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 15.3,
+          "notional": 229.5
+        },
+        {
+          "time": "2026-06-16T06:46:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 15.43,
+          "notional": 77.15
+        },
+        {
+          "time": "2026-06-16T06:48:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 15.7,
+          "notional": 78.5
+        },
+        {
+          "time": "2026-06-16T06:54:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 15.69,
+          "notional": 78.45
+        },
+        {
+          "time": "2026-06-16T06:55:00-07:00",
+          "ticker": "NOK",
+          "side": "Buy",
+          "shares": 200.0,
+          "price": 14.67,
+          "notional": 2934.0
+        },
+        {
+          "time": "2026-06-16T06:57:00-07:00",
+          "ticker": "NOK",
+          "side": "Sell",
+          "shares": 200.0,
+          "price": 14.63,
+          "notional": 2926.0
+        },
+        {
+          "time": "2026-06-16T07:02:00-07:00",
+          "ticker": "ZETA",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 20.0,
+          "notional": 2000.0
+        },
+        {
+          "time": "2026-06-16T07:25:00-07:00",
+          "ticker": "UMAC",
+          "side": "Sell",
+          "shares": 150.0,
+          "price": 23.86,
+          "notional": 3579.0
+        },
+        {
+          "time": "2026-06-16T07:42:00-07:00",
+          "ticker": "UMAC",
+          "side": "Buy",
+          "shares": 150.0,
+          "price": 24.39,
+          "notional": 3658.5
+        },
+        {
+          "time": "2026-06-16T07:46:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 10.0,
+          "price": 16.0,
+          "notional": 160.0
+        },
+        {
+          "time": "2026-06-16T07:51:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 16.33,
+          "notional": 81.65
+        },
+        {
+          "time": "2026-06-16T07:55:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 16.54,
+          "notional": 82.7
+        },
+        {
+          "time": "2026-06-16T08:35:00-07:00",
+          "ticker": "ZETA",
+          "side": "Buy",
+          "shares": 100.0,
+          "price": 19.53,
+          "notional": 1953.0
+        },
+        {
+          "time": "2026-06-16T09:05:00-07:00",
+          "ticker": "AAOX",
+          "side": "Buy",
+          "shares": 40.0,
+          "price": 48.5,
+          "notional": 1940.0
+        }
+      ]
     }
   ],
   "weeks": [
@@ -2432,12 +2730,12 @@
     {
       "start": "2026-06-15",
       "end": "2026-06-19",
-      "pnl": 239.12,
-      "returnPct": 4.39,
-      "trades": 8,
-      "closedTrades": 5,
+      "pnl": 208.22,
+      "returnPct": 1.5,
+      "trades": 24,
+      "closedTrades": 16,
       "winDays": 1,
-      "lossDays": 0
+      "lossDays": 1
     },
     {
       "start": "2026-06-22",
