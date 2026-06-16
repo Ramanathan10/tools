@@ -368,6 +368,51 @@
       color: var(--ink);
     }
 
+    .tool-hotspots {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      display: grid;
+      gap: 8px;
+      margin-top: 2px;
+      padding: 10px;
+    }
+
+    .tool-hotspots-title {
+      color: var(--muted);
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .tool-hotspot {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+      font-size: 0.72rem;
+    }
+
+    .tool-hotspot strong {
+      color: var(--ink);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tool-hotspot span {
+      white-space: nowrap;
+    }
+
+    .tool-hotspot.error span {
+      color: var(--error);
+    }
+
     .review-list {
       display: grid;
       gap: 8px;
@@ -1150,11 +1195,11 @@
 
     function classifyReviewSentence(sentence) {
       const text = sentence.toLowerCase();
+      if (sentence.includes("?") || /\b(open question|question|unclear|unknown|whether)\b/.test(text)) return "question";
+      if (/\b(lesson|learned|remember|workflow|pattern|future|reusable)\b/.test(text)) return "lesson";
       if (/\b(decision|decided|choose|chosen|keep|use|ship|scope)\b/.test(text)) return "decision";
       if (/\b(action|todo|follow-up|next step|need to|must|should|checking|verify|wire|add|fix)\b/.test(text)) return "action";
       if (/\b(error|exception|failed|failure|invalid|mismatch|out of date|blocked|timeout|parse error)\b/.test(text)) return "error";
-      if (sentence.includes("?") || /\b(open question|question|unclear|unknown|whether)\b/.test(text)) return "question";
-      if (/\b(lesson|learned|remember|workflow|pattern|future|reusable)\b/.test(text)) return "lesson";
       return "";
     }
 
@@ -1202,7 +1247,45 @@
       return `${category.charAt(0).toUpperCase()}${category.slice(1)}s`;
     }
 
-    function renderReviewPanel(findings) {
+    function summarizeToolHotspots(toolCalls) {
+      const rows = new Map();
+      (toolCalls || []).forEach((call) => {
+        const name = toolName(call);
+        const existing = rows.get(name) || { name, count: 0, errors: 0 };
+        existing.count += 1;
+        if (call?.error || call?.result?.error) existing.errors += 1;
+        rows.set(name, existing);
+      });
+      return [...rows.values()]
+        .sort((a, b) => b.errors - a.errors || b.count - a.count || a.name.localeCompare(b.name))
+        .slice(0, 5);
+    }
+
+    function renderToolHotspots(toolCalls) {
+      const hotspots = summarizeToolHotspots(toolCalls);
+      if (!hotspots.length) {
+        return [
+          '<div class="tool-hotspots">',
+          '<div class="tool-hotspots-title">Tool Hotspots</div>',
+          '<div class="tool-hotspot"><strong>No tool calls</strong><span>0</span></div>',
+          '</div>'
+        ].join("");
+      }
+      const rows = hotspots.map((hotspot) => {
+        const detail = hotspot.errors
+          ? `${hotspot.count} calls / ${hotspot.errors} errors`
+          : `${hotspot.count} calls`;
+        return [
+          `<div class="tool-hotspot${hotspot.errors ? " error" : ""}">`,
+          `<strong title="${escapeHtml(hotspot.name)}">${escapeHtml(hotspot.name)}</strong>`,
+          `<span>${escapeHtml(detail)}</span>`,
+          '</div>'
+        ].join("");
+      }).join("");
+      return `<div class="tool-hotspots"><div class="tool-hotspots-title">Tool Hotspots</div>${rows}</div>`;
+    }
+
+    function renderReviewPanel(findings, toolCalls = []) {
       const categories = ["decision", "action", "error", "question", "lesson"];
       const activeFilter = categories.includes(reviewTypeFilter) ? reviewTypeFilter : "all";
       const visibleFindings = activeFilter === "all"
@@ -1240,6 +1323,7 @@
         '<div class="review-scoreboard"><div class="review-heading"><div class="rail-title">Review Cockpit</div>',
         `<select class="review-filter" id="reviewTypeFilter" aria-label="Filter review findings by type">${filterOptions}</select></div>`,
         scoreRows,
+        renderToolHotspots(toolCalls),
         "</div>",
         `<div class="review-list">${findingRows}</div>`
       ].join("");
@@ -1348,7 +1432,7 @@
       lastReport = { data, messages, toolCalls, roles, findings, generatedAt: new Date().toISOString() };
       renderHero(data, messages, toolCalls);
       renderRoleList(roles);
-      renderReviewPanel(findings);
+      renderReviewPanel(findings, toolCalls);
       const baseStats = [
         renderStat("Messages", messages.length),
         renderStat("Tool Calls", toolCalls.length),
@@ -1472,6 +1556,18 @@
         lines.push("");
       });
 
+      const hotspots = summarizeToolHotspots(lastReport.toolCalls);
+      if (hotspots.length) {
+        lines.push("## Tool Hotspots");
+        hotspots.forEach((hotspot) => {
+          const detail = hotspot.errors
+            ? `${hotspot.count} calls, ${hotspot.errors} errors`
+            : `${hotspot.count} calls`;
+          lines.push(`- ${hotspot.name}: ${detail}`);
+        });
+        lines.push("");
+      }
+
       if (!visibleFindings.length) {
         lines.push("No likely review findings were extracted. Use the searchable timeline for manual review.");
         lines.push("");
@@ -1535,7 +1631,7 @@
     reviewPanel.addEventListener("change", (event) => {
       if (event.target.id !== "reviewTypeFilter") return;
       reviewTypeFilter = event.target.value;
-      if (lastReport) renderReviewPanel(lastReport.findings);
+      if (lastReport) renderReviewPanel(lastReport.findings, lastReport.toolCalls);
     });
     fileInput.addEventListener("change", () => loadFile(fileInput.files[0]));
     sampleButton.addEventListener("click", () => {
