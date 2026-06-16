@@ -1,15 +1,15 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-16T13:01:08",
+  "generatedAt": "2026-06-16T13:35:01",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -1007.77,
-    "totalReturnPct": -0.73,
-    "tradeCount": 153,
-    "closedTradeCount": 71,
-    "winDays": 5,
-    "lossDays": 5,
+    "totalPnl": -620.02,
+    "totalReturnPct": -0.44,
+    "tradeCount": 154,
+    "closedTradeCount": 72,
+    "winDays": 6,
+    "lossDays": 4,
     "bestDay": {
       "date": "2026-06-01",
       "day": 1,
@@ -2410,14 +2410,14 @@
     {
       "date": "2026-06-16",
       "day": 16,
-      "pnl": -140.9,
-      "returnPct": -1.35,
-      "rawPnl": -140.9,
+      "pnl": 246.85,
+      "returnPct": 1.82,
+      "rawPnl": 246.85,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 12,
-      "executions": 18,
-      "trades": 18,
+      "closedTrades": 13,
+      "executions": 19,
+      "trades": 19,
       "closedTradeDetails": [
         {
           "symbol": "AMKR",
@@ -2586,6 +2586,20 @@
           "executionCount": 1,
           "basis": 1940.0,
           "time": "2026-06-16T11:53:00-07:00"
+        },
+        {
+          "symbol": "LION",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 235.0,
+          "avgEntry": 13.55,
+          "avgExit": 15.2,
+          "pnl": 387.75,
+          "returnPct": 12.18,
+          "executionCount": 1,
+          "basis": 3184.25,
+          "time": "2026-06-16T13:26:00-07:00"
         }
       ],
       "executionDetails": [
@@ -2732,6 +2746,14 @@
           "shares": 20.0,
           "price": 98.62,
           "notional": 1972.4
+        },
+        {
+          "time": "2026-06-16T13:26:00-07:00",
+          "ticker": "LION",
+          "side": "Sell",
+          "shares": 235.0,
+          "price": 15.2,
+          "notional": 3572.0
         }
       ]
     }
@@ -2760,12 +2782,12 @@
     {
       "start": "2026-06-15",
       "end": "2026-06-19",
-      "pnl": 98.22,
-      "returnPct": 0.62,
-      "trades": 26,
-      "closedTrades": 17,
-      "winDays": 1,
-      "lossDays": 1
+      "pnl": 485.97,
+      "returnPct": 2.55,
+      "trades": 27,
+      "closedTrades": 18,
+      "winDays": 2,
+      "lossDays": 0
     },
     {
       "start": "2026-06-22",
