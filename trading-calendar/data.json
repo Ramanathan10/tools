@@ -1,13 +1,13 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-16T09:09:06",
+  "generatedAt": "2026-06-16T13:01:08",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -897.77,
-    "totalReturnPct": -0.66,
-    "tradeCount": 151,
-    "closedTradeCount": 70,
+    "totalPnl": -1007.77,
+    "totalReturnPct": -0.73,
+    "tradeCount": 153,
+    "closedTradeCount": 71,
     "winDays": 5,
     "lossDays": 5,
     "bestDay": {
@@ -2410,14 +2410,14 @@
     {
       "date": "2026-06-16",
       "day": 16,
-      "pnl": -30.9,
-      "returnPct": -0.36,
-      "rawPnl": -30.9,
+      "pnl": -140.9,
+      "returnPct": -1.35,
+      "rawPnl": -140.9,
       "brokerPnl": null,
       "brokerAdjustment": 0,
-      "closedTrades": 11,
-      "executions": 16,
-      "trades": 16,
+      "closedTrades": 12,
+      "executions": 18,
+      "trades": 18,
       "closedTradeDetails": [
         {
           "symbol": "AMKR",
@@ -2572,6 +2572,20 @@
           "executionCount": 1,
           "basis": 67.75,
           "time": "2026-06-16T07:55:00-07:00"
+        },
+        {
+          "symbol": "AAOX",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-16",
+          "quantity": 40.0,
+          "avgEntry": 48.5,
+          "avgExit": 45.75,
+          "pnl": -110.0,
+          "returnPct": -5.67,
+          "executionCount": 1,
+          "basis": 1940.0,
+          "time": "2026-06-16T11:53:00-07:00"
         }
       ],
       "executionDetails": [
@@ -2702,6 +2716,22 @@
           "shares": 40.0,
           "price": 48.5,
           "notional": 1940.0
+        },
+        {
+          "time": "2026-06-16T11:53:00-07:00",
+          "ticker": "AAOX",
+          "side": "Sell",
+          "shares": 40.0,
+          "price": 45.75,
+          "notional": 1830.0
+        },
+        {
+          "time": "2026-06-16T12:21:00-07:00",
+          "ticker": "NVDL",
+          "side": "Buy",
+          "shares": 20.0,
+          "price": 98.62,
+          "notional": 1972.4
         }
       ]
     }
@@ -2730,10 +2760,10 @@
     {
       "start": "2026-06-15",
       "end": "2026-06-19",
-      "pnl": 208.22,
-      "returnPct": 1.5,
-      "trades": 24,
-      "closedTrades": 16,
+      "pnl": 98.22,
+      "returnPct": 0.62,
+      "trades": 26,
+      "closedTrades": 17,
       "winDays": 1,
       "lossDays": 1
     },
