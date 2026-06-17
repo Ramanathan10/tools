@@ -1,14 +1,14 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-16T13:35:01",
+  "generatedAt": "2026-06-17T09:00:42",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
-    "totalPnl": -620.02,
-    "totalReturnPct": -0.44,
-    "tradeCount": 154,
-    "closedTradeCount": 72,
-    "winDays": 6,
+    "totalPnl": -557.41,
+    "totalReturnPct": -0.38,
+    "tradeCount": 165,
+    "closedTradeCount": 78,
+    "winDays": 7,
     "lossDays": 4,
     "bestDay": {
       "date": "2026-06-01",
@@ -2756,6 +2756,194 @@
           "notional": 3572.0
         }
       ]
+    },
+    {
+      "date": "2026-06-17",
+      "day": 17,
+      "pnl": 62.61,
+      "returnPct": 0.81,
+      "rawPnl": 62.61,
+      "brokerPnl": null,
+      "brokerAdjustment": 0,
+      "closedTrades": 6,
+      "executions": 11,
+      "trades": 11,
+      "closedTradeDetails": [
+        {
+          "symbol": "AMKR",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-17",
+          "quantity": 5.0,
+          "avgEntry": 79.5755,
+          "avgExit": 89.9,
+          "pnl": 51.62,
+          "returnPct": 12.97,
+          "executionCount": 1,
+          "basis": 397.8772727272727,
+          "time": "2026-06-17T06:54:00-07:00"
+        },
+        {
+          "symbol": "AMKR",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-17",
+          "quantity": 5.0,
+          "avgEntry": 79.5755,
+          "avgExit": 89.22,
+          "pnl": 48.22,
+          "returnPct": 12.12,
+          "executionCount": 1,
+          "basis": 397.8772727272727,
+          "time": "2026-06-17T06:57:00-07:00"
+        },
+        {
+          "symbol": "NVDL",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-17",
+          "quantity": 20.0,
+          "avgEntry": 97.4463,
+          "avgExit": 97.15,
+          "pnl": -5.93,
+          "returnPct": -0.3,
+          "executionCount": 1,
+          "basis": 1948.9250000000002,
+          "time": "2026-06-17T06:58:00-07:00"
+        },
+        {
+          "symbol": "INTW",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-17",
+          "quantity": 5.0,
+          "avgEntry": 315.0,
+          "avgExit": 313.5,
+          "pnl": -7.5,
+          "returnPct": -0.48,
+          "executionCount": 1,
+          "basis": 1575.0,
+          "time": "2026-06-17T07:56:00-07:00"
+        },
+        {
+          "symbol": "INTC",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-17",
+          "quantity": 15.0,
+          "avgEntry": 121.1133,
+          "avgExit": 120.67,
+          "pnl": -6.65,
+          "returnPct": -0.37,
+          "executionCount": 1,
+          "basis": 1816.7,
+          "time": "2026-06-17T07:57:00-07:00"
+        },
+        {
+          "symbol": "INTW",
+          "campaignId": "",
+          "openDate": "",
+          "closeDate": "2026-06-17",
+          "quantity": 5.0,
+          "avgEntry": 315.0,
+          "avgExit": 311.57,
+          "pnl": -17.15,
+          "returnPct": -1.09,
+          "executionCount": 1,
+          "basis": 1575.0,
+          "time": "2026-06-17T07:57:00-07:00"
+        }
+      ],
+      "executionDetails": [
+        {
+          "time": "2026-06-17T06:54:00-07:00",
+          "ticker": "AMKR",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 89.9,
+          "notional": 449.5
+        },
+        {
+          "time": "2026-06-17T06:57:00-07:00",
+          "ticker": "AMKR",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 89.22,
+          "notional": 446.1
+        },
+        {
+          "time": "2026-06-17T06:58:00-07:00",
+          "ticker": "NVDL",
+          "side": "Sell",
+          "shares": 20.0,
+          "price": 97.15,
+          "notional": 1943.0
+        },
+        {
+          "time": "2026-06-17T07:15:00-07:00",
+          "ticker": "OUST",
+          "side": "Buy",
+          "shares": 35.0,
+          "price": 43.46,
+          "notional": 1521.1
+        },
+        {
+          "time": "2026-06-17T07:54:00-07:00",
+          "ticker": "INTW",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 315.0,
+          "notional": 3150.0
+        },
+        {
+          "time": "2026-06-17T07:55:00-07:00",
+          "ticker": "INTC",
+          "side": "Buy",
+          "shares": 10.0,
+          "price": 121.12,
+          "notional": 1211.2
+        },
+        {
+          "time": "2026-06-17T07:56:00-07:00",
+          "ticker": "INTC",
+          "side": "Buy",
+          "shares": 5.0,
+          "price": 121.1,
+          "notional": 605.5
+        },
+        {
+          "time": "2026-06-17T07:56:00-07:00",
+          "ticker": "INTW",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 313.5,
+          "notional": 1567.5
+        },
+        {
+          "time": "2026-06-17T07:57:00-07:00",
+          "ticker": "INTC",
+          "side": "Sell",
+          "shares": 15.0,
+          "price": 120.67,
+          "notional": 1810.05
+        },
+        {
+          "time": "2026-06-17T07:57:00-07:00",
+          "ticker": "INTW",
+          "side": "Sell",
+          "shares": 5.0,
+          "price": 311.57,
+          "notional": 1557.85
+        },
+        {
+          "time": "2026-06-17T08:54:00-07:00",
+          "ticker": "PGY",
+          "side": "Buy",
+          "shares": 200.0,
+          "price": 15.99,
+          "notional": 3198.0
+        }
+      ]
     }
   ],
   "weeks": [
@@ -2782,11 +2970,11 @@
     {
       "start": "2026-06-15",
       "end": "2026-06-19",
-      "pnl": 485.97,
-      "returnPct": 2.55,
-      "trades": 27,
-      "closedTrades": 18,
-      "winDays": 2,
+      "pnl": 548.58,
+      "returnPct": 2.05,
+      "trades": 38,
+      "closedTrades": 24,
+      "winDays": 3,
       "lossDays": 0
     },
     {
