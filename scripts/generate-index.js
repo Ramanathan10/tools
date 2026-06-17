@@ -8,6 +8,7 @@ const args = new Set(process.argv.slice(2));
 const jsonMode = args.has("--json");
 const checkMode = args.has("--check");
 const toolDescriptions = new Map([
+  ["agents-command-center", "Read-only map of Ram's OpenClaw agents, personal skills, recurring workflows, owners, lanes, and source paths."],
   ["copilot-session-viewer", "Turn exported Copilot session JSON into a readable local timeline with source-linked findings, copyable review briefs, and collapsible tool payloads."],
   ["json-to-yaml", "Paste JSON, get clean YAML. Built for quick config and data handoffs without opening a heavyweight editor."],
   ["now-reading", "A warm Readwise Reader page showing current reads, finished reading history, and a six-month activity heatmap."],

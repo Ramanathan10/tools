@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agents Command Center</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080a0d;
+      --panel: #11161c;
+      --panel-2: #151b22;
+      --line: #29333f;
+      --text: #f4f7fb;
+      --muted: #9aa7b5;
+      --accent: #00e887;
+      --accent-2: #61a8ff;
+      --warn: #f4b942;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 48px;
+    }
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 7vw, 4.6rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+    .lede {
+      max-width: 760px;
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+    .meta {
+      min-width: 190px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+    .meta strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto auto;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      padding: 12px 0;
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(8, 10, 13, 0.94) 100%);
+    }
+    input,
+    select,
+    button {
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      font: inherit;
+    }
+    input {
+      width: 100%;
+      padding: 0 13px;
+    }
+    select,
+    button {
+      padding: 0 12px;
+    }
+    button {
+      cursor: pointer;
+    }
+    button:hover,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      border-color: var(--accent);
+      outline: none;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 2px 0 18px;
+    }
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px;
+      background: var(--panel);
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.65rem;
+      line-height: 1;
+    }
+    .stat span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    .lane-board,
+    .inventory {
+      display: grid;
+      gap: 10px;
+    }
+    .section-title {
+      margin: 10px 0 2px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .lane,
+    .item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 14px;
+    }
+    .lane h2,
+    .item h2 {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.2;
+    }
+    .lane p,
+    .item p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 8px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      white-space: nowrap;
+    }
+    .tag.primary {
+      border-color: color-mix(in srgb, var(--accent), var(--line) 45%);
+      color: var(--accent);
+    }
+    .tag.secondary {
+      border-color: color-mix(in srgb, var(--accent-2), var(--line) 45%);
+      color: var(--accent-2);
+    }
+    .tag.warn {
+      border-color: color-mix(in srgb, var(--warn), var(--line) 45%);
+      color: var(--warn);
+    }
+    .path {
+      display: block;
+      margin-top: 11px;
+      color: var(--muted);
+      font: 0.76rem "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+    .empty {
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      color: var(--muted);
+      text-align: center;
+    }
+    @media (max-width: 820px) {
+      header,
+      .toolbar,
+      .layout,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      .toolbar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Agents Command Center</h1>
+        <p class="lede">One read-only map for Ram's agent lanes, personal skills, and recurring workflows. Built from the current workspace roster so Jarvis can route faster and avoid duplicate tool work.</p>
+      </div>
+      <div class="meta">
+        <strong id="visibleCount">0</strong>
+        visible entries
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="Inventory filters">
+      <input id="search" type="search" placeholder="Search agents, skills, workflows, paths..." autocomplete="off" />
+      <select id="platform">
+        <option value="all">All platforms</option>
+      </select>
+      <button id="reset" type="button">Reset</button>
+    </section>
+
+    <section class="stats" aria-label="Inventory stats">
+      <div class="stat"><strong id="agentCount">0</strong><span>agents</span></div>
+      <div class="stat"><strong id="skillCount">0</strong><span>skills</span></div>
+      <div class="stat"><strong id="workflowCount">0</strong><span>workflows</span></div>
+      <div class="stat"><strong>4</strong><span>routing lanes</span></div>
+    </section>
+
+    <section class="layout">
+      <aside>
+        <div class="section-title">Delegation Lanes</div>
+        <div id="lanes" class="lane-board"></div>
+      </aside>
+      <section>
+        <div class="section-title">Inventory</div>
+        <div id="inventory" class="inventory"></div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const lanes = [
+      {
+        name: "Jarvis",
+        agentId: "projects",
+        domain: "Command layer",
+        use: "Personal projects, inbox/calendar/task orchestration, final synthesis.",
+        tags: ["owner", "projects", "calendar"]
+      },
+      {
+        name: "Veda",
+        agentId: "wiki",
+        domain: "Knowledge retrieval",
+        use: "Documentation, Obsidian/wiki retrieval, Reader research, source-grounded briefs.",
+        tags: ["wiki", "reader", "research"]
+      },
+      {
+        name: "Oracle",
+        agentId: "trading",
+        domain: "Trading",
+        use: "Market structure, watchlists, swing-trade synthesis, technical analysis.",
+        tags: ["trading", "markets", "watchlists"]
+      },
+      {
+        name: "Cipher",
+        agentId: "tooling",
+        domain: "Tooling",
+        use: "OpenClaw, Claude Code, GitHub Copilot, MCP, local runtime, Windows tooling.",
+        tags: ["tooling", "openclaw", "mcp"]
+      }
+    ];
+
+    const inventory = [
+      ...lanes.map((lane) => ({
+        type: "agent",
+        platform: "OpenClaw",
+        name: lane.name,
+        summary: lane.use,
+        owner: lane.agentId,
+        tags: lane.tags,
+        path: "C:\\Users\\trojanmini\\.openclaw\\workspace-projects\\AGENTS.md"
+      })),
+      {
+        type: "workflow",
+        platform: "OpenClaw",
+        name: "Morning Brief",
+        summary: "6 AM America/Los_Angeles brief covering weather, Trojan Lab schedule, calendar-worthy email suggestions, project watch items, and on-deck items.",
+        owner: "Jarvis",
+        tags: ["cron", "calendar", "email"],
+        path: "C:\\Users\\trojanmini\\.openclaw\\workspace-projects\\AGENTS.md"
+      },
+      {
+        type: "workflow",
+        platform: "OpenClaw",
+        name: "Nightly Tool Builder",
+        summary: "Midnight cron that ships one small Ram-specific utility improvement from the Project Ideas Feed.",
+        owner: "Jarvis",
+        tags: ["cron", "tools", "project ideas"],
+        path: "C:\\repos\\ObsidianVault\\1. Projects\\Planning\\Project Ideas Feed.md"
+      },
+      {
+        type: "workflow",
+        platform: "Tools Site",
+        name: "Trading Calendar",
+        summary: "Published trading archive for executions, P&L, and session context in Ram's swing-trading review loop.",
+        owner: "Ram",
+        tags: ["trading", "review", "github pages"],
+        path: "C:\\repos\\tools.github.io\\trading-calendar\\index.html"
+      },
+      {
+        type: "workflow",
+        platform: "Tools Site",
+        name: "Copilot Session Viewer",
+        summary: "Browser-only review surface for exported Copilot sessions with extracted decisions, actions, errors, and unresolved questions.",
+        owner: "Ram",
+        tags: ["copilot", "review", "sessions"],
+        path: "C:\\repos\\tools.github.io\\copilot-session-viewer.html"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "book-review",
+        summary: "Draft long-form book reviews from Reader highlights and broader reading history.",
+        owner: "Jarvis",
+        tags: ["reader", "writing", "synthesis"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\book-review\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "build-persona",
+        summary: "Build Ram's personalized reading profile for triage, quiz, and related skills.",
+        owner: "Jarvis",
+        tags: ["reader", "profile", "personalization"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\build-persona\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "OpenClaw",
+        name: "claudeception",
+        summary: "Extract reusable workflow lessons from sessions and propose skills when patterns are worth keeping.",
+        owner: "Jarvis",
+        tags: ["skills", "learning", "workflow"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\claudeception\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Web",
+        name: "defuddle-read",
+        summary: "Convert cluttered pages into cleaner markdown for reading and summarization.",
+        owner: "Jarvis",
+        tags: ["web", "reading", "markdown"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\defuddle-read\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "feed-catchup",
+        summary: "Catch up on RSS feed items with highlights up top and browsing detail below.",
+        owner: "Jarvis",
+        tags: ["reader", "rss", "briefing"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\feed-catchup\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "highlight-graph",
+        summary: "Visualize highlights and connections as an interactive graph.",
+        owner: "Jarvis",
+        tags: ["reader", "graph", "visualization"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\highlight-graph\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Research",
+        name: "last30days-official",
+        summary: "Research what people are saying about a topic across Reddit, X, YouTube, TikTok, HN, GitHub, and the web.",
+        owner: "Jarvis",
+        tags: ["research", "social", "web"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\last30days-official\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "now-reading-page",
+        summary: "Generate Ram's personal Now Reading webpage from Reader library data.",
+        owner: "Jarvis",
+        tags: ["reader", "website", "github pages"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\now-reading-page\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "OpenClaw",
+        name: "proactive-agent",
+        summary: "Patterns for proactive agents, working buffers, autonomous crons, and continuous improvement.",
+        owner: "Jarvis",
+        tags: ["agents", "proactive", "cron"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\proactive-agent\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "quiz",
+        summary: "Quiz Ram on recently read documents to test understanding and retention.",
+        owner: "Jarvis",
+        tags: ["reader", "learning", "quiz"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\quiz\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "reader-recap",
+        summary: "Brief recent reading, finished items, highlights, and Ram's notes.",
+        owner: "Jarvis",
+        tags: ["reader", "briefing", "recap"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\reader-recap\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "readwise-cli",
+        summary: "Use the Readwise CLI to access highlights, documents, and library data.",
+        owner: "Jarvis",
+        tags: ["reader", "cli", "data"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\readwise-cli\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "readwise-mcp",
+        summary: "Use Readwise MCP tools for highlights, documents, and library workflows.",
+        owner: "Jarvis",
+        tags: ["reader", "mcp", "data"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\readwise-mcp\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "readwise-official",
+        summary: "Search, read, organize, and manage Readwise highlights and Reader documents from the command line.",
+        owner: "Jarvis",
+        tags: ["reader", "cli", "official"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\readwise-official\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "OpenClaw",
+        name: "self-improving-agent",
+        summary: "Capture learnings, errors, corrections, and better recurring approaches.",
+        owner: "Jarvis",
+        tags: ["learning", "memory", "quality"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\self-improving-agent\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Database",
+        name: "supabase-rls-server-side-only",
+        summary: "Fix Supabase RLS advisories for apps that only access Supabase through trusted server-side routes.",
+        owner: "Jarvis",
+        tags: ["supabase", "security", "database"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\supabase-rls-server-side-only\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "surprise-me",
+        summary: "Analyze reading history and surface surprising patterns Ram may not have noticed.",
+        owner: "Jarvis",
+        tags: ["reader", "insight", "synthesis"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\surprise-me\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Web",
+        name: "tavily-search",
+        summary: "AI-optimized web search via Tavily API.",
+        owner: "Jarvis",
+        tags: ["web", "search", "research"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\tavily-search\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Readwise",
+        name: "triage",
+        summary: "Triage Reader inbox one document at a time with personalized pitches.",
+        owner: "Jarvis",
+        tags: ["reader", "inbox", "triage"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\triage\\SKILL.md"
+      },
+      {
+        type: "skill",
+        platform: "Obsidian",
+        name: "wiki-retrieval-flow",
+        summary: "Use the vault wiki as the primary source with index, QMD, search, and full-page read strategies.",
+        owner: "Veda",
+        tags: ["wiki", "obsidian", "retrieval"],
+        path: "C:\\Users\\trojanmini\\.agents\\skills\\wiki-retrieval-flow\\SKILL.md"
+      }
+    ];
+
+    const platform = document.querySelector("#platform");
+    const search = document.querySelector("#search");
+    const reset = document.querySelector("#reset");
+    const inventoryNode = document.querySelector("#inventory");
+    const visibleCount = document.querySelector("#visibleCount");
+
+    const platforms = [...new Set(inventory.map((item) => item.platform))].sort();
+    for (const value of platforms) {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value;
+      platform.appendChild(option);
+    }
+
+    document.querySelector("#agentCount").textContent = inventory.filter((item) => item.type === "agent").length;
+    document.querySelector("#skillCount").textContent = inventory.filter((item) => item.type === "skill").length;
+    document.querySelector("#workflowCount").textContent = inventory.filter((item) => item.type === "workflow").length;
+
+    document.querySelector("#lanes").innerHTML = lanes.map((lane) => `
+      <article class="lane">
+        <h2>${lane.name} <span class="tag primary">${lane.agentId}</span></h2>
+        <p>${lane.domain}</p>
+        <p>${lane.use}</p>
+        <div class="row">${lane.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+      </article>
+    `).join("");
+
+    function matches(item) {
+      const text = `${item.type} ${item.platform} ${item.name} ${item.summary} ${item.owner} ${item.tags.join(" ")} ${item.path}`.toLowerCase();
+      const query = search.value.trim().toLowerCase();
+      return (platform.value === "all" || item.platform === platform.value) && (!query || text.includes(query));
+    }
+
+    function render() {
+      const visible = inventory.filter(matches);
+      visibleCount.textContent = visible.length;
+      if (visible.length === 0) {
+        inventoryNode.innerHTML = `<div class="empty">No entries match the current filters.</div>`;
+        return;
+      }
+
+      inventoryNode.innerHTML = visible.map((item) => {
+        const kindClass = item.type === "agent" ? "primary" : item.type === "workflow" ? "warn" : "secondary";
+        return `
+          <article class="item">
+            <h2>${item.name}</h2>
+            <p>${item.summary}</p>
+            <div class="row">
+              <span class="tag ${kindClass}">${item.type}</span>
+              <span class="tag">${item.platform}</span>
+              <span class="tag">${item.owner}</span>
+              ${item.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+            </div>
+            <code class="path">${item.path}</code>
+          </article>
+        `;
+      }).join("");
+    }
+
+    search.addEventListener("input", render);
+    platform.addEventListener("change", render);
+    reset.addEventListener("click", () => {
+      search.value = "";
+      platform.value = "all";
+      render();
+      search.focus();
+    });
+    render();
+  </script>
+</body>
+</html>
