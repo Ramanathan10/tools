@@ -1,7 +1,7 @@
 {
   "month": "2026-06",
   "title": "June 2026",
-  "generatedAt": "2026-06-18T14:46:56",
+  "generatedAt": "2026-06-18T15:42:42",
   "source": "Raw executions for activity, realized P/L, and return %",
   "summary": {
     "totalPnl": -388.78,
@@ -353,7 +353,7 @@
       "qualityNotes": "",
       "lastPrice": 90.44,
       "priceSource": "Robinhood public quote",
-      "quoteUpdatedAt": "2026-06-18T21:46:07Z",
+      "quoteUpdatedAt": "2026-06-18T22:40:22Z",
       "quoteError": null,
       "openPnl": 325.93,
       "openPnlPct": 13.65
@@ -369,7 +369,7 @@
       "qualityNotes": "",
       "lastPrice": 271.32,
       "priceSource": "Robinhood public quote",
-      "quoteUpdatedAt": "2026-06-18T21:45:10Z",
+      "quoteUpdatedAt": "2026-06-18T22:42:32Z",
       "quoteError": null,
       "openPnl": 658.8,
       "openPnlPct": 19.31
@@ -377,18 +377,18 @@
     {
       "symbol": "DDOG",
       "quantity": 25.0,
-      "avgCost": 216.6716,
-      "costBasis": 5416.79,
+      "avgCost": 221.562,
+      "costBasis": 5539.05,
       "realizedPnl": 1349.03,
       "quality": "Unrated",
       "qualitySource": "",
       "qualityNotes": "",
       "lastPrice": 222.75,
       "priceSource": "Robinhood public quote",
-      "quoteUpdatedAt": "2026-06-18T21:38:11Z",
+      "quoteUpdatedAt": "2026-06-18T22:38:51Z",
       "quoteError": null,
-      "openPnl": 151.96,
-      "openPnlPct": 2.81
+      "openPnl": 29.7,
+      "openPnlPct": 0.54
     },
     {
       "symbol": "KEEL",
@@ -401,7 +401,7 @@
       "qualityNotes": "",
       "lastPrice": 6.27,
       "priceSource": "Robinhood public quote",
-      "quoteUpdatedAt": "2026-06-18T21:46:49Z",
+      "quoteUpdatedAt": "2026-06-18T22:41:59Z",
       "quoteError": null,
       "openPnl": 15.0,
       "openPnlPct": 0.48
@@ -417,7 +417,7 @@
       "qualityNotes": "Rated from A+ checklist during new campaign review",
       "lastPrice": 46.57,
       "priceSource": "Robinhood public quote",
-      "quoteUpdatedAt": "2026-06-18T21:46:42Z",
+      "quoteUpdatedAt": "2026-06-18T22:35:27Z",
       "quoteError": null,
       "openPnl": 488.45,
       "openPnlPct": 14.08
@@ -433,7 +433,7 @@
       "qualityNotes": "Rated from A+ checklist during new campaign review",
       "lastPrice": 232.33,
       "priceSource": "Robinhood public quote",
-      "quoteUpdatedAt": "2026-06-18T21:42:04Z",
+      "quoteUpdatedAt": "2026-06-18T22:41:07Z",
       "quoteError": null,
       "openPnl": 146.1,
       "openPnlPct": 2.58
@@ -449,7 +449,7 @@
       "qualityNotes": "",
       "lastPrice": 184.97,
       "priceSource": "Robinhood public quote",
-      "quoteUpdatedAt": "2026-06-18T21:46:53Z",
+      "quoteUpdatedAt": "2026-06-18T22:42:39Z",
       "quoteError": null,
       "openPnl": 176.9,
       "openPnlPct": 13.58
@@ -465,7 +465,7 @@
       "qualityNotes": "",
       "lastPrice": 25.0,
       "priceSource": "Robinhood public quote",
-      "quoteUpdatedAt": "2026-06-18T21:37:07Z",
+      "quoteUpdatedAt": "2026-06-18T22:39:39Z",
       "quoteError": null,
       "openPnl": 91.5,
       "openPnlPct": 2.5
