@@ -248,6 +248,112 @@
       letter-spacing: 0.2em;
     }
 
+    .positions-panel {
+      margin: 0 0 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .positions-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .positions-head h2 {
+      margin: 0;
+      font-size: clamp(1.25rem, 3vw, 1.85rem);
+      line-height: 1;
+    }
+
+    .positions-total {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .positions-total.red {
+      color: var(--red);
+    }
+
+    .positions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .position-card {
+      min-height: 154px;
+      padding: 16px;
+      background: rgba(7, 18, 24, 0.94);
+    }
+
+    .position-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .position-symbol {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .quality {
+      min-width: 44px;
+      padding: 5px 8px;
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      color: var(--green-soft);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .quality.unrated {
+      color: var(--muted);
+      border-color: var(--line);
+    }
+
+    .position-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 14px;
+    }
+
+    .position-metric span {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .position-metric strong {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.96rem;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
     .calendar {
       display: grid;
       gap: 10px;
@@ -676,6 +782,17 @@
       </div>
     </section>
 
+    <section class="positions-panel" aria-label="Open positions">
+      <div class="positions-head">
+        <div>
+          <div class="label">Open Positions</div>
+          <h2>Current Holdings</h2>
+        </div>
+        <div class="positions-total" id="openPositionsTotal">Open P/L N/A</div>
+      </div>
+      <div class="positions-grid" id="openPositions"></div>
+    </section>
+
     <section class="view-bar" aria-label="Calendar view switcher">
       <div class="segmented" role="tablist" aria-label="Calendar view">
         <button class="active" id="dayView" type="button" role="tab" aria-selected="true">Days</button>
@@ -739,6 +856,8 @@
 
     const displayShares = value => Number.isInteger(value) ? String(value) : value.toFixed(4).replace(/\.?0+$/, "");
 
+    const displayPercent = value => value === null || value === undefined ? "N/A" : `${value >= 0 ? "+" : ""}${value.toFixed(2)}%`;
+
     const monthName = date => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric"
@@ -769,6 +888,48 @@
           <tbody>${rows.join("")}</tbody>
         </table>
       `;
+    };
+
+    const renderOpenPositions = data => {
+      const container = document.getElementById("openPositions");
+      const totalNode = document.getElementById("openPositionsTotal");
+      const positions = data.openPositions || [];
+      if (!positions.length) {
+        container.innerHTML = `<div class="empty">No open positions.</div>`;
+        totalNode.textContent = "Open P/L N/A";
+        totalNode.classList.remove("red");
+        return;
+      }
+
+      const knownPnl = positions.filter(position => position.openPnl !== null && position.openPnl !== undefined);
+      const totalOpenPnl = knownPnl.reduce((total, position) => total + position.openPnl, 0);
+      totalNode.textContent = knownPnl.length ? `Open P/L ${signedMoney(totalOpenPnl)}` : "Open P/L N/A";
+      totalNode.classList.toggle("red", knownPnl.length && totalOpenPnl < 0);
+
+      container.innerHTML = positions.map(position => {
+        const pnlClass = position.openPnl === null || position.openPnl === undefined
+          ? ""
+          : position.openPnl < 0 ? "red" : "green";
+        const quality = position.quality || "Unrated";
+        const qualityClass = quality.toLowerCase() === "unrated" ? "quality unrated" : "quality";
+        return `
+          <article class="position-card">
+            <div class="position-top">
+              <div>
+                <div class="position-symbol">${position.symbol}</div>
+                <div class="trade-count">${displayShares(position.quantity)} shares</div>
+              </div>
+              <div class="${qualityClass}" title="${position.qualitySource || "No quality rating recorded"}">${quality}</div>
+            </div>
+            <div class="position-metrics">
+              <div class="position-metric"><span>Avg</span><strong>${preciseMoney.format(position.avgCost || 0)}</strong></div>
+              <div class="position-metric"><span>Mark</span><strong>${position.lastPrice ? preciseMoney.format(position.lastPrice) : "N/A"}</strong></div>
+              <div class="position-metric"><span>Open P/L</span><strong class="${pnlClass}">${position.openPnl === null || position.openPnl === undefined ? "N/A" : signedMoney(position.openPnl)}</strong></div>
+              <div class="position-metric"><span>P/L %</span><strong class="${pnlClass}">${displayPercent(position.openPnlPct)}</strong></div>
+            </div>
+          </article>
+        `;
+      }).join("");
     };
 
     const openDetail = day => {
@@ -981,6 +1142,7 @@
       document.getElementById("generatedAt").textContent = `Updated ${data.generatedAt}`;
       const state = readUrlState();
       updateSummaryMetrics(data);
+      renderOpenPositions(data);
       setView(state.view, false);
     };
 
