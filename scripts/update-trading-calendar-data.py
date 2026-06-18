@@ -2,6 +2,9 @@ import argparse
 import calendar
 import csv
 import json
+import urllib.error
+import urllib.parse
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 
@@ -126,6 +129,106 @@ def read_broker_realized_pnl(journal_root, month):
     return daily
 
 
+def read_position_quality(journal_root, month):
+    path = journal_root / "PositionQuality" / f"{month}.csv"
+    if not path.exists():
+        return {}
+
+    quality = {}
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            symbol = (row.get("symbol") or "").upper()
+            if not symbol:
+                continue
+            quality[symbol] = {
+                "quality": row.get("quality") or "Unrated",
+                "source": row.get("source") or "",
+                "notes": row.get("notes") or "",
+            }
+    return quality
+
+
+def fetch_last_prices(symbols):
+    prices = {}
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "application/json",
+    }
+
+    for symbol in symbols:
+        url = f"https://api.robinhood.com/marketdata/quotes/{urllib.parse.quote(symbol)}/"
+        request = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(request, timeout=8) as response:
+                data = json.loads(response.read().decode("utf-8"))
+            raw_price = data.get("last_trade_price") or data.get("last_extended_hours_trade_price")
+            prices[symbol] = {
+                "lastPrice": round(float(raw_price), 4) if raw_price else None,
+                "priceSource": "Robinhood public quote",
+                "quoteUpdatedAt": data.get("updated_at"),
+                "quoteError": None,
+            }
+        except (urllib.error.URLError, TimeoutError, ValueError, json.JSONDecodeError) as error:
+            prices[symbol] = {
+                "lastPrice": None,
+                "priceSource": "Robinhood public quote",
+                "quoteUpdatedAt": None,
+                "quoteError": str(error),
+            }
+    return prices
+
+
+def read_open_positions(journal_root, month):
+    year = month[:4]
+    path = journal_root / "Reconciliation" / f"{year}.csv"
+    if not path.exists():
+        return []
+
+    quality_by_symbol = read_position_quality(journal_root, month)
+    rows = []
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            if row.get("status") != "open":
+                continue
+            symbol = row["symbol"].upper()
+            qty = float(row.get("open_quantity") or 0)
+            avg_cost = float(row.get("avg_open_price") or 0)
+            quality = quality_by_symbol.get(symbol, {
+                "quality": "Unrated",
+                "source": "",
+                "notes": "",
+            })
+            rows.append({
+                "symbol": symbol,
+                "quantity": qty,
+                "avgCost": round(avg_cost, 4),
+                "costBasis": round(qty * avg_cost, 2),
+                "realizedPnl": round(float(row.get("realized_pnl") or 0), 2),
+                "quality": quality["quality"],
+                "qualitySource": quality["source"],
+                "qualityNotes": quality["notes"],
+            })
+
+    prices = fetch_last_prices([row["symbol"] for row in rows])
+    for row in rows:
+        quote = prices.get(row["symbol"], {})
+        last_price = quote.get("lastPrice")
+        row["lastPrice"] = last_price
+        row["priceSource"] = quote.get("priceSource")
+        row["quoteUpdatedAt"] = quote.get("quoteUpdatedAt")
+        row["quoteError"] = quote.get("quoteError")
+        if last_price is not None and row["quantity"] and row["avgCost"]:
+            open_pnl = (last_price - row["avgCost"]) * row["quantity"]
+            row["openPnl"] = round(open_pnl, 2)
+            row["openPnlPct"] = round(((last_price / row["avgCost"]) - 1) * 100, 2)
+        else:
+            row["openPnl"] = None
+            row["openPnlPct"] = None
+
+    rows.sort(key=lambda item: item["symbol"])
+    return rows
+
+
 def summarize_realized(exits):
     pnl = sum(item["pnl"] for item in exits)
     basis = sum(item["basis"] for item in exits)
@@ -142,6 +245,7 @@ def build_snapshot(journal_root, month):
     executions = read_executions(journal_root / "Executions" / f"{month}.csv", month)
     realized_exits = read_realized_exits(journal_root, year, month)
     broker_daily = read_broker_realized_pnl(journal_root, month)
+    open_positions = read_open_positions(journal_root, month)
     daily = {date: summarize_realized(items) for date, items in realized_exits.items()}
     for date, broker in broker_daily.items():
         summary = daily.setdefault(date, {"pnl": 0, "returnPct": None, "closedTrades": 0, "basis": 0})
@@ -230,6 +334,7 @@ def build_snapshot(journal_root, month):
             "lossDays": sum(1 for item in daily.values() if item["pnl"] < 0),
             "bestDay": best_day,
         },
+        "openPositions": open_positions,
         "days": days,
         "weeks": weeks,
     }
