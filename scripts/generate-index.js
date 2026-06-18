@@ -14,6 +14,7 @@ const toolDescriptions = new Map([
   ["now-reading", "A warm Readwise Reader page showing current reads, finished reading history, and a six-month activity heatmap."],
   ["swing-risk", "Size a swing trade from entry, stop, target, account risk, and max capital before it hits Ram's trading notes."],
   ["trading-calendar", "Monthly trading archive with executions, P&L, and session context for Ram's swing-trading review loop."],
+  ["wiki-skill-candidates", "Generated review queue that finds Ram's wiki clusters most suitable for reusable agent skills."],
 ]);
 
 function readTitle(filePath, fallback) {
