@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw Ops</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080a0d;
+      --panel: #11161c;
+      --panel-2: #151d25;
+      --line: #28323d;
+      --text: #f4f7fb;
+      --muted: #9aa7b5;
+      --accent: #00e887;
+      --accent-2: #61a8ff;
+      --warn: #f4b942;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 38px 0 58px;
+    }
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 7vw, 4.8rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+    .lede {
+      max-width: 760px;
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+    .meta {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 12px;
+      color: var(--muted);
+      min-width: 220px;
+      font-size: 0.84rem;
+    }
+    .meta strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 14px;
+    }
+    .stat strong {
+      display: block;
+      color: var(--accent);
+      font-size: 1.55rem;
+      line-height: 1.1;
+    }
+    .stat span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    section {
+      margin-top: 24px;
+    }
+    h2 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: var(--accent-2);
+      letter-spacing: 0;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    th, td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.9rem;
+    }
+    th {
+      color: var(--muted);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: var(--panel-2);
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    td strong {
+      display: block;
+      color: var(--text);
+    }
+    td span {
+      display: block;
+      color: var(--muted);
+      max-width: 520px;
+      margin-top: 4px;
+      font-size: 0.82rem;
+    }
+    code {
+      color: var(--warn);
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.84em;
+    }
+    .note {
+      color: var(--muted);
+      margin: 18px 0 0;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 780px) {
+      header {
+        grid-template-columns: 1fr;
+      }
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      main {
+        width: min(100% - 24px, 1180px);
+        padding-top: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>OpenClaw Ops</h1>
+        <p class="lede">Token and automation leaderboard for Ram's local OpenClaw agents and Codex-backed cron work.</p>
+      </div>
+      <div class="meta">
+        <strong>357</strong>
+        token-bearing runs scanned<br />
+        Generated Jun 19, 12:04 AM
+      </div>
+    </header>
+
+    <div class="stats">
+      <div class="stat"><strong>74,227,124</strong><span>tokens in last 7 days</span></div>
+      <div class="stat"><strong>578,194,636</strong><span>tokens in last 30 days</span></div>
+      <div class="stat"><strong>280</strong><span>runs in last 30 days</span></div>
+      <div class="stat"><strong>99%</strong><span>completion signal</span></div>
+    </div>
+
+    <section>
+      <h2>Top Agents, Last 30 Days</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Agent</th><th>Total Tokens</th><th>Avg / Run</th><th>Runs</th><th>Latest</th></tr></thead>
+          <tbody><tr><td><strong>projects</strong></td><td>200,717,513</td><td>2,090,807</td><td>96</td><td>Jun 18, 6:00 AM</td></tr>
+<tr><td><strong>trading</strong></td><td>162,193,030</td><td>1,340,438</td><td>121</td><td>Jun 18, 5:00 PM</td></tr>
+<tr><td><strong>main</strong></td><td>128,540,938</td><td>64,270,469</td><td>2</td><td>Jun 4, 10:38 AM</td></tr>
+<tr><td><strong>wiki</strong></td><td>57,987,584</td><td>1,208,075</td><td>48</td><td>Jun 18, 7:17 PM</td></tr>
+<tr><td><strong>tooling</strong></td><td>28,755,571</td><td>2,211,967</td><td>13</td><td>Jun 18, 6:30 AM</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Top Jobs, Last 30 Days</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job</th><th>Total Tokens</th><th>Avg / Run</th><th>Runs</th><th>Completion</th></tr></thead>
+          <tbody><tr><td><strong>interactive/agent</strong></td><td>578,194,636</td><td>2,064,981</td><td>280</td><td>99%</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Largest Runs, Last 30 Days</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Run</th><th>Agent</th><th>Total</th><th>Cached Input</th><th>Started</th><th>Status</th></tr></thead>
+          <tbody><tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>main</td><td>112,577,159</td><td>104,829,696</td><td>Jun 4, 10:38 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>trading</td><td>29,384,310</td><td>27,985,152</td><td>May 28, 6:05 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>28,862,018</td><td>28,035,712</td><td>May 31, 6:48 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>main</td><td>15,963,779</td><td>15,129,088</td><td>Jun 2, 5:12 PM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>15,339,725</td><td>14,498,688</td><td>May 26, 5:17 PM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>trading</td><td>13,954,467</td><td>13,035,008</td><td>May 21, 6:08 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>tooling</td><td>13,902,062</td><td>13,281,792</td><td>Jun 11, 10:10 PM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>11,300,309</td><td>10,851,200</td><td>May 29, 8:08 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>10,969,159</td><td>10,295,552</td><td>Jun 6, 8:25 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>trading</td><td>9,914,329</td><td>9,016,960</td><td>Jun 1, 9:08 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>9,624,056</td><td>8,799,488</td><td>May 26, 6:13 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>8,690,103</td><td>8,273,024</td><td>Jun 10, 6:58 PM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>8,517,203</td><td>8,029,568</td><td>May 22, 7:56 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>trading</td><td>7,842,445</td><td>7,304,832</td><td>Jun 2, 6:10 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>7,465,599</td><td>6,920,576</td><td>May 20, 8:46 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>6,754,864</td><td>6,394,240</td><td>May 21, 6:07 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>6,734,793</td><td>6,177,536</td><td>May 28, 6:13 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>trading</td><td>6,650,656</td><td>6,246,144</td><td>Jun 18, 1:32 PM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>6,162,738</td><td>5,793,664</td><td>Jun 7, 7:50 AM</td><td>complete</td></tr>
+<tr><td><strong>interactive/agent</strong><span>(no prompt text)</span></td><td>projects</td><td>6,027,191</td><td>5,747,840</td><td>May 27, 8:32 AM</td><td>complete</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="note">Source: local <code>C:\Users\trojanmini\.openclaw\agents\*\agent\codex-home\sessions</code> JSONL token_count events. Run <code>node scripts/generate-openclaw-ops.js</code> to refresh.</p>
+  </main>
+</body>
+</html>
