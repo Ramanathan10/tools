@@ -263,6 +263,10 @@
             </label>
             <button class="mini" type="button" id="refreshMarket">Refresh</button>
           </div>
+          <label>
+            Alpha Vantage Key
+            <input id="alphaVantageKey" type="password" autocomplete="off" spellcheck="false" placeholder="Session only" />
+          </label>
         </div>
 
         <div class="range-field">
@@ -309,11 +313,11 @@
   </main>
 
   <script>
-    const ALPHA_VANTAGE_API_KEY = "E9EC2NZ5JYED10VK";
     const TARGET_R = 3;
     const DEFAULT_MAX_LOSS = 400;
     const ids = ["ticker", "maxLoss", "entry", "stop", "target"];
     const fields = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
+    const alphaVantageKey = document.getElementById("alphaVantageKey");
     const output = {
       maxLossValue: document.getElementById("maxLossValue"),
       shares: document.getElementById("shares"),
@@ -407,7 +411,7 @@
     }
 
     function getAlphaVantageKey() {
-      return ALPHA_VANTAGE_API_KEY;
+      return alphaVantageKey.value.trim();
     }
 
     async function fetchJson(url) {
@@ -459,6 +463,11 @@
       if (!symbol) {
         setRefreshStatus("Enter a ticker first.", "bad");
         fields.ticker.focus();
+        return;
+      }
+      if (!getAlphaVantageKey()) {
+        setRefreshStatus("Enter an Alpha Vantage key to refresh market values.", "bad");
+        alphaVantageKey.focus();
         return;
       }
 
