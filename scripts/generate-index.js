@@ -114,7 +114,7 @@ const catalog = tools.map((tool) => ({
 
 const links = catalog
   .map((tool) => {
-    return `      <a class="tool" href="${escapeHtml(tool.href)}">
+    return `      <a class="tool-card" href="${escapeHtml(tool.href)}">
         <span class="tool-label">${escapeHtml(tool.label)}</span>
         <strong>${escapeHtml(tool.title)}</strong>
         <span>${escapeHtml(tool.description)}</span>
@@ -128,91 +128,25 @@ const html = `<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tools</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #080a0d;
-      --panel: #11161c;
-      --panel-hover: #151d25;
-      --line: #28323d;
-      --text: #f4f7fb;
-      --muted: #9aa7b5;
-      --accent: #00e887;
-    }
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.4;
-    }
-    main {
-      width: min(920px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 44px 0;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      line-height: 0.95;
-      letter-spacing: 0;
-    }
-    .lede {
-      max-width: 640px;
-      margin: 18px 0 30px;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 12px;
-    }
-    .tool {
-      min-height: 170px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 18px;
-      text-decoration: none;
-    }
-    .tool:hover,
-    .tool:focus-visible {
-      background: var(--panel-hover);
-      border-color: color-mix(in srgb, var(--accent), var(--line) 35%);
-      outline: none;
-    }
-    .tool-label {
-      color: var(--accent);
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-    .tool strong {
-      display: block;
-      margin: 18px 0 10px;
-      font-size: 1.55rem;
-      line-height: 1.05;
-    }
-    .tool span:last-child {
-      color: var(--muted);
-    }
-  </style>
+  <link rel="stylesheet" href="assets/tool-shell.css" />
 </head>
 <body>
-  <main>
-    <h1>Tools</h1>
-    <p class="lede">Small, practical utilities for Ram's recurring workflows.</p>
+  <main class="shell">
+    <nav class="shell-topbar" aria-label="Tools navigation">
+      <a class="shell-brand" href="./">Ram Tools</a>
+      <div class="shell-nav">
+        <a href="json-to-yaml.html">JSON YAML</a>
+        <a href="trading-calendar/">Trading</a>
+        <a href="openclaw-ops/">Ops</a>
+      </div>
+    </nav>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Personal Utilities</div>
+        <h1>Tools</h1>
+        <p class="lede">Small, practical utilities for Ram's recurring workflows.</p>
+      </div>
+    </section>
     <section class="grid" aria-label="Available tools">
 ${links}
     </section>
