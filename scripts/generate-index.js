@@ -1,33 +1,11 @@
 const fs = require("fs");
 const path = require("path");
+const { publicTools, repoRoot } = require("./public-tools");
 
-const repoRoot = path.resolve(__dirname, "..");
 const outputFile = path.join(repoRoot, "index.html");
 const args = new Set(process.argv.slice(2));
 const jsonMode = args.has("--json");
 const checkMode = args.has("--check");
-const publicTools = [
-  {
-    name: "copilot-session-viewer",
-    href: "copilot-session-viewer.html",
-    source: path.join(repoRoot, "copilot-session-viewer.html"),
-  },
-  {
-    name: "json-to-yaml",
-    href: "json-to-yaml.html",
-    source: path.join(repoRoot, "json-to-yaml.html"),
-  },
-  {
-    name: "swing-risk",
-    href: "swing-risk/",
-    source: path.join(repoRoot, "swing-risk", "index.html"),
-  },
-];
-const toolDescriptions = new Map([
-  ["copilot-session-viewer", "Turn exported Copilot session JSON into a readable local timeline with source-linked findings, copyable review briefs, and collapsible tool payloads."],
-  ["json-to-yaml", "Paste JSON, get clean YAML. Built for quick config and data handoffs without opening a heavyweight editor."],
-  ["swing-risk", "Size a swing trade from entry, stop, target, account risk, and max capital without storing private trading data."],
-]);
 
 function readTitle(filePath, fallback) {
   const html = fs.readFileSync(filePath, "utf8");
@@ -54,7 +32,8 @@ function escapeHtml(value) {
 }
 
 function describeTool(name) {
-  return toolDescriptions.get(name) ?? "Small personal utility for Ram's recurring workflows.";
+  const tool = publicTools.find((item) => item.name === name);
+  return tool?.description ?? "Small personal utility for Ram's recurring workflows.";
 }
 
 const missingPublicTools = publicTools.filter((tool) => !fs.existsSync(tool.source));

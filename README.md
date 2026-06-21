@@ -27,3 +27,14 @@ Minimum shape:
 ```
 
 Root-level tools should use `assets/tool-shell.css`; nested tools should use `../assets/tool-shell.css`.
+
+## Publish Preflight
+
+Run this before pushing public catalog changes:
+
+```powershell
+node scripts/generate-index.js --check --json
+node scripts/public-preflight.js --json
+```
+
+`scripts/public-tools.js` is the explicit public catalog allowlist. Add new public tools there first, then let the index and preflight read the same source of truth.
